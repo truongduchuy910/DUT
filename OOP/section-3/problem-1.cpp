@@ -7,7 +7,10 @@ struct Vector
 class vectors
 {
 private:
-    Vector vector;
+	Vector* next;
+	Vector* previous;
+    Vector data
+;
 
 public:
     vectors(){
