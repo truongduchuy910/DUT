@@ -3,14 +3,14 @@
 ##### Push
 _Thêm một phần tử vào đầu danh sách_
 ###### Khởi tạo dữ liệu
-_Kiểu dữ liệu File được định nghĩa như sau
+_Kiểu dữ liệu File được định nghĩa như sau_
 
     struct File
     {
         int value;
     };
 
-Nên ta khai báo
+_Nên ta khai báo_
 
     File du_lieu_can_them;
     du_lieu_can_them.value = gia_tri;
