@@ -36,6 +36,7 @@ List::~List()
 
 Data List::insertFirst(Data data)
 {
+    length++;
     List *newNode = new List;
     newNode->data = this->data;
     newNode->next = this->next;
@@ -50,6 +51,7 @@ Data List::insertFirst(Data data)
 
 Data List::insertLast(Data data)
 {
+    length++;
     List *lastNode = this;
     while (lastNode->next != NULL)
     {
@@ -85,7 +87,7 @@ Data &List::operator[](int i)
 void List::show()
 {
     List *List = this;
-    std::cout << "[ ";
+    std::cout << "[" << length << "]=>( ";
     while (List->next != NULL)
     {
         std::cout << List->data.value;
@@ -93,7 +95,7 @@ void List::show()
         if (List->next != NULL)
             std::cout << ", ";
     }
-    std::cout << " ]" << std::endl;
+    std::cout << " )" << std::endl;
 }
 
 int main()
@@ -102,16 +104,28 @@ int main()
     List B;
     List C;
 
-    std::ifstream DataInput;
-    DataInput.open("in.txt");
+    std::ifstream dataInput;
 
+    dataInput.open("A.txt");
     int data;
-    while (DataInput >> data)
+    Data newNode;
+
+    while (dataInput >> data)
     {
-        Data newNode;
         newNode.value = data;
         A.insertLast(newNode);
     };
+    dataInput.close();
+
+    dataInput.open("B.txt");
+    while (dataInput >> data)
+    {
+        newNode.value = data;
+        B.insertLast(newNode);
+    };
+    dataInput.close();
+
     A.show();
+    B.show();
     return 0;
 }
