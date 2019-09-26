@@ -3,6 +3,7 @@
     List tên_List;
 ##### Định Dạng Dữ Liệu Cho Lớp List
 Thêm đoạn mã vào ngay trước hàm main()
+
     struct Data
     {
         kiểu_dữ_liệu1 thuộc_tính1;
