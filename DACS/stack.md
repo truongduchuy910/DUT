@@ -18,13 +18,13 @@ Tạo đối_tượng_mới
 
 Ghi dữ liệu cho đối_tượng_mới
 
-    đối_tượng_mới.thuộc_tính1 = gia_tri;
-    đối_tượng_mới.thuộc_tính2 = gia_tri;
-    đối_tượng_mới.thuộc_tính3 = gia_tri;
+    đối_tượng_mới.thuộc_tính1 = giá_trị;
+    đối_tượng_mới.thuộc_tính2 = giá_trị;
+    đối_tượng_mới.thuộc_tính3 = giá_trị;
 
 Đẩy đối_tượng_mới vào Lớp tên_List
 
-    tên_List.inserFirst(đối_tượng_mới);
+    tên_List.insertFirst(đối_tượng_mới);
 
 ##### insertLast: Thêm một đối tượng cuối danh sách
 Tạo đối_tượng_mới
@@ -33,9 +33,9 @@ Tạo đối_tượng_mới
 
 Ghi dữ liệu cho đối_tượng_mới
 
-    đối_tượng_mới.thuộc_tính1 = gia_tri;
-    đối_tượng_mới.thuộc_tính2 = gia_tri;
-    đối_tượng_mới.thuộc_tính3 = gia_tri;
+    đối_tượng_mới.thuộc_tính1 = giá_trị;
+    đối_tượng_mới.thuộc_tính2 = giá_trị;
+    đối_tượng_mới.thuộc_tính3 = giá_trị;
 
 Đẩy đối_tượng_mới vào Lớp tên_List
 
