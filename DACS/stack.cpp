@@ -38,7 +38,6 @@ Data List::insertFirst(Data data)
     this->previous = NULL;
     this->data = data;
     this->next = newNode;
-    this->length++;
     return newNode->data;
 }
 

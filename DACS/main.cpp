@@ -1,6 +1,10 @@
 #include <fstream>
 #include <iostream>
-struct Data;
+struct Data
+{
+    int value;
+};
+
 class List
 {
 private:
@@ -10,19 +14,32 @@ private:
 
 public:
     int length;
-    List(/* args */);
+    List(int size = 0);
     ~List();
     Data insertFirst(Data data);
     Data removeFirst();
     Data insertLast(Data data);
     Data &operator[](int i);
-    void show();
+    void display();
 };
 
-List::List(/* args */)
+List::List(int size)
 {
-    this->next = NULL;
-    length = 0;
+    this->length = 0;
+
+    if (size)
+    {
+        while (size--)
+        {
+            Data emptyNode;
+            emptyNode.value = 0;
+            this->insertFirst(emptyNode);
+        }
+    }
+    else
+    {
+        this->next = NULL;
+    }
 }
 
 List::~List()
@@ -40,7 +57,6 @@ Data List::insertFirst(Data data)
     this->previous = NULL;
     this->data = data;
     this->next = newNode;
-    this->length++;
     return newNode->data;
 }
 
@@ -79,10 +95,11 @@ Data &List::operator[](int i)
     }
     return List->data;
 }
-void List::show()
+
+void List::display()
 {
     List *List = this;
-    std::cout << "[" << length << "]=>( ";
+    std::cout << "[" << length << "] : ( ";
     while (List->next != NULL)
     {
         std::cout << List->data.value;
@@ -92,39 +109,38 @@ void List::show()
     }
     std::cout << " )" << std::endl;
 }
-struct Data
-{
-    /* data */
-    int value;
-};
+
 int main()
 {
-    List A;
-    List B;
-    List C;
-
+    //-----------------------------------------
     std::ifstream dataInput;
-
-    dataInput.open("A.txt");
     int data;
+    //-----------------------------------------
+    List A;
+    dataInput.open("A.txt");
     Data newNode;
-
     while (dataInput >> data)
     {
         newNode.value = data;
         A.insertLast(newNode);
     };
     dataInput.close();
-
+    //-----------------------------------------
+    List B;
     dataInput.open("B.txt");
     while (dataInput >> data)
     {
         newNode.value = data;
-        B.insertFirst(newNode);
+        B.insertLast(newNode);
     };
     dataInput.close();
+    //-----------------------------------------
+    List C(A.length + B.length);
+    A.display();
+    B.display();
+    C.display();
 
-    A.show();
-    B.show();
+    A[0] = B[0];
+    A.display();
     return 0;
 }
