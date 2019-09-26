@@ -1,36 +1,46 @@
+### Hướng Dẫn Sử Dụng Danh Sách Liên Kết
 #### Khai báo
-    Files ten_stack;
-##### Push
-_Thêm một phần tử vào đầu danh sách_
-###### Khởi tạo dữ liệu
-_Kiểu dữ liệu File được định nghĩa như sau_
-
-    struct File
+    List tên_List;
+##### Định Dạng Dữ Liệu Cho Lớp List
+Thêm đoạn mã vào ngay trước hàm main()
+    struct Data
     {
-        int value;
+        kiểu_dữ_liệu1 thuộc_tính1;
+        kiểu_dữ_liệu2 thuộc_tính2;
+        kiểu_dữ_liệu3 thuộc_tính3;
+        ...        
     };
+##### insertFirst: Thêm một đối tượng vào đầu danh sách
+Tạo đối_tượng_mới
 
-_Nên ta khai báo_
+    Data đối_tượng_mới;
 
-    File du_lieu_can_them;
-    du_lieu_can_them.value = gia_tri;
+Ghi dữ liệu cho đối_tượng_mới
 
-###### Đẩy dữ liệu vào stack
-    ten_tack.push(du_lieu_can_them);
+    đối_tượng_mới.thuộc_tính1 = gia_tri;
+    đối_tượng_mới.thuộc_tính2 = gia_tri;
+    đối_tượng_mới.thuộc_tính3 = gia_tri;
 
-##### Truy cập dữ liệu
-###### Lấy kích thước stack
-_Kiểu trả về là int_
+Đẩy đối_tượng_mới vào Lớp tên_List
 
-    ten_stack.length;
+    tên_List.inserFirst(đối_tượng_mới);
 
-###### Truy cập đến phần tử thứ i
-_Kiểu trả về là File_
+##### insertLast: Thêm một đối tượng cuối danh sách
+Tạo đối_tượng_mới
 
-    ten_stack[i];
+    Data đối_tượng_mới;
 
-###### Lấy giá trị của phần tử thứ i
-_Kiểu trả về là int
+Ghi dữ liệu cho đối_tượng_mới
 
-    ten_stack[i].value;
+    đối_tượng_mới.thuộc_tính1 = gia_tri;
+    đối_tượng_mới.thuộc_tính2 = gia_tri;
+    đối_tượng_mới.thuộc_tính3 = gia_tri;
 
+Đẩy đối_tượng_mới vào Lớp tên_List
+
+    tên_List.insertLast(đối_tượng_mới);
+
+##### tên_List[vị_trí] : Lấy dữ liệu của đối tượng tại vị_trí
+Lưu ý kiểu trả về là Data
+    tên_List[vị_trí]
+    //Kiểu dữ liệu của biến trên là Data

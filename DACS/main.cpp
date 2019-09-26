@@ -1,11 +1,6 @@
 #include <fstream>
 #include <iostream>
-struct Data
-{
-    /* data */
-    int value;
-};
-
+struct Data;
 class List
 {
 private:
@@ -97,7 +92,11 @@ void List::show()
     }
     std::cout << " )" << std::endl;
 }
-
+struct Data
+{
+    /* data */
+    int value;
+};
 int main()
 {
     List A;
@@ -121,7 +120,7 @@ int main()
     while (dataInput >> data)
     {
         newNode.value = data;
-        B.insertLast(newNode);
+        B.insertFirst(newNode);
     };
     dataInput.close();
 

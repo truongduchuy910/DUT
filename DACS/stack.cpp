@@ -1,85 +1,87 @@
-
 #include <iostream>
-struct File
-{
-    /* data */
-    int value;
-};
-
-class Files
+struct Data;
+class List
 {
 private:
-    Files *next;
-    Files *previous;
-    File file;
+    List *next;
+    List *previous;
+    Data data;
 
 public:
     int length;
-    Files(/* args */);
-    ~Files();
-    File push(File file);
-    File pop();
-    File &operator[](int i);
+    List(/* args */);
+    ~List();
+    Data insertFirst(Data data);
+    Data removeFirst();
+    Data insertLast(Data data);
+    Data &operator[](int i);
 };
 
-Files::Files(/* args */)
+List::List(/* args */)
 {
     this->next = NULL;
     length = 0;
 }
 
-Files::~Files()
+List::~List()
 {
 }
 
-File Files::push(File file)
+Data List::insertFirst(Data data)
 {
-    Files *newFile = new Files;
-    newFile->file = this->file;
-    newFile->next = this->next;
-    newFile->previous = this;
+    length++;
+    List *newNode = new List;
+    newNode->data = this->data;
+    newNode->next = this->next;
+    newNode->previous = this;
 
     this->previous = NULL;
-    this->file = file;
-    this->next = newFile;
+    this->data = data;
+    this->next = newNode;
     this->length++;
-    return newFile->file;
+    return newNode->data;
 }
 
-File Files::pop()
+Data List::insertLast(Data data)
+{
+    length++;
+    List *lastNode = this;
+    while (lastNode->next != NULL)
+    {
+        lastNode = lastNode->next;
+    }
+
+    lastNode->data = data;
+    lastNode->next = new List;
+
+    return lastNode->data;
+}
+
+Data List::removeFirst()
 {
 }
 
-File &Files::operator[](int i)
+Data &List::operator[](int i)
 {
-    Files *files = this;
+    List *List = this;
     int index = 0;
-    while (index != i && files->next != NULL)
+    while (index != i && List->next != NULL)
     {
         index++;
-        files = files->next;
+        List = List->next;
     };
 
-    if (files->next == NULL)
+    if (List->next == NULL)
     {
         std::cout << "Warning: You access to undifine item" << std::endl;
     }
-    return files->file;
+    return List->data;
 }
-
+// ----------------------------------------------------------------
+struct Data
+{
+    int value;
+};
 int main()
 {
-    Files files;
-    File newFile;
-    newFile.value = 1;
-    files.push(newFile);
-    newFile.value = 2;
-    files.push(newFile);
-    newFile.value = 3;
-    files.push(newFile);
-    for (int i = 0; i < files.length; i++)
-    {
-        std::cout << files[i].value << std::endl;
-    }
-    return 0;
 }
