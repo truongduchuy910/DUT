@@ -3,6 +3,7 @@
     List tên_List;
 ##### Định Dạng Dữ Liệu Cho Lớp List
 Thêm đoạn mã vào ngay trước hàm main()
+
     struct Data
     {
         kiểu_dữ_liệu1 thuộc_tính1;
@@ -17,13 +18,13 @@ Tạo đối_tượng_mới
 
 Ghi dữ liệu cho đối_tượng_mới
 
-    đối_tượng_mới.thuộc_tính1 = gia_tri;
-    đối_tượng_mới.thuộc_tính2 = gia_tri;
-    đối_tượng_mới.thuộc_tính3 = gia_tri;
+    đối_tượng_mới.thuộc_tính1 = giá_trị;
+    đối_tượng_mới.thuộc_tính2 = giá_trị;
+    đối_tượng_mới.thuộc_tính3 = giá_trị;
 
 Đẩy đối_tượng_mới vào Lớp tên_List
 
-    tên_List.inserFirst(đối_tượng_mới);
+    tên_List.insertFirst(đối_tượng_mới);
 
 ##### insertLast: Thêm một đối tượng cuối danh sách
 Tạo đối_tượng_mới
@@ -32,15 +33,19 @@ Tạo đối_tượng_mới
 
 Ghi dữ liệu cho đối_tượng_mới
 
-    đối_tượng_mới.thuộc_tính1 = gia_tri;
-    đối_tượng_mới.thuộc_tính2 = gia_tri;
-    đối_tượng_mới.thuộc_tính3 = gia_tri;
+    đối_tượng_mới.thuộc_tính1 = giá_trị;
+    đối_tượng_mới.thuộc_tính2 = giá_trị;
+    đối_tượng_mới.thuộc_tính3 = giá_trị;
 
 Đẩy đối_tượng_mới vào Lớp tên_List
 
     tên_List.insertLast(đối_tượng_mới);
+##### Lấy kích thước danh sách liên kết
+Kiểu trả về là int
 
+    tên_List.length
 ##### tên_List[vị_trí] : Lấy dữ liệu của đối tượng tại vị_trí
 Lưu ý kiểu trả về là Data
-    tên_List[vị_trí]
+
+    tên_List[vị_trí];
     //Kiểu dữ liệu của biến trên là Data
