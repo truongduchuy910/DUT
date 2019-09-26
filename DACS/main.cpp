@@ -139,7 +139,7 @@ int main()
     A.display();
     B.display();
     C.display();
-
+	std::cout << "Huy";
     A[0] = B[0];
     A.display();
     return 0;
