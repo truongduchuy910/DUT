@@ -40,7 +40,10 @@ Ghi dữ liệu cho đối_tượng_mới
 Đẩy đối_tượng_mới vào Lớp tên_List
 
     tên_List.insertLast(đối_tượng_mới);
+##### Lấy kích thước danh sách liên kết
+Kiểu trả về là int
 
+    tên_List.length
 ##### tên_List[vị_trí] : Lấy dữ liệu của đối tượng tại vị_trí
 Lưu ý kiểu trả về là Data
 
