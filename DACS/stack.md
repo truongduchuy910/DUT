@@ -44,5 +44,5 @@ Ghi dữ liệu cho đối_tượng_mới
 ##### tên_List[vị_trí] : Lấy dữ liệu của đối tượng tại vị_trí
 Lưu ý kiểu trả về là Data
 
-    tên_List[vị_trí]
+    tên_List[vị_trí];
     //Kiểu dữ liệu của biến trên là Data
