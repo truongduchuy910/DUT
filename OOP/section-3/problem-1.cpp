@@ -7,14 +7,14 @@ struct Data
 };
 class Vector
 {
-public:
-	Data data;
+	public:
+		Data data;
 
-	Vector(int dms = 0);
-	~Vector();
-	int &operator[](int i);
-	void display();
-	Vector &operator=(Vector *A);
+		Vector(int dms = 0);
+		~Vector();
+		int &operator[](int i);
+		void display();
+		Vector &operator=(Vector *A);
 };
 Vector::Vector(int dms)
 {
