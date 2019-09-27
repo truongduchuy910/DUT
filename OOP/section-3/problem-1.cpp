@@ -56,7 +56,7 @@ Vector &Vector::operator = (Vector* C) {
 	return *this;
 }
 int main() {
-	cout << "Input dimensional of vector (int): ";
+	cout << "Input dimensional of vector A (int): ";
 	int dms;
 	cin >> dms;
 	Vector A(dms);
@@ -68,7 +68,7 @@ int main() {
 	
 	cout << endl;
 
-	cout << "Input dimensional of vector (int): ";
+	cout << "Input dimensional of vector B (int): ";
 	cin >> dms;
 	Vector B(dms);
 	cout << "Input directions (int int int ...): ";
