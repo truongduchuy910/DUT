@@ -27,7 +27,7 @@ int &Vector::operator [] (int i) {
 }; 
 void Vector::display() {
 	if (this->data.dms) {
-		cout << "vector [" << this->data.dms << "]: ";
+		cout << "vector ";
 		for (int i = 0; i < this->data.dms;i++) {
 			cout << this->data.drc[i] << " ";
 		};
