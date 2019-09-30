@@ -2,6 +2,7 @@
 using namespace std;
 int home()
 {
+    system("clear");
     int n;
     do
     {
