@@ -2,5 +2,14 @@
 #include "views.h"
 void initialize()
 {
-    home();
+    int direction = home();
+    switch (direction)
+    {
+    case 1:
+        /* code */
+        break;
+
+    default:
+        break;
+    }
 }
