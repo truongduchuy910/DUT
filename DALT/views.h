@@ -6,8 +6,8 @@ int home()
     int n;
     do
     {
-        cout << "1." << endl;
-        cout << "2." << endl;
+        cout << "1. option 1" << endl;
+        cout << "2. option 2" << endl;
         cout << "3." << endl;
         cout << "4." << endl;
         cout << "5." << endl;
@@ -20,3 +20,13 @@ int home()
 
     return n;
 }
+
+int option_1()
+{
+    return 0;
+}
+int option_2()
+{
+    return 0;
+}
+//...

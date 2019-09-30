@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../views/home.h"
+#include "views.h"
 void initialize()
 {
     home();
