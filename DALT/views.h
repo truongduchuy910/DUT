@@ -1,5 +1,5 @@
 #include <iostream>
-#include "struct.h"
+#include "objects.h"
 
 using namespace std;
 int home()
