@@ -1,7 +1,8 @@
 #include <iostream>
 #include "controlles.h"
+#include "./test/views.h"
 int main()
 {
-    initialize();
+    // initialize();
     return 0;
 }
