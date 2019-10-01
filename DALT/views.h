@@ -1,4 +1,3 @@
-#include <iostream>
 #include "objects.h"
 
 using namespace std;
