@@ -1,6 +1,4 @@
 #include "objects.h"
-
-using namespace std;
 int home()
 {
     system("clear");
