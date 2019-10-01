@@ -1,5 +1,6 @@
 #include <iostream>
 #include "views.h"
+#include "list.h"
 void initialize()
 {
     int direction = home();
