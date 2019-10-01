@@ -1,3 +1,5 @@
+#include <iostream>
+using namespace std;
 #include "objects.h"
 int home()
 {

@@ -1,3 +1,5 @@
+#include <iostream>
+using namespace std;
 #include "views.h"
 #include "list.h"
 void initialize()
