@@ -1,70 +1,160 @@
 #include <iostream>
-struct Vector
+using namespace std;
+struct Data
 {
-    int dimensional = 0;
-    int *direction;
+	int dms;
+	int *drc = 0;
 };
-class vectors
+class Vector
 {
-private:
-	Vector* next;
-	Vector* previous;
-    Vector data
-;
+	public:
+		Data data;
 
-public:
-    vectors(){
-
-    };
-    ~vectors()
-    {
-        delete[] vector.direction;
-    };
-    void in()
-    {
-        std::cout << "Input dimensional (int): ";
-        std::cin >> vector.dimensional;
-        vector.direction = new int[vector.dimensional];
-        std::cout << "Input directions (d1 d2 d3 ...): ";
-        for (int i = 0; i < vector.dimensional; i++)
-        {
-            std::cin >> vector.direction[i];
-        }
-    };
-    void out()
-    {
-        std::cout << "(";
-        for (int i = 0; i < vector.dimensional; i++)
-        {
-            std::cout << vector.direction[i];
-            if (i != vector.dimensional - 1)
-                std::cout << ",";
-        }
-        std::cout << ")" << std::endl;
-    }
+		Vector(int dms = 0);
+		~Vector();
+		int &operator[](int i);
+		void display();
+		Vector &operator=(Vector *A);
 };
-class Stack
+Vector::Vector(int dms)
 {
-private:
-    /* data */
-public:
-    Stack(/* args */);
-    ~Stack();
-};
-
-Stack::Stack(/* args */)
-{
+	this->data.dms = dms;
+	if (dms)
+	{
+		this->data.drc = new int[dms];
+	}
 }
-
-Stack::~Stack()
+Vector::~Vector()
 {
+	delete[] this->data.drc;
 }
+int &Vector::operator[](int i)
+{
+	const Data local = this->data;
+	return local.drc[i];
+};
+void Vector::display()
+{
+	if (this->data.dms)
+	{
+		for (int i = 0; i < this->data.dms; i++)
+		{
+			cout << this->data.drc[i] << " ";
+		};
+	};
+	cout << endl;
+};
+Vector *operator+(Vector &A, Vector &B)
+{
+	int dms = A.data.dms;
+	Vector *C = new Vector(dms);
+	if (A.data.dms == B.data.dms)
+	{
+		for (int i = 0; i < dms; i++)
+		{
+			C->data.drc[i] = A[i] + B[i];
+		};
+	}
+	else
+	{
+		cout << "Can't solve A + B if A's dimensional different B's dimensional" << endl;
+	};
+	return C;
+};
+Vector *operator-(Vector &A, Vector &B)
+{
+	int dms = A.data.dms;
+	Vector *C = new Vector(dms);
+	if (A.data.dms == B.data.dms)
+	{
+		for (int i = 0; i < dms; i++)
+		{
+			C->data.drc[i] = A[i] - B[i];
+		};
+	}
+	else
+	{
+		cout << "Can't solve A - B if A's dimensional different B's dimensional" << endl;
+	};
+	return C;
+};
 
+int operator*(Vector &A, Vector &B)
+{
+	int dms = A.data.dms;
+	int result = 0;
+	if (A.data.dms == B.data.dms)
+	{
+		for (int i = 0; i < dms; i++)
+		{
+			result += A[i] + B[i];
+		}
+	}
+	else
+	{
+		cout << "Can't solve A * B if A's dimensional different B's dimensional" << endl;
+	};
+	return result;
+};
+
+Vector &Vector::operator=(Vector *C)
+{
+	int dms = C->data.dms;
+	this->data.dms = dms;
+	if (!this->data.drc)
+	{
+		this->data.drc = new int[dms];
+	}
+	for (int i = 0; i < dms; i++)
+	{
+		this->data.drc[i] = C->data.drc[i];
+	}
+}
 int main()
 {
-    Vectors vector;
-    vector.push(new Vector.in());
-    out.vector(vector[0] + vector[1]);
-    
-    return 0;
+	cout << "Input dimensional of vector A (int): ";
+	int dms;
+	cin >> dms;
+	Vector A(dms);
+	cout << "Input directions (int int int ...): ";
+	for (int i = 0; i < dms; i++)
+	{
+		cin >> A[i];
+	};
+	A.display();
+
+	cout << endl;
+
+	cout << "Input dimensional of vector B (int): ";
+	cin >> dms;
+	Vector B(dms);
+	cout << "Input directions (int int int ...): ";
+	for (int i = 0; i < dms; i++)
+	{
+		cin >> B[i];
+	};
+	B.display();
+
+	cout << endl;
+
+	cout << endl;
+
+	Vector C;
+	cout << "A + B = ";
+	C = A + B;
+	C.display();
+
+	cout << endl;
+
+	cout << "A - B = ";
+	C = A - B;
+	C.display();
+
+	cout << endl;
+
+	int delta;
+	cout << "A * B = ";
+	delta = A * B;
+	cout << delta << endl;
+	return 0;
 }
