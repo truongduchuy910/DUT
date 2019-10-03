@@ -3,7 +3,6 @@
 using namespace std;
 void show(int data[], int n)
 {
-    cout << "[" << n << "]: ";
     for (int i = 0; i < n; i++)
     {
         cout << data[i] << " ";
@@ -57,9 +56,8 @@ void solve(int n)
 }
 int main()
 {
-    solve(0);
-    solve(1);
-    solve(2);
-    solve(3);
-    solve(4);
+    int n;
+    cout << "n: ";
+    cin >> n;
+    solve(n);
 }
