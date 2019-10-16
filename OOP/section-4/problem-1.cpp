@@ -41,11 +41,26 @@ public:
     friend Matrix operator-(const Matrix &, const Matrix &);
     friend Matrix operator*(const Matrix &, const Matrix &);
     friend float operator^(const Matrix &, const Matrix &);
-    float det(const Matrix &);
 };
 
 class Polynomial
 {
+private:
+    int n;
+    int *data;
+
+public:
+    Polynomial();
+    Polynomial(int);
+    Polynomial(const Polynomial &);
+    ~Polynomial();
+    Polynomial &operator=(const Polynomial &);
+    float &operator()(int, int);
+    friend ostream &operator<<(ostream &, const Polynomial &);
+    friend istream &operator>>(istream &, Polynomial &);
+    friend Polynomial operator+(const Polynomial &, const Polynomial &);
+    friend Polynomial operator-(const Polynomial &, const Polynomial &);
+    friend Polynomial operator*(const Polynomial &, const Polynomial &);
 };
 
 int main()
