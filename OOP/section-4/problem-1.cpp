@@ -65,6 +65,9 @@ public:
 
 int main()
 {
+    Polynomial A(2);
+    cin >> A;
+    cout << A;
 
     return 0;
 }
@@ -386,14 +389,54 @@ Polynomial &Polynomial::operator=(const Polynomial &A)
 float &Polynomial::operator()(float x)
 {
     static float result = 0;
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < this->n; i++)
     {
         result += this->data[i] * pow(x, i);
     }
     return result;
 };
-ostream &operator<<(ostream &, const Polynomial &){};
-istream &operator>>(istream &, Polynomial &){};
+ostream &operator<<(ostream &stream, const Polynomial &A)
+{
+    stream << "f(x): ";
+    for (int i = A.n; i >= 0; i--)
+    {
+        if (A.data[i] > 0 && i != A.n)
+        {
+            stream << "+";
+        }
+        if (A.data[i] != 0)
+        {
+            if (A.data[i] != 1)
+            {
+                stream << A.data[i];
+            }
+            if (A.data[i] == 1 && i == 0)
+            {
+                stream << 1;
+            }
+            if (i != 0 && i != 1)
+            {
+                stream << "x^" << i;
+            }
+            if (i == 1)
+            {
+                stream << "x";
+            }
+        }
+    }
+    stream << endl;
+    return stream;
+};
+istream &operator>>(istream &stream, Polynomial &A)
+{
+    cout << "Input Polynomial (a0, a1, a2, ... an), n = " << A.n + 1 << ": ";
+
+    for (int i = 0; i <= A.n; i++)
+    {
+        stream >> A.data[A.n - i];
+    };
+    return stream;
+};
 Polynomial operator+(const Polynomial &, const Polynomial &){};
 Polynomial operator-(const Polynomial &, const Polynomial &){};
 Polynomial operator*(const Polynomial &, const Polynomial &){};
