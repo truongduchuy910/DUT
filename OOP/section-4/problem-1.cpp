@@ -385,7 +385,7 @@ Polynomial &Polynomial::operator=(const Polynomial &A)
 };
 float &Polynomial::operator()(float x)
 {
-    float result = 0;
+    static float result = 0;
     for (int i = 0; i < n; i++)
     {
         result += this->data[i] * pow(x, i);
