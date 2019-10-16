@@ -8,7 +8,9 @@ private:
     float *data;
 
 public:
+    Vector();
     Vector(int);
+    Vector(const Vector &);
     ~Vector();
     Vector &operator=(const Vector &);
     float &operator[](int);
@@ -22,6 +24,24 @@ public:
 
 class Matrix
 {
+private:
+    int col, row;
+    float **data;
+
+public:
+    Matrix();
+    Matrix(int, int);
+    Matrix(const Matrix &);
+    ~Matrix();
+    Matrix &operator=(const Matrix &);
+    float &operator()(int, int);
+    friend ostream &operator<<(ostream &, const Matrix &);
+    friend istream &operator>>(istream &, Matrix &);
+    friend Matrix operator+(const Matrix &, const Matrix &);
+    friend Matrix operator-(const Matrix &, const Matrix &);
+    friend Matrix operator*(const Matrix &, const Matrix &);
+    friend float operator^(const Matrix &, const Matrix &);
+    float det(const Matrix &);
 };
 
 class Polynomial
@@ -30,33 +50,22 @@ class Polynomial
 
 int main()
 {
-    Vector A(3);
+    Matrix A(2, 2);
     cin >> A;
-    cout << A;
 
-    Vector B(3);
-
-    Vector C(3);
-    cin >> C;
-    cout << C;
-
-    float multiple = A ^ C;
-    cout << multiple << endl;
-    cout << "----------" << endl;
-    B = C = A;
-    cout << B << C;
-    cout << "----------" << endl;
-    C = A + B;
-    cout << A + B << A + B + C;
-    cout << "----------" << endl;
-    cout << A;
-    A[0] = 0;
-    cout << A;
-
+    Matrix B = A;
+    cout << A(2, 2) << endl;
+    cout << A + B << endl
+         << A - B << endl
+         << A * B;
     return 0;
 }
-
-Vector::Vector(int n)
+Vector::Vector()
+{
+    this->n = 1;
+    this->data = new float[1];
+};
+Vector::Vector(int n = 1)
 {
     if (n > 0)
     {
@@ -68,6 +77,15 @@ Vector::Vector(int n)
         cout << "Please initialize vector with dimensional greater than 0!" << endl;
     }
 };
+Vector::Vector(const Vector &A)
+{
+    this->n = A.n;
+    this->data = new float[n];
+    for (int i = 0; i < n; i++)
+    {
+        this->data[i] = A.data[i];
+    }
+}
 Vector::~Vector()
 {
     delete[] this->data;
@@ -151,20 +169,163 @@ Vector operator*(const Vector &A, const Vector &B)
     }
     return result;
 };
-float operator^(const Vector &A, const Vector &B)
+Matrix::Matrix()
 {
-    float result = 0;
-    if (A.n == B.n)
+    this->row = 1;
+    this->col = 1;
+    this->data = new float *[1];
+    this->data[0] = new float[1];
+}
+Matrix::Matrix(int row, int col)
+{
+    if (row != 0 && col != 0)
     {
-        for (int i = 0; i <= A.n; i++)
+        this->row = row;
+        this->col = col;
+        this->data = new float *[row];
+        for (int i = 0; i < row; i++)
         {
-            result += pow(B.data[i] - A.data[i], 2);
+            this->data[i] = new float[col];
         }
-        result = sqrt(result);
     }
     else
     {
-        cout << "can't solve operator ^! " << endl;
+        cout << "please intialize Matrix with both row and col are greater than 0!" << endl;
     }
+};
+Matrix::Matrix(const Matrix &A)
+{
+
+    this->row = A.row;
+    this->col = A.col;
+    this->data = new float *[A.row];
+    for (int i = 0; i < A.row; i++)
+    {
+        this->data[i] = new float[A.col];
+        for (int j = 0; j < A.col; j++)
+        {
+            this->data[i][j] = A.data[i][j];
+        }
+    }
+};
+Matrix::~Matrix()
+{
+    for (int i = 0; i < this->row; i++)
+    {
+        delete[] this->data[i];
+    }
+    delete[] this->data;
+};
+Matrix &Matrix::operator=(const Matrix &A)
+{
+    if (this->row == A.row && this->col == A.col)
+    {
+        for (int i = 0; i < A.row; i++)
+        {
+            for (int j = 0; j < A.col; j++)
+            {
+                this->data[i][j] = A.data[i][j];
+            }
+        }
+    }
+    else
+    {
+        cout << "Can't solve operator = in Matrix! " << endl;
+    }
+};
+float &Matrix::operator()(int i, int j)
+{
+    return this->data[i - 1][j - 1];
+};
+ostream &operator<<(ostream &stream, const Matrix &A)
+{
+    for (int i = 0; i < A.row; i++)
+    {
+        for (int j = 0; j < A.col; j++)
+        {
+            stream << A.data[i][j] << " ";
+        }
+        stream << endl;
+    }
+    return stream;
+};
+istream &operator>>(istream &stream, Matrix &A)
+{
+    cout << endl;
+    cout << "Matrix " << A.row << "x" << A.col << endl
+         << "Input col of row[i]: c1 c2 .. cn | n = " << A.col << endl;
+    for (int i = 0; i < A.row; i++)
+    {
+        cout << "row[" << i + 1 << "]: ";
+        for (int j = 0; j < A.col; j++)
+        {
+            stream >> A.data[i][j];
+        }
+    }
+    return stream;
+};
+Matrix operator+(const Matrix &A, const Matrix &B)
+{
+    Matrix result(A.row, A.col);
+    if (A.row == B.row && A.col == B.col)
+    {
+        for (int i = 0; i < A.row; i++)
+        {
+            for (int j = 0; j < A.col; j++)
+            {
+                result.data[i][j] = A.data[i][j] + B.data[i][j];
+            }
+        }
+    }
+    else
+    {
+        cout << "Can't solve operator + in Maxtrix" << endl;
+    }
+
     return result;
+};
+Matrix operator-(const Matrix &A, const Matrix &B)
+{
+    Matrix result(A.row, A.col);
+    if (A.row == B.row && A.col == B.col)
+    {
+        for (int i = 0; i < A.row; i++)
+        {
+            for (int j = 0; j < A.col; j++)
+            {
+                result.data[i][j] = A.data[i][j] - B.data[i][j];
+            }
+        }
+    }
+    else
+    {
+        cout << "Can't solve operator + in Maxtrix" << endl;
+    }
+
+    return result;
+};
+Matrix operator*(const Matrix &A, const Matrix &B)
+{
+    if (A.col == B.row)
+    {
+        Matrix result(A.row, B.col);
+        for (int i = 0; i < A.row; i++)
+        {
+            for (int j = 0; j < B.col; j++)
+            {
+                result.data[i][j] = 0;
+                for (int k = 0; k < A.col; k++)
+                {
+                    result.data[i][j] += A.data[i][k] * B.data[k][j];
+                }
+            }
+        }
+        return result;
+    }
+    else
+    {
+        cout << "Can't solve operator * in Maxtrix" << endl;
+        Matrix result(1, 1);
+        return result;
+    }
 };
