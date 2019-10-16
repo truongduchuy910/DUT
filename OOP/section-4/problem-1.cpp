@@ -47,7 +47,7 @@ class Polynomial
 {
 private:
     int n;
-    int *data;
+    float *data;
 
 public:
     Polynomial();
@@ -55,7 +55,7 @@ public:
     Polynomial(const Polynomial &);
     ~Polynomial();
     Polynomial &operator=(const Polynomial &);
-    float &operator()(int, int);
+    float &operator()(float);
     friend ostream &operator<<(ostream &, const Polynomial &);
     friend istream &operator>>(istream &, Polynomial &);
     friend Polynomial operator+(const Polynomial &, const Polynomial &);
@@ -65,14 +65,7 @@ public:
 
 int main()
 {
-    Matrix A(2, 2);
-    cin >> A;
 
-    Matrix B = A;
-    cout << A(2, 2) << endl;
-    cout << A + B << endl
-         << A - B << endl
-         << A * B;
     return 0;
 }
 Vector::Vector()
@@ -193,7 +186,7 @@ Matrix::Matrix()
 }
 Matrix::Matrix(int row, int col)
 {
-    if (row != 0 && col != 0)
+    if (row > 0 && col > 0)
     {
         this->row = row;
         this->col = col;
@@ -344,3 +337,63 @@ Matrix operator*(const Matrix &A, const Matrix &B)
         return result;
     }
 };
+
+Polynomial::Polynomial()
+{
+    this->n = 1;
+    this->data = new float[1];
+    this->data[0] = 0;
+};
+Polynomial::Polynomial(int n)
+{
+    if (n > 0)
+    {
+        this->n = n;
+        this->data = new float[n];
+    }
+    else
+    {
+        cout << "please intialize Polynomial with n greater than 0!";
+    }
+};
+Polynomial::Polynomial(const Polynomial &A)
+{
+    this->n = A.n;
+    this->data = new float[n];
+    for (int i = 0; i < A.n; i++)
+    {
+        this->data[i] = A.data[i];
+    }
+};
+Polynomial::~Polynomial()
+{
+    delete[] this->data;
+};
+Polynomial &Polynomial::operator=(const Polynomial &A)
+{
+    if (A.n == this->n)
+    {
+        for (int i = 0; i < A.n; i++)
+        {
+            this->data[i] = A.data[i];
+        }
+    }
+    else
+    {
+        cout << "Can't solve operator = in Polunimial" << endl;
+    }
+};
+float &Polynomial::operator()(float x)
+{
+    float result = 0;
+    for (int i = 0; i < n; i++)
+    {
+        result += this->data[i] * pow(x, i);
+    }
+    return result;
+};
+ostream &operator<<(ostream &, const Polynomial &){};
+istream &operator>>(istream &, Polynomial &){};
+Polynomial operator+(const Polynomial &, const Polynomial &){};
+Polynomial operator-(const Polynomial &, const Polynomial &){};
+Polynomial operator*(const Polynomial &, const Polynomial &){};
