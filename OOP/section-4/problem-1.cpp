@@ -65,10 +65,28 @@ public:
 
 int main()
 {
-    Polynomial A(2);
+    Vector A(3);
+    Vector B(3);
     cin >> A;
-    cout << A;
+    cin >> B;
+    Vector C = A + B;
+    cout << "+" << C << endl
+         << "-" << A - B << endl
+         << "*" << A * B;
 
+    Matrix D(2, 2);
+    Matrix E(2, 2);
+    cin >> D;
+    cin >> E;
+    cout << "+" << D + E << endl
+         << "-" << D + E << endl
+         << "*" << D * E;
+    Polynomial F(2);
+    Polynomial G(2);
+    cin >> F >> G;
+    cout << "+" << F + G << endl
+         << "-" << F + G << endl
+         << "*" << F * G;
     return 0;
 }
 Vector::Vector()
@@ -85,7 +103,7 @@ Vector::Vector(int n = 1)
     }
     else
     {
-        cout << "Please initialize vector with dimensional greater than 0!" << endl;
+        cout << "Please initialize vector with dimensional greater than 0!";
     }
 };
 Vector::Vector(const Vector &A)
@@ -116,6 +134,7 @@ float &Vector::operator[](int i)
 };
 ostream &operator<<(ostream &stream, const Vector &A)
 {
+    cout << endl;
     for (int i = 0; i < A.n; i++)
     {
         cout << A.data[i] << " ";
@@ -144,7 +163,7 @@ Vector operator+(const Vector &A, const Vector &B)
     }
     else
     {
-        cout << "can't solve operator +! " << endl;
+        cout << "can't solve operator +! ";
     }
     return result;
 };
@@ -160,7 +179,7 @@ Vector operator-(const Vector &A, const Vector &B)
     }
     else
     {
-        cout << "can't solve operator -! " << endl;
+        cout << "can't solve operator -! ";
     }
     return result;
 };
@@ -176,7 +195,7 @@ Vector operator*(const Vector &A, const Vector &B)
     }
     else
     {
-        cout << "can't solve operator *! " << endl;
+        cout << "can't solve operator *! ";
     }
     return result;
 };
@@ -201,7 +220,7 @@ Matrix::Matrix(int row, int col)
     }
     else
     {
-        cout << "please intialize Matrix with both row and col are greater than 0!" << endl;
+        cout << "please intialize Matrix with both row and col are greater than 0!";
     }
 };
 Matrix::Matrix(const Matrix &A)
@@ -241,7 +260,7 @@ Matrix &Matrix::operator=(const Matrix &A)
     }
     else
     {
-        cout << "Can't solve operator = in Matrix! " << endl;
+        cout << "Can't solve operator = in Matrix! ";
     }
 };
 float &Matrix::operator()(int i, int j)
@@ -250,6 +269,7 @@ float &Matrix::operator()(int i, int j)
 };
 ostream &operator<<(ostream &stream, const Matrix &A)
 {
+    stream << endl;
     for (int i = 0; i < A.row; i++)
     {
         for (int j = 0; j < A.col; j++)
@@ -258,11 +278,13 @@ ostream &operator<<(ostream &stream, const Matrix &A)
         }
         stream << endl;
     }
+    stream << endl;
+
     return stream;
 };
 istream &operator>>(istream &stream, Matrix &A)
 {
-    cout << endl;
+    cout;
     cout << "Matrix " << A.row << "x" << A.col << endl
          << "Input col of row[i]: c1 c2 .. cn | n = " << A.col << endl;
     for (int i = 0; i < A.row; i++)
@@ -290,7 +312,7 @@ Matrix operator+(const Matrix &A, const Matrix &B)
     }
     else
     {
-        cout << "Can't solve operator + in Maxtrix" << endl;
+        cout << "Can't solve operator + in Maxtrix";
     }
 
     return result;
@@ -310,7 +332,7 @@ Matrix operator-(const Matrix &A, const Matrix &B)
     }
     else
     {
-        cout << "Can't solve operator + in Maxtrix" << endl;
+        cout << "Can't solve operator + in Maxtrix";
     }
 
     return result;
@@ -335,7 +357,7 @@ Matrix operator*(const Matrix &A, const Matrix &B)
     }
     else
     {
-        cout << "Can't solve operator * in Maxtrix" << endl;
+        cout << "Can't solve operator * in Maxtrix";
         Matrix result(1, 1);
         return result;
     }
@@ -353,6 +375,10 @@ Polynomial::Polynomial(int n)
     {
         this->n = n;
         this->data = new float[n];
+        for (int i = 0; i <= n; i++)
+        {
+            this->data[i] = 0;
+        }
     }
     else
     {
@@ -383,13 +409,13 @@ Polynomial &Polynomial::operator=(const Polynomial &A)
     }
     else
     {
-        cout << "Can't solve operator = in Polunimial" << endl;
+        cout << "Can't solve operator = in Polunimial";
     }
 };
 float &Polynomial::operator()(float x)
 {
     static float result = 0;
-    for (int i = 0; i < this->n; i++)
+    for (int i = 0; i <= this->n; i++)
     {
         result += this->data[i] * pow(x, i);
     }
@@ -397,7 +423,7 @@ float &Polynomial::operator()(float x)
 };
 ostream &operator<<(ostream &stream, const Polynomial &A)
 {
-    stream << "f(x): ";
+    stream << endl;
     for (int i = A.n; i >= 0; i--)
     {
         if (A.data[i] > 0 && i != A.n)
@@ -437,6 +463,51 @@ istream &operator>>(istream &stream, Polynomial &A)
     };
     return stream;
 };
-Polynomial operator+(const Polynomial &, const Polynomial &){};
-Polynomial operator-(const Polynomial &, const Polynomial &){};
-Polynomial operator*(const Polynomial &, const Polynomial &){};
+Polynomial operator+(const Polynomial &A, const Polynomial &B)
+{
+    int n = 1;
+    n = A.n > B.n ? A.n : B.n;
+    Polynomial result(n);
+    for (int i = 0; i <= n; i++)
+    {
+        if (i <= A.n)
+        {
+            result.data[i] += A.data[i];
+        }
+        if (i <= B.n)
+        {
+            result.data[i] += B.data[i];
+        }
+    }
+    return result;
+};
+Polynomial operator-(const Polynomial &A, const Polynomial &B)
+{
+    int n = 1;
+    n = A.n > B.n ? A.n : B.n;
+    Polynomial result(n);
+    for (int i = 0; i <= n; i++)
+    {
+        if (i <= A.n)
+        {
+            result.data[i] += A.data[i];
+        }
+        if (i <= B.n)
+        {
+            result.data[i] -= B.data[i];
+        }
+    }
+    return result;
+};
+Polynomial operator*(const Polynomial &A, const Polynomial &B)
+{
+    Polynomial result(A.n * B.n);
+    for (int i = 0; i <= A.n; i++)
+    {
+        for (int j = 0; j <= B.n; j++)
+        {
+            result.data[i + j] += A.data[i] * B.data[j];
+        }
+    }
+    return result;
+};
