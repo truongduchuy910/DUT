@@ -1,146 +1,117 @@
 #include <fstream>
 #include <iostream>
-struct Data
-{
-    int value;
-};
-
-class List
+using namespace std;
+class Array
 {
 private:
-    List *next;
-    List *previous;
-    Data data;
+    Array *next;
+    int value;
 
 public:
     int length;
-    List(int size = 0);
-    ~List();
-    Data insertFirst(Data data);
-    Data removeFirst();
-    Data insertLast(Data data);
-    Data &operator[](int i);
-    void display();
+    Array(int);
+    ~Array();
+    int insertLast(int);
+    int &operator[](int);
+    friend ostream &operator<<(ostream &, Array &);
 };
-
-List::List(int size)
+Array::Array(int size = 1)
 {
-    this->length = 0;
-
-    if (size)
+    length = 1;
+    this->next = NULL;
+    this->value = 0;
+    while (--size)
     {
-        while (size--)
-        {
-            Data emptyNode;
-            emptyNode.value = 0;
-            this->insertFirst(emptyNode);
-        }
-    }
-    else
-    {
-        this->next = NULL;
+        this->insertLast(0);
     }
 }
 
-List::~List()
+Array::~Array()
 {
 }
 
-Data List::insertFirst(Data data)
+int Array::insertLast(int value)
 {
+    Array *lastNode = this;
     length++;
-    List *newNode = new List;
-    newNode->data = this->data;
-    newNode->next = this->next;
-    newNode->previous = this;
 
-    this->previous = NULL;
-    this->data = data;
-    this->next = newNode;
-    return newNode->data;
-}
-
-Data List::insertLast(Data data)
-{
-    length++;
-    List *lastNode = this;
     while (lastNode->next != NULL)
     {
         lastNode = lastNode->next;
     }
-
-    lastNode->data = data;
-    lastNode->next = new List;
-
-    return lastNode->data;
+    Array *newLastNode = new Array;
+    newLastNode->value = value;
+    newLastNode->next = NULL;
+    lastNode->next = newLastNode;
+    return value;
 }
 
-Data List::removeFirst()
+int &Array::operator[](int i)
 {
-}
-
-Data &List::operator[](int i)
-{
-    List *List = this;
+    Array *node = this;
     int index = 0;
-    while (index != i && List->next != NULL)
+    while (index != i && node != NULL)
     {
         index++;
-        List = List->next;
+        node = node->next;
     };
-
-    if (List->next == NULL)
-    {
-        std::cout << "Warning: You access to undifine item" << std::endl;
-    }
-    return List->data;
+    return node->value;
 }
-
-void List::display()
+ostream &operator<<(ostream &ostream, Array &node)
 {
-    List *List = this;
-    std::cout << "[" << length << "] : ( ";
-    while (List->next != NULL)
+    Array *temp = &node;
+    if (temp->length > 0)
     {
-        std::cout << List->data.value;
-        List = List->next;
-        if (List->next != NULL)
-            std::cout << ", ";
+        ostream << "[" << temp->length << "] : ( ";
+        while (temp != NULL)
+        {
+            ostream << temp->value;
+            if (temp->next != NULL)
+            {
+                ostream << ", ";
+            }
+            temp = temp->next;
+        }
+        ostream << ")";
     }
-    std::cout << " )" << std::endl;
-}
+    return ostream;
+};
+void getData(Array &A, const char *path)
+{
+    ifstream file;
+    int value;
+    file.open(path);
+    int index = 0;
 
+    while (file >> value)
+    {
+        if (index < A.length)
+        {
+            A[index] = value;
+        }
+        else
+        {
+            A.insertLast(value);
+        }
+        index++;
+    };
+    file.close();
+}
 int main()
 {
+
     //-----------------------------------------
-    std::ifstream dataInput;
-    int data;
+    Array A;
+    getData(A, "A.txt");
+    Array B;
+    getData(B, "B.txt");
+    Array C(A.length + B.length);
+    C[0] = A[0] + B[0];
+
+    cout << A << endl
+         << B << endl
+         << C;
     //-----------------------------------------
-    List A;
-    dataInput.open("A.txt");
-    Data newNode;
-    while (dataInput >> data)
-    {
-        newNode.value = data;
-        A.insertLast(newNode);
-    };
-    dataInput.close();
-    //-----------------------------------------
-    List B;
-    dataInput.open("B.txt");
-    while (dataInput >> data)
-    {
-        newNode.value = data;
-        B.insertLast(newNode);
-    };
-    dataInput.close();
-    //-----------------------------------------
-    List C(A.length + B.length);
-    A.display();
-    B.display();
-    C.display();
-	std::cout << "Huy";
-    A[0] = B[0];
-    A.display();
+    //cout << A << B;
     return 0;
 }

@@ -66,27 +66,10 @@ public:
 int main()
 {
     Vector A(3);
-    Vector B(3);
     cin >> A;
-    cin >> B;
-    Vector C = A + B;
-    cout << "+" << C << endl
-         << "-" << A - B << endl
-         << "*" << A * B;
-
-    Matrix D(2, 2);
-    Matrix E(2, 2);
-    cin >> D;
-    cin >> E;
-    cout << "+" << D + E << endl
-         << "-" << D + E << endl
-         << "*" << D * E;
-    Polynomial F(2);
-    Polynomial G(2);
-    cin >> F >> G;
-    cout << "+" << F + G << endl
-         << "-" << F + G << endl
-         << "*" << F * G;
+    cout << A;
+    A[0] = 9;
+    cout << A;
     return 0;
 }
 Vector::Vector()
