@@ -57,23 +57,36 @@ int &Array::operator[](int i)
     };
     return node->value;
 }
-ostream &operator<<(ostream &ostream, Array &node)
+ostream &operator<<(ostream &ostream, Array &A)
 {
-    Array *temp = &node;
-    if (temp->length > 0)
+    ostream << endl;
+    for (int i = A.length - 1; i >= 0; i--)
     {
-        ostream << "[" << temp->length << "] : ( ";
-        while (temp != NULL)
+        if (A[i] > 0 && i != A.length - 1)
         {
-            ostream << temp->value;
-            if (temp->next != NULL)
-            {
-                ostream << ", ";
-            }
-            temp = temp->next;
+            ostream << "+";
         }
-        ostream << ")";
+        if (A[i] != 0)
+        {
+            if (A[i] != 1)
+            {
+                ostream << A[i];
+            }
+            if (A[i] == 1 && i == 0)
+            {
+                ostream << 1;
+            }
+            if (i != 0 && i != 1)
+            {
+                ostream << "x^" << i;
+            }
+            if (i == 1)
+            {
+                ostream << "x";
+            }
+        }
     }
+    ostream << endl;
     return ostream;
 };
 void getData(Array &A, const char *path)
