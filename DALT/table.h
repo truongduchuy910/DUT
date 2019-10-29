@@ -11,6 +11,7 @@ private:
 
 public:
     friend ostream &operator<<(ostream &, Menu &);
+    friend ostream &operator>>(ostream &, Menu &);
 };
 class Desk : List
 {
@@ -19,6 +20,7 @@ private:
 
 public:
     friend ostream &operator<<(ostream &, Desk &);
+    friend ostream &operator>>(ostream &, Desk &);
 };
 class Order
 {
@@ -34,6 +36,7 @@ private:
 
 public:
     friend ostream &operator<<(ostream &, Order &);
+    friend ostream &operator>>(ostream &, Order &);
 };
 class Bill : List
 {
@@ -42,4 +45,5 @@ private:
 
 public:
     friend ostream &operator<<(ostream &, Bill &);
+    friend ostream &operator>>(ostream &, Bill &);
 };
