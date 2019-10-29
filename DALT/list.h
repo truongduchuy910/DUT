@@ -1,14 +1,17 @@
-class List
+class Data
+{
+public:
+    unsigned int _id;
+};
+class List : public Data
 {
 private:
     List *previous;
     List *next;
-    int _id;
-
 public:
-    List(int);
+    List();
     ~List();
-    List insert(List &);
-    List remove(List &);
-    List select(List &);
+    Data insert(Data &);
+    Data removeById(int);
+    Data findById(int);
 };

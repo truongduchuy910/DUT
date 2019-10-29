@@ -1,9 +1,8 @@
 
 int Views::home()
 {
-    system("clear");
+    
     cout << "---------- HOME ----------" << endl;
-    cout << "Welcome to Summoner’s Rift" << endl;
     int n;
     do
     {
@@ -20,7 +19,7 @@ int Views::home()
 
 int Views::menu()
 {
-    system("clear");
+    
     cout << "---------- MENU ----------" << endl;
     int n;
     do
@@ -37,7 +36,7 @@ int Views::menu()
 };
 int Views::desk()
 {
-    system("clear");
+    
     cout << "---------- DESK ----------" << endl;
 
     int n;
@@ -55,7 +54,7 @@ int Views::desk()
 };
 int Views::order()
 {
-    system("clear");
+    
     cout << "---------- ORDER ----------" << endl;
 
     int n;
@@ -73,7 +72,7 @@ int Views::order()
 };
 int Views::bill()
 {
-    system("clear");
+    
     cout << "---------- BILL ----------" << endl;
 
     int n;

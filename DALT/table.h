@@ -1,19 +1,11 @@
-class Table;
+#include "list.h"
+#include "list.cpp"
 class Menu;
 class Desk;
 class Order;
 class Bill;
 //----------
-class Table
-{
-public:
-    // Menu menu;
-    // Desk desk;
-    // Order order;
-    // Bill bill;
-    Table();
-    ~Table();
-};
+
 class Menu : public List
 {
 private:
@@ -37,7 +29,7 @@ class Order
 {
 private:
     Menu *menu;
-    Order *order;
+    Desk *desk;
     Bill *bill;
     //----------
     int menuId;
@@ -57,4 +49,12 @@ private:
 public:
     friend ostream &operator<<(ostream &, Bill &);
     friend ostream &operator>>(ostream &, Bill &);
+};
+class Table
+{
+public:
+    Menu *menu;
+    Desk *desk;
+    Order *order;
+    Bill *bill;
 };
