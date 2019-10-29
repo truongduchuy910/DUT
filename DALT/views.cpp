@@ -28,7 +28,7 @@ int Views::menu()
         cout << "1. show" << endl;
         cout << "2. add" << endl;
         cout << "3. remove" << endl;
-        cout << "4. ./" << endl;
+        cout << "4. bach" << endl;
         cout << "Choose your option [1-4]: ";
         cin >> n;
     } while (n < 1 || n > 8);
@@ -46,7 +46,7 @@ int Views::desk()
         cout << "1. show" << endl;
         cout << "2. add" << endl;
         cout << "3. remove" << endl;
-        cout << "4. ./" << endl;
+        cout << "4. bach" << endl;
         cout << "Choose your option [1-4]: ";
         cin >> n;
     } while (n < 1 || n > 8);
@@ -64,7 +64,7 @@ int Views::order()
         cout << "1. show" << endl;
         cout << "2. add" << endl;
         cout << "3. remove" << endl;
-        cout << "4. ./" << endl;
+        cout << "4. bach" << endl;
         cout << "Choose your option [1-4]: ";
         cin >> n;
     } while (n < 1 || n > 8);
@@ -82,7 +82,7 @@ int Views::bill()
         cout << "1. show" << endl;
         cout << "2. add" << endl;
         cout << "3. remove" << endl;
-        cout << "4. ./" << endl;
+        cout << "4. bach" << endl;
         cout << "Choose your option [1-4]: ";
         cin >> n;
     } while (n < 1 || n > 8);
