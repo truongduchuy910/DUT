@@ -6,14 +6,29 @@ class Array
 private:
     Array *next;
     double value;
+
 public:
     int length;
     Array(int);
     ~Array();
     double insertLast(double);
     double &operator[](int);
+    friend Array operator*(Array &, Array &);
     friend ostream &operator<<(ostream &, Array &);
     Array Multiply(Array &A, Array &B);
+};
+Array operator*(Array &A, Array &B)
+{
+    Array result(A.length + B.length - 1);
+    for (int i = 0; i < A.length; i++)
+    {
+        for (int j = 0; j < B.length; j++)
+        {
+            int k = i + j;
+            result[k] += A[i] * B[j];
+        }
+    }
+    return result;
 };
 Array::Array(int size = 1)
 {
@@ -59,22 +74,26 @@ double &Array::operator[](int i)
 }
 ostream &operator<<(ostream &ostream, Array &A)
 {
-    for (int i = 0; i < A.length; i++) {
-    	ostream << A[i] << " ";
-	}
+    for (int i = 0; i < A.length; i++)
+    {
+        ostream << A[i] << " ";
+    }
     return ostream;
 }
-Array Array::Multiply(Array &A, Array &B) {
-	Array C(A.length + B.length - 1);
-	for (int i = 0; i < A.length; i++) {
-		for (int j = 0; j < B.length; j++) {
-			int k = i + j;
-			C[k] += A[i] * B[j];
-		}
-	}
-	return C;
+Array Array::Multiply(Array &A, Array &B)
+{
+    Array C(A.length + B.length - 1);
+    for (int i = 0; i < A.length; i++)
+    {
+        for (int j = 0; j < B.length; j++)
+        {
+            int k = i + j;
+            C[k] += A[i] * B[j];
+        }
+    }
+    return C;
 }
-void getData(Array &A, const char *path)
+void readData(Array &A, const char *path)
 {
     ifstream file;
     double value;
@@ -94,24 +113,26 @@ void getData(Array &A, const char *path)
     };
     file.close();
 }
-void writeData(Array &A, const char *path){
-	ofstream file(path);
-	for (int i = 0; i < A.length; i++)
+void writeData(Array &A, const char *path)
+{
+    ofstream file(path);
+    for (int i = 0; i < A.length; i++)
     {
-        file << A[i] << " " ;
+        file << A[i] << " ";
     }
     file.close();
 }
 int main()
 {
     Array A;
-    getData(A, "A.txt");
+    readData(A, "A.txt");
     Array B;
-    getData(B, "B.txt");
-    cout << A << endl << B << endl;
+    readData(B, "B.txt");
+    cout << A << endl
+         << B << endl;
     Array C(A.length + B.length - 1);
-	C = C.Multiply(A,B);
-	cout << C;
-	writeData(C, "C.txt");
+    C = A * B;
+    cout << C << endl;
+    writeData(C, "C.txt");
     return 0;
 }
