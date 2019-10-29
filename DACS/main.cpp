@@ -80,19 +80,6 @@ ostream &operator<<(ostream &ostream, Array &A)
     }
     return ostream;
 }
-Array Array::Multiply(Array &A, Array &B)
-{
-    Array C(A.length + B.length - 1);
-    for (int i = 0; i < A.length; i++)
-    {
-        for (int j = 0; j < B.length; j++)
-        {
-            int k = i + j;
-            C[k] += A[i] * B[j];
-        }
-    }
-    return C;
-}
 void readData(Array &A, const char *path)
 {
     ifstream file;
