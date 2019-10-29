@@ -5,15 +5,15 @@ class Array
 {
 private:
     Array *next;
-    int value;
-
+    double value;
 public:
     int length;
     Array(int);
     ~Array();
-    int insertLast(int);
-    int &operator[](int);
+    double insertLast(double);
+    double &operator[](int);
     friend ostream &operator<<(ostream &, Array &);
+    Array Multiply(Array &A, Array &B);
 };
 Array::Array(int size = 1)
 {
@@ -30,7 +30,7 @@ Array::~Array()
 {
 }
 
-int Array::insertLast(int value)
+double Array::insertLast(double value)
 {
     Array *lastNode = this;
     length++;
@@ -46,7 +46,7 @@ int Array::insertLast(int value)
     return value;
 }
 
-int &Array::operator[](int i)
+double &Array::operator[](int i)
 {
     Array *node = this;
     int index = 0;
@@ -59,43 +59,27 @@ int &Array::operator[](int i)
 }
 ostream &operator<<(ostream &ostream, Array &A)
 {
-    ostream << endl;
-    for (int i = A.length - 1; i >= 0; i--)
-    {
-        if (A[i] > 0 && i != A.length - 1)
-        {
-            ostream << "+";
-        }
-        if (A[i] != 0)
-        {
-            if (A[i] != 1)
-            {
-                ostream << A[i];
-            }
-            if (A[i] == 1 && i == 0)
-            {
-                ostream << 1;
-            }
-            if (i != 0 && i != 1)
-            {
-                ostream << "x^" << i;
-            }
-            if (i == 1)
-            {
-                ostream << "x";
-            }
-        }
-    }
-    ostream << endl;
+    for (int i = 0; i < A.length; i++) {
+    	ostream << A[i] << " ";
+	}
     return ostream;
-};
+}
+Array Array::Multiply(Array &A, Array &B) {
+	Array C(A.length + B.length - 1);
+	for (int i = 0; i < A.length; i++) {
+		for (int j = 0; j < B.length; j++) {
+			int k = i + j;
+			C[k] += A[i] * B[j];
+		}
+	}
+	return C;
+}
 void getData(Array &A, const char *path)
 {
     ifstream file;
-    int value;
+    double value;
     file.open(path);
     int index = 0;
-
     while (file >> value)
     {
         if (index < A.length)
@@ -110,21 +94,24 @@ void getData(Array &A, const char *path)
     };
     file.close();
 }
+void writeData(Array &A, const char *path){
+	ofstream file(path);
+	for (int i = 0; i < A.length; i++)
+    {
+        file << A[i] << " " ;
+    }
+    file.close();
+}
 int main()
 {
-
-    //-----------------------------------------
     Array A;
     getData(A, "A.txt");
     Array B;
     getData(B, "B.txt");
-    Array C(A.length + B.length);
-    C[0] = A[0] + B[0];
-
-    cout << A << endl
-         << B << endl
-         << C;
-    //-----------------------------------------
-    //cout << A << B;
+    cout << A << endl << B << endl;
+    Array C(A.length + B.length - 1);
+	C = C.Multiply(A,B);
+	cout << C;
+	writeData(C, "C.txt");
     return 0;
 }
