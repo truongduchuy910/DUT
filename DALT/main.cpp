@@ -1,19 +1,24 @@
 #include <iostream>
 #include <string>
 using namespace std;
-#include "database.h"
+#include "list.h"
 #include "table.h"
-#include "controller.h"
 #include "views.h"
+#include "controller.h"
+Views views;
+Controllers controllers;
 
-#include "database.cpp"
+#include "list.cpp"
 #include "table.cpp"
-#include "controller.cpp"
 #include "views.cpp"
+#include "controller.cpp"
 #include "test.cpp"
+
+// List list;
+// table table;
+
 int main()
 {
-    views();
-    //initialize();
+    controllers.home();
     return 0;
 }

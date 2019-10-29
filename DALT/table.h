@@ -1,8 +1,19 @@
+class Table;
 class Menu;
 class Desk;
 class Order;
 class Bill;
 //----------
+class Table
+{
+public:
+    // Menu menu;
+    // Desk desk;
+    // Order order;
+    // Bill bill;
+    Table();
+    ~Table();
+};
 class Menu : public List
 {
 private:
