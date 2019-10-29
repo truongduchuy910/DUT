@@ -1,1 +1,0 @@
-// File này dùng để định dạng các thuộc tính cho đối tượng
