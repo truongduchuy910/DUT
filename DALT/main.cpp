@@ -14,7 +14,7 @@ Controllers controllers;
 
 int main()
 {
-    
+    test();
     controllers.home();
     return 0;
 }
