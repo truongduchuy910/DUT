@@ -10,11 +10,11 @@ Controllers controllers;
 #include "table.cpp"
 #include "views.cpp"
 #include "controller.cpp"
-#include "test.cpp"
+#include "testTable.cpp"
 
 int main()
 {
-    test();
+    testTable();
     controllers.home();
     return 0;
 }
