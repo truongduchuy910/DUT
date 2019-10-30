@@ -3,15 +3,15 @@ class Data
 public:
     unsigned int _id;
 };
-class List : public Data
+class List
 {
 private:
     List *previous;
     List *next;
+    Data *data;
+
 public:
     List();
     ~List();
-    Data insert(Data &);
-    Data removeById(int);
-    Data findById(int);
+    unsigned int create();
 };

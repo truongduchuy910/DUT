@@ -12,10 +12,9 @@ Controllers controllers;
 #include "controller.cpp"
 #include "test.cpp"
 
-// table table;
-
 int main()
 {
+    
     controllers.home();
     return 0;
 }

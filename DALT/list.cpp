@@ -4,22 +4,13 @@ List::List()
     this->next = NULL;
     do
     {
-        this->_id = random();
-    } while (this->_id > 10000000);
+        this->data->_id = random();
+    } while (this->data->_id > 10000000);
 };
 List::~List(){
 
 };
-Data List::insert(Data &list)
+unsigned int List::create()
 {
-    List *temp = new List;
-    temp->next = this->next;
-    temp->previous = this->previous;
-    temp->_id = this->_id;
-};
-Data List::removeById(int id){
-
-};
-Data List::findById(int id){
-
-};
+    Data *temp = new Data;
+}
