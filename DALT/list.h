@@ -1,17 +1,12 @@
-class Data
-{
-public:
-    unsigned int _id;
-};
+
 class List
 {
 private:
     List *previous;
     List *next;
-    Data *data;
+    unsigned int _id;
 
 public:
     List();
     ~List();
-    unsigned int create();
 };
