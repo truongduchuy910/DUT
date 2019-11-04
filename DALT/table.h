@@ -13,13 +13,8 @@ private:
     int cost;
 
 public:
-<<<<<<< HEAD
 	Menu(string ="", int =0, int =0);
 	~Menu();
-=======
-    Menu();
-    ~Menu();
->>>>>>> 673639a5f5099ed126b4eb0eb4295094e10dc80b
     friend ostream &operator<<(ostream &, Menu &);
     friend istream &operator>>(istream &, Menu &);
 };
@@ -49,45 +44,25 @@ private:
     int billId;
 
 public:
-<<<<<<< HEAD
 	Order(int =0, int =0, int =0);
 	~Order();
     friend ostream &operator<<(ostream &, Order &, Menu &, Desk &);
     friend ostream &operator>>(istream &, Order &, Menu &, Desk &);
-=======
-    Order();
-    ~Order();
-    friend ostream &operator<<(ostream &, Order &);
-    friend ostream &operator>>(ostream &, Order &);
->>>>>>> 673639a5f5099ed126b4eb0eb4295094e10dc80b
 };
 class Bill: public List
 {
 private:
     int total;
 public:
-<<<<<<< HEAD
 	Bill(int = 0);
 	~Bill();
-=======
-    Bill();
-    ~Bill();
->>>>>>> 673639a5f5099ed126b4eb0eb4295094e10dc80b
     friend ostream &operator<<(ostream &, Bill &);
 };
 class Table
 {
 public:
-<<<<<<< HEAD
     Menu *menu;
     Desk *desk;
     Order *order;
     Bill *bill;
 };
-=======
-    Menu menu;
-    Desk desk;
-    Order order;
-    Bill bill;
-};
->>>>>>> 673639a5f5099ed126b4eb0eb4295094e10dc80b
