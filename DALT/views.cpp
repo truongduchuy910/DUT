@@ -1,7 +1,7 @@
 
 int Views::home()
 {
-    
+
     cout << "---------- HOME ----------" << endl;
     int n;
     do
@@ -19,7 +19,7 @@ int Views::home()
 
 int Views::menu()
 {
-    
+
     cout << "---------- MENU ----------" << endl;
     int n;
     do
@@ -34,9 +34,20 @@ int Views::menu()
 
     return n;
 };
+int Views::menuShow()
+{
+}
+Menu &Views::menuAdd()
+{
+    cin >> table.menu;
+    return table.menu;
+}
+int Views::menuRemove()
+{
+}
 int Views::desk()
 {
-    
+
     cout << "---------- DESK ----------" << endl;
 
     int n;
@@ -54,7 +65,7 @@ int Views::desk()
 };
 int Views::order()
 {
-    
+
     cout << "---------- ORDER ----------" << endl;
 
     int n;
@@ -72,7 +83,7 @@ int Views::order()
 };
 int Views::bill()
 {
-    
+
     cout << "---------- BILL ----------" << endl;
 
     int n;
