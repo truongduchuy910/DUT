@@ -35,9 +35,9 @@ private:
     //----------
     int stt;              //So thu tu
     int number;           //So luong
-    int billId;
 
 public:
+	int billId;
 	Order(int =0, int =0, int =0);
 	~Order();
     friend ostream &operator<<(ostream &, Order &);
@@ -45,7 +45,9 @@ public:
 };
 class Bill
 {
+	
 private:
+	Order *order;
     int total;
 public:
 	Bill(int = 0);

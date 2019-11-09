@@ -40,6 +40,6 @@ Bill::Bill(int total): total(total){};
 Bill::~Bill(){};
 ostream &operator<<(ostream &ostream, Bill &bill)
 {
-	ostream <<"Cost Total: " <<bill.total<<endl;
+	ostream <<"BillId: "<< bill.order->billId << "||" <<"Cost Total: " <<bill.total<<endl;
     return ostream;
 };
