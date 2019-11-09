@@ -1,11 +1,10 @@
-#include "list.h"
-#include "list.cpp"
 class Menu;
 class Desk;
 class Order;
 class Bill;
 //----------
-class Menu : public List
+
+class Menu
 {
 private:
     string name;
@@ -18,7 +17,7 @@ public:
     friend ostream &operator<<(ostream &, Menu &);
     friend istream &operator>>(istream &, Menu &);
 };
-class Desk: public List
+class Desk
 {
 private:
 	Desk(int = 0, string ="");
@@ -32,7 +31,7 @@ public:
     friend ostream &operator<<(ostream &, Desk &);
     friend istream &operator>>(istream &, Desk &);
 };
-class Order: public List
+class Order
 {
 private:
     Menu *menu;
@@ -49,7 +48,7 @@ public:
     friend ostream &operator<<(ostream &, Order &, Menu &, Desk &);
     friend ostream &operator>>(istream &, Order &, Menu &, Desk &);
 };
-class Bill: public List
+class Bill
 {
 private:
     int total;
