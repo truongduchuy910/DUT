@@ -1,4 +1,3 @@
-#include "table.h"
 Menu::Menu(string name, int foodId, int cost): name(name), foodId(foodId), cost(cost){};
 Menu::~Menu(){};
 istream &operator>>(istream &istream, Menu &menu)
