@@ -17,12 +17,12 @@ ostream &operator<<(ostream &ostream, Menu &menu)
 };
 Desk::Desk(int deskId, string status): deskId(deskId), status(status){};
 Desk::~Desk(){};
-istream &operator<<(istream &istream, Desk &desk)
+istream &operator>>(istream &istream, Desk &desk)
 {
 	cout <<"DeskID: ";
 	istream >>desk.deskId;
 	cout <<endl <<"desk status: ";
-	istream << desk.status;
+	istream >> desk.status;
 };
 ostream &operator<<(ostream &ostream, Desk &desk)
 {
@@ -31,13 +31,13 @@ ostream &operator<<(ostream &ostream, Desk &desk)
 };
 Order::Order(int stt, int number, int billId): stt(stt), number(number), billId(billId){};
 Order::~Order(){};
-ostream &operator<<(ostream &ostream, Order &order, Menu &menu, Desk &desk)
+ostream &operator<<(ostream &ostream, Order &order)
 {
-    ostream <<order.stt <<" || "<<menu.foodId <<" || " << order.number <<" || "<<desk.deskId<<" || "<< desk.billId;
+    ostream <<order.stt <<" || "<<order.menu->foodId <<" || " << order.number << "||" <<order.desk->deskId <<"||"<<order.billId;
     return ostream;
 };
 Bill::Bill(int total): total(total){};
-Bill::<<~Bill(){};
+Bill::~Bill(){};
 ostream &operator<<(ostream &ostream, Bill &bill)
 {
 	ostream <<"Cost Total: " <<bill.total<<endl;
