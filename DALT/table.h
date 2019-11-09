@@ -57,8 +57,8 @@ public:
 class Table
 {
 public:
-    Menu *menu;
-    Desk *desk;
-    Order *order;
-    Bill *bill;
+    Menu menu;
+    Desk desk;
+    Order order;
+    Bill bill;
 };
