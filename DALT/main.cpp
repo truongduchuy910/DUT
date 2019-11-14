@@ -11,7 +11,7 @@ Controllers controllers;
 #include "views.cpp"
 #include "controller.cpp"
 #include "test.cpp"
-
+#include "list.h"
 int main()
 {
     test();
