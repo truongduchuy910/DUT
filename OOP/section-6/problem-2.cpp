@@ -161,6 +161,7 @@ ostream &operator<<(ostream &os, Array<Data, max> &A)
     {
         os << A.data[i] << " ";
     }
+    os << " co " << A.length << " phan tu";
     return os;
 };
 template <class Data, int max>
@@ -173,7 +174,14 @@ istream &operator>>(istream &is, Array<Data, max> &A)
 int main()
 {
     Array<int, 50> a;
-    cin >> a >> a >> a;
+    cout << "Nhap so phan tu: ";
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        cout << "a[" << i << "]= ";
+        cin >> a;
+    }
     cout << "a: " << a << endl;
     Array<int, 50> b(a);
     cout << "b: " << b << endl;
