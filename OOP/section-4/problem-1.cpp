@@ -65,11 +65,11 @@ public:
 
 int main()
 {
-    Vector A(3);
-    cin >> A;
-    cout << A;
-    A[0] = 9;
-    cout << A;
+    Polynomial a(4);
+    cin >> a;
+    Polynomial b(3);
+    cin >> b;
+    cout << a + b;
     return 0;
 }
 Vector::Vector()
