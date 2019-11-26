@@ -11,13 +11,13 @@ istream &operator>>(istream &istream, Menu &menu)
 	istream >> menu.name;
 	cout << "Ma mon: ";
 	istream >> menu.foodId;
-	cout << endl
-		 << "Cost: ";
+	cout << "Cost: ";
 	istream >> menu.cost;
+	return istream;
 };
 ostream &operator<<(ostream &ostream, Menu &menu)
 {
-	ostream << menu.name << " : " << menu.cost;
+	ostream << menu.name << " : " << menu.cost<<endl;
 	return ostream;
 };
 Desk::Desk(int deskId, string status) : deskId(deskId), status(status){};

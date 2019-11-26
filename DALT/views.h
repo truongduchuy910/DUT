@@ -5,8 +5,8 @@ public:
     int home();
     int menu();
     int menuShow();
-    Menu &menuAdd();
-    int menuRemove();
+    Menu menuAdd();
+    Menu menuRemove();
     int desk();
     int order();
     int bill();
