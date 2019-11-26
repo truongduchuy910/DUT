@@ -1,8 +1,4 @@
-class Data
-{
-public:
-    unsigned int _id;
-};
+template <typename Data>
 class List
 {
 private:
@@ -15,3 +11,15 @@ public:
     ~List();
     unsigned int create();
 };
+template <typename Data>
+List<Data>::List(){
+
+};
+template <typename Data>
+List<Data>::~List(){
+
+};
+template <typename Data>
+unsigned int List<Data>::create()
+{
+}

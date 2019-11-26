@@ -22,6 +22,9 @@ void Controllers::menu()
 {
     switch (views.menu())
     {
+    case 2:
+        controllers.menuAdd();
+        break;
     case 4:
         controllers.home();
         break;
@@ -29,7 +32,15 @@ void Controllers::menu()
         break;
     }
 }
-
+void Controllers::menuShow(){};
+void Controllers::menuAdd()
+{
+    // table.menu.insert(views.menuAdd());
+    // controllers.menu();
+    cout << views.menuAdd();
+    controllers.menu();
+};
+void Controllers::menuRemove(){};
 void Controllers::desk()
 {
     switch (views.desk())

@@ -31,10 +31,10 @@ void putQueen(int i, int j)
 void removeQueen(int i, int j)
 {
 	col[j] = true;
-	diaX[i + j] = true;
 	diaY[i - j + n - 1] = true;
+	diaX[i + j] = true;
 }
-bool validPostion(int i, int j)
+int validPostion(int i, int j)
 {
 	return (col[j] && diaX[i + j] && diaY[i - j + n - 1]);
 }

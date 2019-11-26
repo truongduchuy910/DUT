@@ -1,5 +1,10 @@
-#include "list.h"
-#include "list.cpp"
+#ifndef table_h
+#define table_h
+
+#include <iostream>
+#include <string>
+using namespace std;
+
 class Menu;
 class Desk;
 class Order;
@@ -8,27 +13,21 @@ class Bill;
 
 class Menu
 {
-private:
+public:
     string name;
     int foodId;
     int cost;
-
-public:
-	Menu(string ="", int =0, int =0);
-	~Menu();
+    Menu(string = "", int = 0, int = 0);
+    ~Menu();
     friend ostream &operator<<(ostream &, Menu &);
     friend istream &operator>>(istream &, Menu &);
 };
 class Desk
 {
-private:
-	Desk(int = 0, string ="");
-	~Desk();
-	int deskId;
-    string status;
-
 public:
-    Desk();
+    int deskId;
+    string status;
+    Desk(int = 0, string = "");
     ~Desk();
     friend ostream &operator<<(ostream &, Desk &);
     friend istream &operator>>(istream &, Desk &);
@@ -40,30 +39,34 @@ private:
     Desk *desk;
     Bill *bill;
     //----------
-    int stt;              //So thu tu
-    int number;           //So luong
-    int billId;
+    int stt;    //So thu tu
+    int number; //So luong
 
 public:
-	Order(int =0, int =0, int =0);
-	~Order();
-    friend ostream &operator<<(ostream &, Order &, Menu &, Desk &);
-    friend ostream &operator>>(istream &, Order &, Menu &, Desk &);
+    int billId;
+    Order(int = 0, int = 0, int = 0);
+    ~Order();
+    friend ostream &operator<<(ostream &, Order &);
+    friend ostream &operator>>(istream &, Order &);
 };
 class Bill
 {
+
 private:
+    Order *order;
     int total;
+
 public:
-	Bill(int = 0);
-	~Bill();
+    Bill(int = 0);
+    ~Bill();
     friend ostream &operator<<(ostream &, Bill &);
 };
 class Table
 {
 public:
-    Menu *menu;
-    Desk *desk;
-    Order *order;
-    Bill *bill;
+    Menu menu;
+    Desk desk;
+    Order order;
+    Bill bill;
 };
+#endif

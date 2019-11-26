@@ -1,6 +1,3 @@
-#include <iostream>
-#include <string>
-using namespace std;
 #include "table.h"
 Table table;
 #include "views.h"
@@ -11,10 +8,10 @@ Controllers controllers;
 #include "views.cpp"
 #include "controller.cpp"
 #include "test.cpp"
-
+#include "list.h"
 int main()
 {
-    
+    test();
     controllers.home();
     return 0;
 }
