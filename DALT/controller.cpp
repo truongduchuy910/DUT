@@ -58,6 +58,7 @@ void Controllers::bill()
 {
     switch (views.bill())
     {
+    case 2:
     case 4:
         controllers.home();
         break;
