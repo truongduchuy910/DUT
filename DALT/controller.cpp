@@ -2,6 +2,9 @@ void Controllers::home()
 {
     switch (views.home())
     {
+    case 0:
+        cout << "a du!!!! :v";
+        break;
     case 1:
         controllers.menu();
         break;
@@ -22,25 +25,39 @@ void Controllers::menu()
 {
     switch (views.menu())
     {
+    case 0:
+        controllers.home();
+        break;
+    case 1:
+        controllers.menuShow();
     case 2:
         controllers.menuAdd();
         break;
-    case 4:
-        controllers.home();
-        break;
+    case 3:
+        controllers.menuRemove();
+        break;    
+    
     default:
         break;
     }
 }
-void Controllers::menuShow(){};
+void Controllers::menuShow()
+{
+    cout << table.menu;
+    controllers.menu();
+};
 void Controllers::menuAdd()
 {
     // table.menu.insert(views.menuAdd());
     // controllers.menu();
-    cout << views.menuAdd();
+    table.menu = views.menuAdd();
     controllers.menu();
 };
-void Controllers::menuRemove(){};
+void Controllers::menuRemove()
+{
+    views.menuRemove();
+    controllers.menu();
+};
 void Controllers::desk()
 {
     switch (views.desk())
