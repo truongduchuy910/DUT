@@ -2,11 +2,9 @@
 using namespace std;
 class Label
 {
-private:
     int _id;
     string name;
 
-public:
     Label &create(int, const string &);
 };
 Label &Label::create(int _id, const string &name)
@@ -20,9 +18,9 @@ class List
 private:
     List *next;
     Data data;
-    int length;
 
 public:
+    int length;
     List();
     ~List();
     List &operator=(List &);
@@ -75,4 +73,8 @@ int main()
     a.insertFirst(dut);
     a.insertFirst(dut);
     a.insertFirst(dut);
+    for (int i = 0; i < a.length; i++)
+    {
+        cout << a[i].
+    }
 }
