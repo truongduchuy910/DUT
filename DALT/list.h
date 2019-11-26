@@ -1,25 +1,19 @@
-template <typename Data>
+#include <iostream>
+#include <string>
+using namespace std;
+template <class Data>
 class List
 {
 private:
-    List *previous;
     List *next;
-    Data *data;
+    Data data;
 
 public:
+    int length;
     List();
     ~List();
-    unsigned int create();
+    Data &operator[](int);
+    List &insertFirst(Data &);
+    List &findOneAndRemove(Data &);
+    List &findOneAndModify(Data &);
 };
-template <typename Data>
-List<Data>::List(){
-
-};
-template <typename Data>
-List<Data>::~List(){
-
-};
-template <typename Data>
-unsigned int List<Data>::create()
-{
-}

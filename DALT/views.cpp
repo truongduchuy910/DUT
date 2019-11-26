@@ -2,7 +2,7 @@
 int Views::home()
 {
 
-    cout << "---------- HOME" << endl;
+    cout << "--------------- HOME CONTROL" << endl;
     int n;
     do
     {
@@ -21,7 +21,7 @@ int Views::home()
 int Views::menu()
 {
 
-    cout << "---------- MENU" << endl;
+    cout << "--------------- MENU CONTROL" << endl;
     int n;
     do
     {
@@ -31,13 +31,18 @@ int Views::menu()
         cout << "3. remove" << endl;
         cout << "Choose your option [0-3]: ";
         cin >> n;
-    } while (n < 0|| n > 8);
+    } while (n < 0 || n > 8);
 
     return n;
 };
 int Views::menuShow()
 {
-    cout<<table.menu;
+    cout << "--------------- MENU SHOW" << endl
+         << "foodId name         cost" << endl;
+    for (int i = 0; i < table.menu.length; i++)
+    {
+        cout << table.menu[i];
+    }
 }
 Menu Views::menuAdd()
 {
@@ -48,14 +53,14 @@ Menu Views::menuAdd()
 Menu Views::menuRemove()
 {
     Menu newMenu;
-    cout << "---------- REMOVE MENU" << endl;
+    cout << "--------------- MENU REMOVE" << endl;
     cout << "Input condition:" << endl;
     cin >> newMenu;
     return newMenu;
 }
 int Views::desk()
 {
-    cout << "---------- DESK" << endl;
+    cout << "--------------- DESK CONTROL" << endl;
     int n;
     do
     {
@@ -65,11 +70,27 @@ int Views::desk()
         cout << "3. remove" << endl;
         cout << "Choose your option [0-3]: ";
         cin >> n;
-    } while (n < 0|| n > 8);
+    } while (n < 0 || n > 8);
 
     return n;
 };
+int Views::deskShow()
+{
+    cout << "--------------- DESK SHOW" << endl
+         << "deskId status" << endl;
+    for (int i = 0; i < table.desk.length; i++)
+    {
+        cout << table.desk[i];
+    }
+}
 Desk Views::deskAdd()
+{
+    cout << "--------------- DESK ADD" << endl;
+    Desk newDesk;
+    cin >> newDesk;
+    return newDesk;
+}
+Desk Views::deskRemove()
 {
     Desk newDesk;
     cin >> newDesk;
@@ -78,7 +99,7 @@ Desk Views::deskAdd()
 int Views::order()
 {
 
-    cout << "---------- ORDER" << endl;
+    cout << "--------------- ORDER CONTROL" << endl;
 
     int n;
     do
@@ -89,14 +110,14 @@ int Views::order()
         cout << "4. back" << endl;
         cout << "Choose your option [1-4]: ";
         cin >> n;
-    } while (n < 0|| n > 8);
+    } while (n < 0 || n > 8);
 
     return n;
 };
 int Views::bill()
 {
 
-    cout << "---------- BILL" << endl;
+    cout << "--------------- BILL CONTROL" << endl;
 
     int n;
     do
@@ -107,7 +128,7 @@ int Views::bill()
         cout << "4. back" << endl;
         cout << "Choose your option [1-4]: ";
         cin >> n;
-    } while (n < 0|| n > 8);
+    } while (n < 0 || n > 8);
 
     return n;
 };

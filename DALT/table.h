@@ -9,7 +9,7 @@ class Menu;
 class Desk;
 class Order;
 class Bill;
-//----------
+//---------------
 
 class Menu
 {
@@ -38,7 +38,7 @@ private:
     Menu *menu;
     Desk *desk;
     Bill *bill;
-    //----------
+    //---------------
     int stt;    //So thu tu
     int number; //So luong
 
@@ -64,9 +64,9 @@ public:
 class Table
 {
 public:
-    Menu menu;
-    Desk desk;
-    Order order;
-    Bill bill;
+    List<Menu> menu;
+    List<Desk> desk;
+    List<Order> order;
+    List<Bill> bill;
 };
 #endif

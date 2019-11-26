@@ -1,40 +1,11 @@
-#include <iostream>
-using namespace std;
-class Label
-{
-    int _id;
-    string name;
-
-    Label &create(int, const string &);
-};
-Label &Label::create(int _id, const string &name)
-{
-    this->_id = _id;
-    this->name = name;
-}
-template <class Data>
-class List
-{
-private:
-    List *next;
-    Data data;
-
-public:
-    int length;
-    List();
-    ~List();
-    List &operator=(List &);
-    List &insertFirst(Data &);
-    List &findOneAndRemove(Data &);
-    List &findOneAndModify(Data &);
-    List splice(int, int);
-};
+#include "list.h"
 template <class Data>
 List<Data>::List()
 {
     this->next = NULL;
     this->length = 0;
 }
+
 template <class Data>
 List<Data>::~List()
 {
@@ -46,10 +17,19 @@ List<Data>::~List()
         this->next = temp;
     }
 }
-template <class Data>
-List<Data> &List<Data>::operator=(List<Data> &A){
 
+template <class Data>
+Data &List<Data>::operator[](int i)
+{
+    List *temp = this;
+    while (i && temp->next != NULL)
+    {
+        temp = temp->next;
+        i--;
+    }
+    return temp->data;
 };
+
 template <class Data>
 List<Data> &List<Data>::insertFirst(Data &data)
 {
@@ -62,19 +42,7 @@ List<Data> &List<Data>::insertFirst(Data &data)
     this->length++;
 };
 template <class Data>
-List<Data> List<Data>::splice(int index, int number){
-
-};
-int main()
+List<Data> &List<Data>::findOneAndRemove(Data &data)
 {
-    Label dut;
-    dut.create(1, "truongduchuy");
-    List<Label> a;
-    a.insertFirst(dut);
-    a.insertFirst(dut);
-    a.insertFirst(dut);
-    for (int i = 0; i < a.length; i++)
-    {
-        cout << a[i].
-    }
-}
+    return *this;
+};

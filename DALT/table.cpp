@@ -17,7 +17,7 @@ istream &operator>>(istream &istream, Menu &menu)
 };
 ostream &operator<<(ostream &ostream, Menu &menu)
 {
-	ostream << menu.name << " : " << menu.cost<<endl;
+	ostream << setw(6) << menu.foodId << " " << setw(12) << menu.name << " " << menu.cost << endl;
 	return ostream;
 };
 Desk::Desk(int deskId, string status) : deskId(deskId), status(status){};
@@ -32,7 +32,7 @@ istream &operator>>(istream &istream, Desk &desk)
 };
 ostream &operator<<(ostream &ostream, Desk &desk)
 {
-	ostream << desk.deskId << ": " << desk.status<<endl;
+	ostream << setw(6) << desk.deskId << " " << desk.status << endl;
 	return ostream;
 };
 Order::Order(int stt, int number, int billId) : stt(stt), number(number), billId(billId){};

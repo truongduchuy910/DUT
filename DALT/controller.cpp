@@ -41,23 +41,7 @@ void Controllers::menu()
         break;
     }
 }
-void Controllers::menuShow()
-{
-    cout << table.menu;
-    controllers.menu();
-};
-void Controllers::menuAdd()
-{
-    // table.menu.insert(views.menuAdd());
-    // controllers.menu();
-    table.menu = views.menuAdd();
-    controllers.menu();
-};
-void Controllers::menuRemove()
-{
-    views.menuRemove();
-    controllers.menu();
-};
+
 void Controllers::desk()
 {
     switch (views.desk())
@@ -78,24 +62,7 @@ void Controllers::desk()
         break;
     }
 }
-void Controllers::deskShow()
-{
-    cout << "---------- LIST DESK" << endl;
-    cout << table.desk;
-    controllers.desk();
-    //menuShow();
-}
-void Controllers::deskAdd()
-{
-    table.desk = views.deskAdd();
-    controllers.desk();
-}
-void Controllers::deskRemove()
-{
-    cout << table.desk;
-    controllers.desk();
-    //menuShow();
-}
+
 void Controllers::order()
 {
     switch (views.order())
@@ -119,4 +86,43 @@ void Controllers::bill()
     default:
         break;
     }
+}
+
+void Controllers::menuShow()
+{
+    views.menuShow();
+    controllers.menu();
+};
+void Controllers::menuAdd()
+{
+    Menu temp;
+    temp = views.menuAdd();
+    table.menu.insertFirst(temp);
+    controllers.menu();
+};
+void Controllers::menuRemove()
+{
+    Menu temp;
+    temp = views.menuRemove();
+    table.menu.findOneAndRemove(temp);
+    controllers.menu();
+};
+void Controllers::deskShow()
+{
+    views.deskShow();
+    controllers.desk();
+}
+void Controllers::deskAdd()
+{
+    Desk temp;
+    temp = views.deskAdd();
+    table.desk.insertFirst(temp);
+    controllers.desk();
+}
+void Controllers::deskRemove()
+{
+    Desk temp;
+    temp = views.deskRemove();
+    table.desk.findOneAndRemove(temp);
+    controllers.desk();
 }
