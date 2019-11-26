@@ -35,8 +35,8 @@ void Controllers::menu()
         break;
     case 3:
         controllers.menuRemove();
-        break;    
-    
+        break;
+
     default:
         break;
     }
@@ -62,14 +62,40 @@ void Controllers::desk()
 {
     switch (views.desk())
     {
-    case 4:
+    case 0:
         controllers.home();
+        break;
+    case 1:
+        controllers.deskShow();
+        break;
+    case 2:
+        controllers.deskAdd();
+        break;
+    case 3:
+        controllers.deskRemove();
         break;
     default:
         break;
     }
 }
-
+void Controllers::deskShow()
+{
+    cout << "---------- LIST DESK" << endl;
+    cout << table.desk;
+    controllers.desk();
+    //menuShow();
+}
+void Controllers::deskAdd()
+{
+    table.desk = views.deskAdd();
+    controllers.desk();
+}
+void Controllers::deskRemove()
+{
+    cout << table.desk;
+    controllers.desk();
+    //menuShow();
+}
 void Controllers::order()
 {
     switch (views.order())

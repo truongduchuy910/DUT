@@ -7,6 +7,9 @@ public:
     void menuShow();
     void menuAdd();
     void menuRemove();
+    void deskShow();
+    void deskAdd();
+    void deskRemove();
     void desk();
     void order();
     void bill();

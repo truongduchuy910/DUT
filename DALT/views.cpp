@@ -2,7 +2,7 @@
 int Views::home()
 {
 
-    cout << "---------- HOME ----------" << endl;
+    cout << "---------- HOME" << endl;
     int n;
     do
     {
@@ -11,7 +11,7 @@ int Views::home()
         cout << "2. desk" << endl;
         cout << "3. order" << endl;
         cout << "4. bill" << endl;
-        cout << "Choose your option [1-4]: ";
+        cout << "Choose your option [0-4]: ";
         cin >> n;
     } while (n < 0 || n > 8);
 
@@ -21,7 +21,7 @@ int Views::home()
 int Views::menu()
 {
 
-    cout << "---------- MENU ----------" << endl;
+    cout << "---------- MENU" << endl;
     int n;
     do
     {
@@ -29,7 +29,7 @@ int Views::menu()
         cout << "1. show" << endl;
         cout << "2. add" << endl;
         cout << "3. remove" << endl;
-        cout << "Choose your option [1-4]: ";
+        cout << "Choose your option [0-3]: ";
         cin >> n;
     } while (n < 0|| n > 8);
 
@@ -37,6 +37,7 @@ int Views::menu()
 };
 int Views::menuShow()
 {
+    cout<<table.menu;
 }
 Menu Views::menuAdd()
 {
@@ -47,33 +48,37 @@ Menu Views::menuAdd()
 Menu Views::menuRemove()
 {
     Menu newMenu;
-    cout << "---------- REMOVE MENU ----------" << endl;
+    cout << "---------- REMOVE MENU" << endl;
     cout << "Input condition:" << endl;
     cin >> newMenu;
     return newMenu;
 }
 int Views::desk()
 {
-
-    cout << "---------- DESK ----------" << endl;
-
+    cout << "---------- DESK" << endl;
     int n;
     do
     {
+        cout << "0. back" << endl;
         cout << "1. show" << endl;
         cout << "2. add" << endl;
         cout << "3. remove" << endl;
-        cout << "4. back" << endl;
-        cout << "Choose your option [1-4]: ";
+        cout << "Choose your option [0-3]: ";
         cin >> n;
     } while (n < 0|| n > 8);
 
     return n;
 };
+Desk Views::deskAdd()
+{
+    Desk newDesk;
+    cin >> newDesk;
+    return newDesk;
+}
 int Views::order()
 {
 
-    cout << "---------- ORDER ----------" << endl;
+    cout << "---------- ORDER" << endl;
 
     int n;
     do
@@ -91,7 +96,7 @@ int Views::order()
 int Views::bill()
 {
 
-    cout << "---------- BILL ----------" << endl;
+    cout << "---------- BILL" << endl;
 
     int n;
     do

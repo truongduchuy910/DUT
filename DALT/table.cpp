@@ -32,7 +32,7 @@ istream &operator>>(istream &istream, Desk &desk)
 };
 ostream &operator<<(ostream &ostream, Desk &desk)
 {
-	ostream << desk.deskId << ": " << desk.status;
+	ostream << desk.deskId << ": " << desk.status<<endl;
 	return ostream;
 };
 Order::Order(int stt, int number, int billId) : stt(stt), number(number), billId(billId){};
