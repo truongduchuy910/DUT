@@ -7,9 +7,9 @@ private:
     string name;
 
 public:
-    Label &create(int, string &);
+    Label &create(int, const string &);
 };
-Label &Label::create(int _id, string &name)
+Label &Label::create(int _id, const string &name)
 {
     this->_id = _id;
     this->name = name;
@@ -19,7 +19,6 @@ class List
 {
 private:
     List *next;
-    List *previous;
     Data data;
     int length;
 
@@ -36,13 +35,18 @@ template <class Data>
 List<Data>::List()
 {
     this->next = NULL;
-    this->previous = NULL;
-    this->data = NULL;
     this->length = 0;
 }
 template <class Data>
 List<Data>::~List()
 {
+    while (this->next != NULL)
+    {
+        List *temp = this->next->next;
+        cout << this->next << endl;
+        //delete this->next;
+        this->next = temp;
+    }
 }
 template <class Data>
 List<Data> &List<Data>::operator=(List<Data> &A){
@@ -51,15 +55,12 @@ List<Data> &List<Data>::operator=(List<Data> &A){
 template <class Data>
 List<Data> &List<Data>::insertFirst(Data &data)
 {
-    List *emptyNode = this;
-    while (emptyNode->data != NULL)
-    {
-        emptyNode = emptyNode->next;
-    }
-    List node;
-    node.data = data;
-    node.next = emptyNode;
-    node.previous = emptyNode->previous;
+    List *node = new List;
+    node->data = this->data;
+    node->next = this->next;
+    node->length = this->length;
+    this->data = data;
+    this->next = node;
     this->length++;
 };
 template <class Data>
@@ -69,7 +70,9 @@ List<Data> List<Data>::splice(int index, int number){
 int main()
 {
     Label dut;
-    dut.create(1, 'truongduchuy');
+    dut.create(1, "truongduchuy");
     List<Label> a;
+    a.insertFirst(dut);
+    a.insertFirst(dut);
     a.insertFirst(dut);
 }
