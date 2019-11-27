@@ -16,7 +16,7 @@ int main()
     system("clear");
     cout << endl
          << " ------------------------------ " << endl
-         << "| WELLCOME TO!                 |" << endl
+         << "| WELLCOME TO RMS!                 |" << endl
          << "| Restaurant Management System |" << endl
          << " ------------------------------ " << endl;
     controllers.home();
