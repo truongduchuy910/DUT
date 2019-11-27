@@ -2,27 +2,38 @@ use qlNhaHang
 create table Ban
 (
    TableID nvarchar(10) primary key,
-   Stt nvarchar(10) default('empty') --Status
+   --tableId lấy làm số bàn luôn
+   Stt nvarchar(10) default('empty')
+   --Status
+   --availale kiểu true false
 )
 create table Bill
 (
    So_Bill nvarchar(10) primary key,
+   --billId
    TableID nvarchar(10),
    Xuat datetime null,
+   --payment kiểu true false để biết trạng thái thanh toán
    Total money
+   -- total
 )
 create table Menu
 (
    FoodID nvarchar(10) primary key,
+   --foodId
    TenMon nvarchar(50) not null unique,
+   --name
    Cost money not null
 )
 create table GoiMon
 (
-   Sott int primary key identity, --so tt
+   Sott int primary key identity,
+   --so tt
    FoodID nvarchar(10),
    SL int not null,
+   --quantity
    TableID nvarchar(10),
+   --tableId
    So_Bill nvarchar(10)
 )
 GO
