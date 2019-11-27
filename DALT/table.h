@@ -9,7 +9,7 @@ class Menu;
 class Desk;
 class Order;
 class Bill;
-//---------------
+//==========
 
 class Menu
 {
@@ -40,7 +40,7 @@ private:
     Menu *menu;
     Desk *desk;
     Bill *bill;
-    //---------------
+    //==========
     int stt;    //So thu tu
     int number; //So luong
 

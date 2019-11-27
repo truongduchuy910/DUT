@@ -1,16 +1,14 @@
 #include <iomanip>
 #include "list.cpp"
 #include "table.h"
-Table table;
 #include "views.h"
-Views views;
 #include "controller.h"
+Table table;
+Views views;
 Controllers controllers;
 #include "table.cpp"
 #include "views.cpp"
 #include "controller.cpp"
-#include "test.cpp"
-
 int main()
 {
     controllers.home();

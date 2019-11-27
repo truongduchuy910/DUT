@@ -3,7 +3,7 @@ int Views::home()
 {
 
     cout << endl
-         << "--------------- HOME CONTROL" << endl;
+         << "=============== HOME CONTROL" << endl;
     int n;
     do
     {
@@ -23,7 +23,7 @@ int Views::menu()
 {
 
     cout << endl
-         << "--------------- MENU CONTROL" << endl;
+         << "=============== MENU CONTROL" << endl;
     int n;
     do
     {
@@ -40,7 +40,7 @@ int Views::menu()
 int Views::menuShow()
 {
     cout << endl
-         << "--------------- MENU SHOW" << endl
+         << "=============== MENU SHOW" << endl
          << "foodId name         cost" << endl;
     for (int i = 0; i < table.menu.length; i++)
     {
@@ -57,7 +57,7 @@ Menu Views::menuRemove()
 {
     Menu newMenu;
     cout << endl
-         << "--------------- MENU REMOVE" << endl;
+         << "=============== MENU REMOVE" << endl;
     cout << "Input condition:" << endl;
     cin >> newMenu;
     return newMenu;
@@ -65,7 +65,7 @@ Menu Views::menuRemove()
 int Views::desk()
 {
     cout << endl
-         << "--------------- DESK CONTROL" << endl;
+         << "=============== DESK CONTROL" << endl;
     int n;
     do
     {
@@ -82,7 +82,7 @@ int Views::desk()
 int Views::deskShow()
 {
     cout << endl
-         << "--------------- DESK SHOW" << endl
+         << "=============== DESK SHOW" << endl
          << "deskId status" << endl;
     for (int i = 0; i < table.desk.length; i++)
     {
@@ -92,7 +92,7 @@ int Views::deskShow()
 Desk Views::deskAdd()
 {
     cout << endl
-         << "--------------- DESK ADD" << endl;
+         << "=============== DESK ADD" << endl;
     Desk newDesk;
     cin >> newDesk;
     return newDesk;
@@ -107,7 +107,7 @@ int Views::order()
 {
 
     cout << endl
-         << "--------------- ORDER CONTROL" << endl;
+         << "=============== ORDER CONTROL" << endl;
 
     int n;
     do
@@ -126,7 +126,7 @@ int Views::bill()
 {
 
     cout << endl
-         << "--------------- BILL CONTROL" << endl;
+         << "=============== BILL CONTROL" << endl;
 
     int n;
     do
