@@ -1,4 +1,3 @@
-#include "list.h"
 template <class Data>
 List<Data>::List()
 {
@@ -26,6 +25,8 @@ Data &List<Data>::operator[](int i)
 template <class Data>
 List<Data> &List<Data>::insertFirst(Data &data)
 {
+    cout << "[insert] success" << endl
+         << data;
     List<Data> *node = new List<Data>;
     node->data = this->data;
     node->next = this->next;
@@ -44,10 +45,17 @@ List<Data> &List<Data>::findOneAndRemove(Data &data)
     }
     if (temp->next)
     {
+        cout << "[remove] success" << endl
+             << temp->next->data;
         List<Data> *deleteNode = temp->next;
         temp->next = temp->next->next;
         this->length--;
         delete deleteNode;
+    }
+    else
+    {
+        cout << "[remove] couldn't find this item" << endl
+             << data;
     }
 
     return *this;
