@@ -1,57 +1,50 @@
 use qlNhaHang
-create table Ban
+create table DESK
 (
-   TableID nvarchar(10) primary key,
-   --tableId lấy làm số bàn luôn
-   Stt nvarchar(10) default('empty')
-   --Status
-   --availale kiểu true false
+   DeskID int primary key,
+   Available bit default('1')
 )
-create table Bill
+create table BILL
 (
-   So_Bill nvarchar(10) primary key,
-   --billId
-   TableID nvarchar(10),
-   Xuat datetime null,
+   BillID int identity(1000,1) primary key,
+   DeskID int,
+   Payment bit default('0'),
    --payment kiểu true false để biết trạng thái thanh toán
    Total money
    -- total
 )
-create table Menu
+create table MENU
 (
-   FoodID nvarchar(10) primary key,
+   FoodID int identity(5000,1) primary key,
    --foodId
-   TenMon nvarchar(50) not null unique,
+   FoodName nvarchar(50) not null unique,
    --name
    Cost money not null
 )
-create table GoiMon
+create table ADDFOOD
 (
-   Sott int primary key identity,
-   --so tt
-   FoodID nvarchar(10),
-   SL int not null,
-   --quantity
-   TableID nvarchar(10),
-   --tableId
-   So_Bill nvarchar(10)
+   AddFoodID int primary key identity(1,1),
+   FoodID int,
+   Quantity int not null,
+   DeskID int,
+   BillID int
 )
 GO
-alter table Bill
+alter table BILL
 add
-   constraint fk_Bill_Ban
-   foreign key (TableID)
-   references Ban(TableID)
+   constraint fk_Bill_Desk
+   foreign key (DeskID)
+   references Desk(DeskID)
 GO
-alter table GoiMon
+alter table ADDFOOD
 add 
-   constraint fk_Goi_Menu
+   constraint fk_AddFood_Menu
    foreign key (FoodID)
    references Menu(FoodID),
-   constraint fk_Goimon_Table
-   foreign key (TableID)
-   references Ban(TableID),
+   constraint fk_AddFood_Desk
+   foreign key (DeskID)
+   references Desk(DeskID),
    constraint fk_Goimon_Bill
-   foreign key (So_Bill)
-   references Bill(So_Bill)
+   foreign key (BillID)
+   references Bill(BillID)
 
