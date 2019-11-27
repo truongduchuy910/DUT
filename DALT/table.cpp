@@ -50,12 +50,21 @@ Order::Order(){};
 Order::~Order(){};
 ostream &operator<<(ostream &ostream, Order &order)
 {
-	ostream << order.stt << " || " << order.menu->foodId << " || " << order.number << "||" << order.desk->deskId << "||" << order.billId;
 	return ostream;
 };
+istream &operator>>(istream &istream, Order &order)
+{
+	cout<<"billId: ";
+	istream >> order.billId;
+	cout<<"deskId: ";
+	istream >> order.deskId;
+	cout<<"foodId: ";
+	istream >> order.foodId;
+	return istream;
+}
 bool operator==(Order &A, Order &B)
 {
-	return (A.bill == B.bill && A.billId == B.billId && A.desk == B.desk && A.menu == B.menu && A.number == B.number && A.stt == B.stt);
+	return 0;//(A.bill == B.bill && A.billId == B.billId && A.desk == B.desk && A.menu == B.menu && A.number == B.number && A.stt == B.stt);
 }
 Bill::Bill(){};
 Bill::~Bill(){};

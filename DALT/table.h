@@ -37,19 +37,19 @@ public:
 class Order
 {
 private:
-    Menu *menu;
-    Desk *desk;
-    Bill *bill;
-    //==========
-    int stt;    //So thu tu
-    int number; //So luong
+    
 
 public:
+    int foodId;
+    int deskId;
     int billId;
+    //==========
+    
+    int quantity; //So luong
     Order();
     ~Order();
     friend ostream &operator<<(ostream &, Order &);
-    friend ostream &operator>>(istream &, Order &);
+    friend istream &operator>>(istream &, Order &);
     friend bool operator==(Order &, Order &);
 };
 class Bill
@@ -63,6 +63,7 @@ public:
     Bill();
     ~Bill();
     friend ostream &operator<<(ostream &, Bill &);
+
     friend bool operator==(Bill &, Bill &);
 };
 class Table

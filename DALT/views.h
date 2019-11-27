@@ -12,5 +12,7 @@ public:
     Desk deskRemove();
     int deskShow();
     int order();
+    Order orderAdd();
+
     int bill();
 };

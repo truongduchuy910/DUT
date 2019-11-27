@@ -67,8 +67,11 @@ void Controllers::order()
 {
     switch (views.order())
     {
-    case 4:
+    case 0:
         controllers.home();
+        break;
+    case 1:
+        controllers.orderAdd();
         break;
     default:
         break;
@@ -126,4 +129,15 @@ void Controllers::deskRemove()
     temp = views.deskRemove();
     table.desk.findOneAndRemove(temp);
     controllers.desk();
+}
+void Controllers::orderAdd()
+{
+    Order temp;
+    //views.billShow();
+    views.deskShow();
+    views.menuShow();
+    
+
+    temp=views.orderAdd();
+    controllers.order();
 }

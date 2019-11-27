@@ -105,23 +105,27 @@ Desk Views::deskRemove()
 }
 int Views::order()
 {
-
     cout << endl
          << "=============== ORDER CONTROL" << endl;
 
     int n;
     do
     {
-        cout << "1. show" << endl;
-        cout << "2. add" << endl;
-        cout << "3. remove" << endl;
-        cout << "4. back" << endl;
-        cout << "Choose your option [1-4]: ";
+        cout << "0. back" << endl;
+        cout << "1. add" << endl;
+        cout << "Choose your option [0 or 1]: ";
         cin >> n;
-    } while (n < 0 || n > 8);
+    } while (n < 0 || n > 1);
 
     return n;
 };
+Order Views::orderAdd()
+{
+    cout<<endl<<"=============== ORDER ADD" << endl;
+    Order newOrder;
+    cin>>newOrder;
+    return newOrder;
+}
 int Views::bill()
 {
 

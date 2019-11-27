@@ -12,5 +12,6 @@ public:
     void deskRemove();
     void desk();
     void order();
+    void orderAdd();
     void bill();
 };
