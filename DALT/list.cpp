@@ -54,7 +54,7 @@ List<Data> &List<Data>::findOneAndRemove(Data &data)
     }
     else
     {
-        cout << "[remove] couldn't find this item" << endl
+        cout << "[remove] couldn't find" << endl
              << data;
     }
 
