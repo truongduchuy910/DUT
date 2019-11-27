@@ -34,10 +34,16 @@ int main()
                 cout << "Attempting connection to SQL Server...";
     cout << "\n";
 
+    //connect to SQL Server
+    //I am using a trusted connection and port 14808
+    //it does not matter if you are using default or named instance
+    //just make sure you define the server name and the port
+    //You have the option to use a username/password instead of a trusted connection
+    //but is more secure to use a trusted connection
     switch (SQLDriverConnect(sqlConnHandle,
                              NULL,
-                             (SQLCHAR *)L"DRIVER={SQL Server};SERVER=localhost, 1433;DATABASE=DALT;UID=sa;PWD=Doanlaptrinh.;",
-                             //(SQLWCHAR*)L"DRIVER={SQL Server};SERVER=localhost, 1433;DATABASE=master;Trusted=true;",
+                             (SQLCHAR *)L"DRIVER={truongduchuy910};SERVER=localhost, 1433;DATABASE=DALT;UID=SA;PWD=Doanlaptrinh.;",
+                             //(SQLCHAR*)L"DRIVER={SQL Server};SERVER=localhost, 1433;DATABASE=master;Trusted=true;",
                              SQL_NTS,
                              retconstring,
                              1024,
@@ -56,11 +62,11 @@ int main()
         break;
 
     case SQL_INVALID_HANDLE:
-        cout << "Could not connect to SQL Server";
+        cout << "SQL_INVALID_HANDLE Could not connect to SQL Server";
         cout << "\n";
 
     case SQL_ERROR:
-        cout << "Could not connect to SQL Server";
+        cout << "SQL_ERROR Could not connect to SQL Server";
         cout << "\n";
 
     default:
@@ -111,7 +117,8 @@ int main()
         }
     }
 
-    //close connection and free resources
+//close connection and free resources
+COMPLETED:
     SQLFreeHandle(SQL_HANDLE_STMT, sqlStmtHandle);
     SQLDisconnect(sqlConnHandle);
     SQLFreeHandle(SQL_HANDLE_DBC, sqlConnHandle);
