@@ -2,7 +2,8 @@
 int Views::home()
 {
 
-    cout << "--------------- HOME CONTROL" << endl;
+    cout << endl
+         << "--------------- HOME CONTROL" << endl;
     int n;
     do
     {
@@ -21,7 +22,8 @@ int Views::home()
 int Views::menu()
 {
 
-    cout << "--------------- MENU CONTROL" << endl;
+    cout << endl
+         << "--------------- MENU CONTROL" << endl;
     int n;
     do
     {
@@ -37,7 +39,8 @@ int Views::menu()
 };
 int Views::menuShow()
 {
-    cout << "--------------- MENU SHOW" << endl
+    cout << endl
+         << "--------------- MENU SHOW" << endl
          << "foodId name         cost" << endl;
     for (int i = 0; i < table.menu.length; i++)
     {
@@ -53,14 +56,16 @@ Menu Views::menuAdd()
 Menu Views::menuRemove()
 {
     Menu newMenu;
-    cout << "--------------- MENU REMOVE" << endl;
+    cout << endl
+         << "--------------- MENU REMOVE" << endl;
     cout << "Input condition:" << endl;
     cin >> newMenu;
     return newMenu;
 }
 int Views::desk()
 {
-    cout << "--------------- DESK CONTROL" << endl;
+    cout << endl
+         << "--------------- DESK CONTROL" << endl;
     int n;
     do
     {
@@ -76,7 +81,8 @@ int Views::desk()
 };
 int Views::deskShow()
 {
-    cout << "--------------- DESK SHOW" << endl
+    cout << endl
+         << "--------------- DESK SHOW" << endl
          << "deskId status" << endl;
     for (int i = 0; i < table.desk.length; i++)
     {
@@ -85,7 +91,8 @@ int Views::deskShow()
 }
 Desk Views::deskAdd()
 {
-    cout << "--------------- DESK ADD" << endl;
+    cout << endl
+         << "--------------- DESK ADD" << endl;
     Desk newDesk;
     cin >> newDesk;
     return newDesk;
@@ -99,7 +106,8 @@ Desk Views::deskRemove()
 int Views::order()
 {
 
-    cout << "--------------- ORDER CONTROL" << endl;
+    cout << endl
+         << "--------------- ORDER CONTROL" << endl;
 
     int n;
     do
@@ -117,7 +125,8 @@ int Views::order()
 int Views::bill()
 {
 
-    cout << "--------------- BILL CONTROL" << endl;
+    cout << endl
+         << "--------------- BILL CONTROL" << endl;
 
     int n;
     do

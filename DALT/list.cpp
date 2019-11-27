@@ -9,13 +9,6 @@ List<Data>::List()
 template <class Data>
 List<Data>::~List()
 {
-    while (this->next != NULL)
-    {
-        List *temp = this->next->next;
-        cout << this->next << endl;
-        //delete this->next;
-        this->next = temp;
-    }
 }
 
 template <class Data>
@@ -33,7 +26,7 @@ Data &List<Data>::operator[](int i)
 template <class Data>
 List<Data> &List<Data>::insertFirst(Data &data)
 {
-    List *node = new List;
+    List<Data> *node = new List<Data>;
     node->data = this->data;
     node->next = this->next;
     node->length = this->length;
@@ -44,5 +37,18 @@ List<Data> &List<Data>::insertFirst(Data &data)
 template <class Data>
 List<Data> &List<Data>::findOneAndRemove(Data &data)
 {
+    List<Data> *temp = this;
+    while (temp != NULL && temp->next && !(temp->next->data == data))
+    {
+        temp = temp->next;
+    }
+    if (temp->next)
+    {
+        List<Data> *deleteNode = temp->next;
+        temp->next = temp->next->next;
+        this->length--;
+        delete deleteNode;
+    }
+
     return *this;
 };

@@ -17,20 +17,22 @@ public:
     string name;
     int foodId;
     int cost;
-    Menu(string = "", int = 0, int = 0);
+    Menu();
     ~Menu();
     friend ostream &operator<<(ostream &, Menu &);
     friend istream &operator>>(istream &, Menu &);
+    friend bool operator==(Menu &, Menu &);
 };
 class Desk
 {
 public:
     int deskId;
     string status;
-    Desk(int = 0, string = "");
+    Desk();
     ~Desk();
     friend ostream &operator<<(ostream &, Desk &);
     friend istream &operator>>(istream &, Desk &);
+    friend bool operator==(Desk &, Desk &);
 };
 class Order
 {
@@ -44,10 +46,11 @@ private:
 
 public:
     int billId;
-    Order(int = 0, int = 0, int = 0);
+    Order();
     ~Order();
     friend ostream &operator<<(ostream &, Order &);
     friend ostream &operator>>(istream &, Order &);
+    friend bool operator==(Order &, Order &);
 };
 class Bill
 {
@@ -57,9 +60,10 @@ private:
     int total;
 
 public:
-    Bill(int = 0);
+    Bill();
     ~Bill();
     friend ostream &operator<<(ostream &, Bill &);
+    friend bool operator==(Bill &, Bill &);
 };
 class Table
 {
