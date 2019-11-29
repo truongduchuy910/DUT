@@ -15,10 +15,13 @@ int main()
 {
     system("clear");
     cout << endl
-         << " ------------------------------ " << endl
-         << "| WELLCOME TO RMS!             |" << endl
-         << "| Restaurant Management System |" << endl
-         << " ------------------------------ " << endl;
+         << "+-------------------------------+ " << endl
+         << "| Restaurant Management System  |" << endl
+         << "| ============================= |" << endl
+         << "| table, list: Ngoc Huy         |" << endl
+         << "| views, controllers: Nguyen Vu |" << endl
+         << "| database: Tan Cuong           |" << endl
+         << "+-------------------------------+" << endl;
     controllers.home();
     return 0;
 }
