@@ -1,9 +1,14 @@
 #include <iostream>
 #include <iomanip>
+#include <windows.h>
+#include <sqlext.h>
+#include <sqltypes.h>
+#include <sql.h>
 #include "list.h"
 #include "table.h"
 #include "views.h"
 #include "controller.h"
+#include "models.h"
 Table table;
 Views views;
 Controllers controllers;
@@ -11,6 +16,7 @@ Controllers controllers;
 #include "table.cpp"
 #include "views.cpp"
 #include "controller.cpp"
+#include "models.cpp"
 int main()
 {
     system("clear");
