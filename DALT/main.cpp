@@ -21,7 +21,8 @@ int main()
          << "| table, list: Ngoc Huy         |" << endl
          << "| views, controllers: Nguyen Vu |" << endl
          << "| database: Tan Cuong           |" << endl
-         << "+-------------------------------+" << endl;
+         << "+-------------------------------+" << endl
+         << "Luu y: Moi hanh vi sao chep la pham phap :)" << endl;
     controllers.home();
     return 0;
 }
