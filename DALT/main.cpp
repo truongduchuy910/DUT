@@ -18,7 +18,8 @@ int main()
          << " ------------------------------ " << endl
          << "| WELLCOME TO RMS!             |" << endl
          << "| Restaurant Management System |" << endl
-         << " ------------------------------ " << endl;
+         << " ------------------------------ " << endl
+         << "Luu y: Nghiem cam moi hanh vi sao chep"<< endl;
     controllers.home();
     return 0;
 }
