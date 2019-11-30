@@ -48,3 +48,21 @@ add
    foreign key (BillID)
    references Bill(BillID)
 
+--Ví dụ về câu lệnh Select
+--Hiển thị danh sách các bàn còn trống (Available = true)
+use qlNhaHang
+select DeskID,Available from Desk
+where Available = 1
+--Gọi món(insert vào table ADDFOOD)
+Insert into ADDFOOD(FoodID,Quantity,DeskID,BillID) values
+(5003,2,2,1001),
+(5002,1,2,1001)
+--Update trạng thái hóa đơn thành đã trả tiền
+Update BILL 
+set Payment = 1
+Where BillID = 1000 --Hóa đơn có BillID = 1000 sau khi đã trả tiền sẽ được update sang True(đã trả tiền)
+--Xóa các BillID sau khi đã thanh toán 
+--Ví dụ: Hóa đơn có BillID = 1000 đã thanh toán thì sẽ bị xóa
+Delete from ADDFOOD
+from BILL
+where ADDFOOD.BillID = BILL.BillID AND BILL.Payment = 1
