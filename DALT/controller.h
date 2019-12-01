@@ -14,4 +14,8 @@ public:
     void order();
     void orderAdd();
     void bill();
+    void billShow();
+    void billAdd();
+   // void billOrder();
+   // void billPayment();
 };

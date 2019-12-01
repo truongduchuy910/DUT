@@ -145,3 +145,13 @@ int Views::bill()
 
     return n;
 };
+/*int Views::billShow()
+{
+    cout << endl
+         << "=============== BILL SHOW" << endl
+         << "deskId status" << endl;
+    for (int i = 0; i < table.desk.length; i++)
+    {
+        cout << table.desk[i];
+    }
+}*/

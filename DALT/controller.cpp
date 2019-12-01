@@ -30,6 +30,7 @@ void Controllers::menu()
         break;
     case 1:
         controllers.menuShow();
+        break;
     case 2:
         controllers.menuAdd();
         break;
@@ -82,9 +83,17 @@ void Controllers::bill()
 {
     switch (views.bill())
     {
-    case 2:
-    case 4:
+    case 0:
         controllers.home();
+        break;
+    case 1:
+        controllers.billAdd();
+        break;
+    case 2:
+      //  controllers.billOrder();
+        break;
+    case 3:
+       // controllers.billPayment();
         break;
     default:
         break;
@@ -136,8 +145,18 @@ void Controllers::orderAdd()
     //views.billShow();
     views.deskShow();
     views.menuShow();
-    
-
-    temp=views.orderAdd();
+    temp = views.orderAdd();
     controllers.order();
+}
+/*void Controllers::billShow()
+{
+    views.billShow();
+    controllers.bill();
+}*/
+void Controllers::billAdd()
+{
+    cout<<"Danh sach ban:"<<endl;
+    views.deskShow();
+    cout<<"Chon ban:"<<endl;
+    
 }
