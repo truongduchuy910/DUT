@@ -74,6 +74,14 @@ ostream &operator<<(ostream &ostream, Bill &bill)
 			<< "total: " << bill.total << endl;
 	return ostream;
 };
+istream &operator>>(istream &istream, Bill &bill)
+{
+	cout << "deskId: ";
+	istream >> bill.billId;
+	// cout << "status: ";
+	// istream.ignore();
+	getline(istream, bill.status);
+};
 bool operator==(Bill &A, Bill &B)
 {
 	return (A.order == B.order && A.total == B.total);

@@ -90,10 +90,10 @@ void Controllers::bill()
         controllers.billAdd();
         break;
     case 2:
-      //  controllers.billOrder();
+        controllers.billOrder();
         break;
     case 3:
-       // controllers.billPayment();
+        // controllers.billPayment();
         break;
     default:
         break;
@@ -155,7 +155,15 @@ void Controllers::orderAdd()
 }*/
 void Controllers::billAdd()
 {
-    cout<<"Danh sach ban:"<<endl;
+    views.deskShow();
+    cout << "Chon ban:" << endl;
+    Bill temp;
+    temp = views.billAdd();
+    table.bill.insertFirst(temp);
+    controllers.bill();
+}
+void Controllers::billOrder()
+{
     views.deskShow();
     cout<<"Chon ban:"<<endl;
     

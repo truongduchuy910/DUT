@@ -14,5 +14,6 @@ public:
     int order();
     Order orderAdd();
     int bill();
+    Bill billAdd();
     //int billShow();
 };
