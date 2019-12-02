@@ -58,8 +58,11 @@ class Bill
 private:
     Order *order;
     int total;
+    
 
 public:
+    string status;
+    int billId;
     Bill();
     ~Bill();
     friend ostream &operator<<(ostream &, Bill &);

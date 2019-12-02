@@ -7,7 +7,7 @@
 #include "table.h"
 #include "views.h"
 #include "controller.h"
-#include "models.h"
+//#include "models.h"
 Table table;
 Views views;
 Controllers controllers;
@@ -15,7 +15,7 @@ Controllers controllers;
 #include "table.cpp"
 #include "views.cpp"
 #include "controller.cpp"
-#include "models.cpp"
+//#include "models.cpp"
 int main()
 {
     system("clear");
@@ -25,7 +25,7 @@ int main()
          << "| ============================= |" << endl
          << "| table, list: Ngoc Huy         |" << endl
          << "| views, controllers: Nguyen Vu |" << endl
-         << "| database: Tan Cuong           |" << endl
+         << "| database: Tuan Cuong           |" << endl
          << "+-------------------------------+" << endl
          << "Luu y: Moi hanh vi sao chep la pham phap :)" << endl;
     controllers.home();

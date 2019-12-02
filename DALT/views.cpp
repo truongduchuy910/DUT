@@ -135,16 +135,23 @@ int Views::bill()
     int n;
     do
     {
-        cout << "1. show" << endl;
-        cout << "2. add" << endl;
-        cout << "3. remove" << endl;
-        cout << "4. back" << endl;
-        cout << "Choose your option [1-4]: ";
+        cout << "0. back" << endl;
+        cout << "1. add" << endl;
+        cout << "2. order" << endl;
+        cout << "3. payment" << endl;
+        cout << "Choose your option [0-3]: ";
         cin >> n;
     } while (n < 0 || n > 8);
 
     return n;
 };
+Bill Views::billAdd()
+{
+    cout<<endl<<"=============== BILL ADD" << endl;
+    Bill newBill;
+    cin>>newBill;
+    return newBill;
+}
 /*int Views::billShow()
 {
     cout << endl
