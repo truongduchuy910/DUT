@@ -1,8 +1,4 @@
 #include <iostream>
-#include <iomanip>
-#include <sqlext.h>
-#include <sqltypes.h>
-#include <sql.h>
 #include "list.h"
 #include "table.h"
 #include "views.h"
