@@ -4,7 +4,6 @@
 #include "views.h"
 #include "controller.h"
 #include <iomanip>
-//#include "models.h"
 Table table;
 Views views;
 Controllers controllers;
@@ -12,7 +11,6 @@ Controllers controllers;
 #include "table.cpp"
 #include "views.cpp"
 #include "controller.cpp"
-//#include "models.cpp"
 int main()
 {
     system("clear");
