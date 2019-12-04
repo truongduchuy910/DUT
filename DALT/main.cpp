@@ -25,7 +25,7 @@ int main()
          << "| ============================= |" << endl
          << "| table, list: Ngoc Huy         |" << endl
          << "| views, controllers: Nguyen Vu |" << endl
-         << "| database: Tuan Cuong           |" << endl
+         << "| database: Tuan Cuong          |" << endl
          << "+-------------------------------+" << endl
          << "Luu y: Moi hanh vi sao chep la pham phap :)" << endl;
     controllers.home();

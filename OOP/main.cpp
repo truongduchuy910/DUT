@@ -62,7 +62,7 @@ Polynomial::Polynomial(const Polynomial &A)
 {
     this->n = A.n;
 
-    for (int i = 0; i < A.n; i++)
+    for (int i = 0; i <= A.n; i++)
     {
         this->data[i] = A.data[i];
     }

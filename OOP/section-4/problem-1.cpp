@@ -65,11 +65,22 @@ public:
 
 int main()
 {
-    Polynomial a(4);
-    cin >> a;
-    Polynomial b(3);
-    cin >> b;
-    cout << a + b;
+    Polynomial A(5);
+    cin >> A;
+    cout << A;
+    float a = 0, b = 0;
+    while (A(a) * A(b) > 0)
+    {
+        a--;
+        if (A(a) * A(b) > 0)
+        {
+            b++;
+        }
+    }
+    cout << a;
+    cout << b;
+    c = (a + b) / 2;
+    if 
     return 0;
 }
 Vector::Vector()
