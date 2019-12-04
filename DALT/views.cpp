@@ -121,9 +121,15 @@ int Views::order()
 };
 Order Views::orderAdd()
 {
-    cout<<endl<<"=============== ORDER ADD" << endl;
+    cout << endl
+         << "=============== ORDER ADD" << endl;
     Order newOrder;
-    cin>>newOrder;
+    views.deskShow();
+    cout<<"deskId: ";
+    cin>>newOrder.deskId;
+    views.menuShow();
+    cout<<"foodId: ";
+    cin>>newOrder.foodId;
     return newOrder;
 }
 int Views::bill()
@@ -147,9 +153,17 @@ int Views::bill()
 };
 Bill Views::billAdd()
 {
-    cout<<endl<<"=============== BILL ADD" << endl;
+    cout << endl
+         << "=============== BILL ADD" << endl;
+    views.deskShow();
     Bill newBill;
-    cin>>newBill;
+    cout << "billId:" << endl;
+
+    cin >> newBill.billId;
+    cout << "deskId:" << endl;
+
+    cin >> newBill.deskId;
+    
     return newBill;
 }
 /*int Views::billShow()

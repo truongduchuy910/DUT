@@ -63,7 +63,7 @@ Insert into Menu(FoodName,Cost) values
 ('Foie Gras',2500),
 ('Pho',1.5)
 --BILL
-Insert into BILL(DeskID) values (1,0),(2,0)
+Insert into BILL(DeskID,Total) values (1,0),(2,0)
 --ADDFOOD
 Insert into ADDFOOD(FoodID,Quantity,DeskID,BillID) values
 (5001,2,1,1000),

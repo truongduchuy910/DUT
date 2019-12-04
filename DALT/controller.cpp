@@ -90,7 +90,7 @@ void Controllers::bill()
         controllers.billAdd();
         break;
     case 2:
-        controllers.billOrder();
+        //controllers.billOrder();
         break;
     case 3:
         // controllers.billPayment();
@@ -142,29 +142,14 @@ void Controllers::deskRemove()
 void Controllers::orderAdd()
 {
     Order temp;
-    //views.billShow();
-    views.deskShow();
-    views.menuShow();
     temp = views.orderAdd();
+    table.order.insertFirst(temp);
     controllers.order();
 }
-/*void Controllers::billShow()
-{
-    views.billShow();
-    controllers.bill();
-}*/
 void Controllers::billAdd()
 {
-    views.deskShow();
-    cout << "Chon ban:" << endl;
     Bill temp;
     temp = views.billAdd();
-    table.bill.insertFirst(temp);
+   // table.bill.insertFirst(temp);
     controllers.bill();
-}
-void Controllers::billOrder()
-{
-    views.deskShow();
-    cout<<"Chon ban:"<<endl;
-    
 }

@@ -63,6 +63,7 @@ private:
 public:
     string status;
     int billId;
+    int deskId;
     Bill();
     ~Bill();
     friend ostream &operator<<(ostream &, Bill &);
