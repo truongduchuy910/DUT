@@ -26,6 +26,7 @@ istream& operator>>(istream& istream, Desk& desk)
 		<< "0. Fill" << endl
 		<< "1. Empty" << endl;
 	cin >> desk.available;
+	return istream;
 };
 ostream& operator<<(ostream& ostream, Desk& desk)
 {
