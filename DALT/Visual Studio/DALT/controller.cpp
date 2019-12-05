@@ -114,8 +114,6 @@ void Controllers::menuShow()
 };
 void Controllers::menuAdd()
 {
-	List<Menu> menus;
-	models.getAllMenu(menus);
 	Menu temp;
 	temp = views.menuAdd();
 	models.menuAdd(temp);
@@ -128,6 +126,8 @@ void Controllers::menuRemove()
 	int foodId;
 	foodId = views.menuRemove(menus);
 	models.menuRemove(foodId);
+	menus.empty();
+	models.getAllMenu(menus);
 	views.menuShow(menus);
 	menu();
 };

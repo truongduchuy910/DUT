@@ -16,7 +16,8 @@ public:
 	~List();
 	Data& operator[](int);
 	List<Data>& insertFirst(const Data&);
-	List<Data>& findOneAndRemove(Data&);
+	List<Data>& empty();
+
 };
 #include "list.cpp"
 #endif

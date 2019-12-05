@@ -2,8 +2,6 @@
 #define CONTROLLERS_H
 #include <iostream>
 using namespace std;
-//#include "list.h"
-//#include "table.h"
 #include "views.h"
 #include "models.h"
 class Controllers

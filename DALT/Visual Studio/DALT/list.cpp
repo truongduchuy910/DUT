@@ -37,23 +37,11 @@ List<Data>& List<Data>::insertFirst(const Data& data)
 	return *this;
 };
 template <class Data>
-List<Data>& List<Data>::findOneAndRemove(Data& data)
-{
-	List<Data>* temp = this;
-	do
-	{
-		if (temp->next->data == data)
-		{
-			temp->next = temp->next->next;
-		}
-		if (temp->next)
-		{
-			temp = temp->next;
-		}
-	} while (temp->next);
-	this->length--;
-	return *this;
-};
 
+List<Data>& List<Data>::empty() {
+	this->next = NULL;
+	this->length = 0;
+	return *this;
+}
 #endif // !LIST_CPP
 
