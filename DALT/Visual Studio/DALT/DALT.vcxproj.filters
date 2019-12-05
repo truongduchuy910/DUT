@@ -18,5 +18,34 @@
     <ClCompile Include="DALT.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="views.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="models.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="list.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="table.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="controller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="views.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="models.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

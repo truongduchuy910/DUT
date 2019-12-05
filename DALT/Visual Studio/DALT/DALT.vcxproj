@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{977FDC35-7B26-45B3-B74B-DD002BE060D7}</ProjectGuid>
+    <ProjectGuid>{1F123CFF-D590-4915-B32D-4CF092C546A3}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>DALT</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
@@ -151,7 +151,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="controller.cpp" />
     <ClCompile Include="DALT.cpp" />
+    <ClCompile Include="list.cpp" />
+    <ClCompile Include="models.cpp" />
+    <ClCompile Include="table.cpp" />
+    <ClCompile Include="views.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="controller.h" />
+    <ClInclude Include="list.h" />
+    <ClInclude Include="models.h" />
+    <ClInclude Include="views.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

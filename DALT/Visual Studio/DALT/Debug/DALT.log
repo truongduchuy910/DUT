@@ -1,5 +1,2 @@
-﻿  DALT.cpp
-  models.cpp
-D:\Github\DUT\DALT\Visual Studio\DALT\models.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Generating Code...
-D:\Github\DUT\DALT\Visual Studio\DALT\models.cpp(4,2): error C2065: 'cout': undeclared identifier
+﻿  table.cpp
+  DALT.vcxproj -> D:\Github\DUT\DALT\Visual Studio\DALT\Debug\DALT.exe
