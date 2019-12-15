@@ -137,6 +137,9 @@ void List<Data>::print()
 class Menu
 {
 public:
+    int foodId;
+    string name;
+    double cost;
     Menu()
     {
         this->foodId = 0;
@@ -149,11 +152,6 @@ public:
     const bool operator==(const Menu &);
     friend ostream &operator<<(ostream &, const Menu &);
     friend istream &operator>>(istream &, Menu &);
-
-protected:
-    int foodId;
-    string name;
-    double cost;
 };
 const bool Menu::operator==(const Menu &menu)
 {
@@ -194,7 +192,8 @@ public:
     public:
         void render()
         {
-            cout << "HOME CONTROLL" << endl
+            cout << endl;
+            cout << "============= HOME CONTROLL" << endl
                  << "0. Exit" << endl
                  << "1. Menu" << endl;
             int n;
@@ -214,7 +213,8 @@ public:
             public:
                 void render()
                 {
-                    cout << "MENU ADD" << endl;
+                    cout << endl;
+                    cout << "============= MENU ADD" << endl;
                     Menu menu;
                     cin >> menu;
                     db.menus.insert(menu);
@@ -226,17 +226,34 @@ public:
             public:
                 void render()
                 {
-                    cout << "MENU SHOW" << endl;
+                    cout << endl;
+                    cout << "============= MENU SHOW" << endl;
                     Menu::head();
                     db.menus.print();
                 }
             } show;
+            class
+            {
+
+            public:
+                void render()
+                {
+                    cout << endl;
+                    cout << "============= MENU REMOVE" << endl;
+                    Menu menu;
+                    cout << "input foodId to remove: ";
+                    cin >> menu.foodId;
+                    db.menus.findAndRemove(menu);
+                }
+            } remove;
             void render()
             {
-                cout << "MENU CONTROLL" << endl
+                cout << endl;
+                cout << "============= MENU CONTROLL" << endl
                      << "0. Back" << endl
                      << "1. Add" << endl
-                     << "2. Show" << endl;
+                     << "2. Show" << endl
+                     << "3. Remove" << endl;
                 int n;
                 cin >> n;
                 switch (n)
@@ -248,7 +265,10 @@ public:
                 case 2:
                     show.render();
                     render();
-
+                    break;
+                case 3:
+                    remove.render();
+                    render();
                     break;
                 }
             };
