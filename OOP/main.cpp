@@ -3,44 +3,50 @@
 using namespace std;
 class Polynomial
 {
-private:
+public:
     int n;
     float data[100];
-
-public:
     Polynomial();
-    Polynomial(int);
+    Polynomial(const int);
     Polynomial(const Polynomial &);
     ~Polynomial();
     Polynomial &operator=(const Polynomial &);
-    float &operator()(float);
+    float operator()(float);
     float &operator[](int);
     friend ostream &operator<<(ostream &, const Polynomial &);
     friend istream &operator>>(istream &, Polynomial &);
     friend Polynomial operator+(const Polynomial &, const Polynomial &);
     friend Polynomial operator-(const Polynomial &, const Polynomial &);
     friend Polynomial operator*(const Polynomial &, const Polynomial &);
+    Polynomial diff();
 };
 Polynomial det(int n, Polynomial mat[10][10]);
-int main(int argc, char **argv)
+
+float divide(Polynomial &f, float *result, int n, float x)
 {
-    cout << "Enter the dimension of the matrix:\n";
-    int n;
-    cin >> n;
-    Polynomial mat[10][10];
-    cout << "Enter the elements of the matrix:\n";
+    Polynomial cache(1);
+    float temp = 1;
     for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j < n; j++)
-        {
-            cin >> mat[j][i][0];
-            if (i == j)
-            {
-                mat[i][j][1] = -1;
-            }
-        }
+        cache[0] = result[i];
+        cache[1] = 1;
+        temp *= 1 / cache(x);
     }
-    cout << "The determinant of the given matrix is: " << det(n, mat) << endl;
+    return (f(x) * temp);
+}
+float findX(Polynomial &f, float c)
+{
+}
+int main(int argc, char **argv)
+{
+    Polynomial f(3);
+
+    cin >> f;
+    cout << f << endl;
+    cout << f.diff().n << endl;
+    Polynomial F(2);
+    F = f.diff();
+    cout << F << endl;
     return 0;
 }
 Polynomial::Polynomial()
@@ -49,7 +55,7 @@ Polynomial::Polynomial()
     this->data[0] = 0;
     this->data[1] = 0;
 };
-Polynomial::Polynomial(int n)
+Polynomial::Polynomial(const int n)
 {
     this->n = n;
 
@@ -79,9 +85,9 @@ Polynomial &Polynomial::operator=(const Polynomial &A)
     }
     return *this;
 };
-float &Polynomial::operator()(float x)
+float Polynomial::operator()(float x)
 {
-    static float result = 0;
+    float result = 0;
     for (int i = 0; i <= this->n; i++)
     {
         result += this->data[i] * pow(x, i);
@@ -212,4 +218,15 @@ Polynomial det(int n, Polynomial mat[10][10])
         }
     }
     return d;
+}
+Polynomial Polynomial::diff()
+{
+    int size = this->n - 1;
+    Polynomial result(size);
+    for (int i = this->n; i >= 0; i--)
+    {
+        result[i - 1] = this->data[i] * i;
+    }
+    cout << result << endl;
+    return result;
 }

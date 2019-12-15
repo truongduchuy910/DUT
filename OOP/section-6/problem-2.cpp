@@ -14,8 +14,12 @@ public:
     Array &operator=(Array);
     Array &operator+=(Array &);
     Array &operator-=(Array &);
+
+
     Data &operator[](int i) { return data[i]; }
     Data operator[](int i) const { return data[i]; }
+
+
     //Đoạn này khó giải thích vl
     template <class DataOperater, int maxOperater>
     friend Array<DataOperater, maxOperater> operator+(Array<DataOperater, maxOperater> &, Array<DataOperater, maxOperater> &);

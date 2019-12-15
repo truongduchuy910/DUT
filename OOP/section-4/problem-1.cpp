@@ -80,8 +80,8 @@ int main()
     cout << a;
     cout << b;
     c = (a + b) / 2;
-    if 
-    return 0;
+    if
+        return 0;
 }
 Vector::Vector()
 {
@@ -495,7 +495,7 @@ Polynomial operator-(const Polynomial &A, const Polynomial &B)
 };
 Polynomial operator*(const Polynomial &A, const Polynomial &B)
 {
-    Polynomial result(A.n * B.n);
+    Polynomial result(A.n + B.n);
     for (int i = 0; i <= A.n; i++)
     {
         for (int j = 0; j <= B.n; j++)
