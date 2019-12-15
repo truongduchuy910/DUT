@@ -1,6 +1,9 @@
 #include <iostream>
 using namespace std;
-#include "controller.h"
+#include "list.h"
+#include "controllers.h"
+
+DB db;
 Controllers controllers;
 int main()
 {
@@ -8,10 +11,10 @@ int main()
 		<< "+-------------------------------+ " << endl
 		<< "| Restaurant Management System  |" << endl
 		<< "| ============================= |" << endl
-		<< "| table, list: Ngoc Huy         |" << endl
-		<< "| views, controllers: Nguyen Vu |" << endl
+		<< "| table, list, models: Ngoc Huy |" << endl
+		<< "| controllers: Nguyen Vu        |" << endl
 		<< "| database: Tuan Cuong          |" << endl
 		<< "+-------------------------------+" << endl;
-	controllers.home();
+	controllers.home.render();
 	return 0;
 }
