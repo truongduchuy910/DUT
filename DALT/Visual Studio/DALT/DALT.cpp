@@ -3,7 +3,6 @@ using namespace std;
 #include "list.h"
 #include "controllers.h"
 
-DB db;
 Controllers controllers;
 int main()
 {

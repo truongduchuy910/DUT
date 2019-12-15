@@ -6,9 +6,12 @@
 #include <iomanip>
 #include <string>
 #include "tables.h"
+#include "list.h"
 using namespace std;
-extern DB db;
-
+class {
+public:
+	List<Menu> menus;
+} db;
 class Controllers
 {
 public:
