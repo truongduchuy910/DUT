@@ -224,7 +224,7 @@ int main()
 
 {
     ifstream file;
-    file.open("input.txt");
+    file.open("bigMMethod.txt");
     //------------------------------
     int n;
     file >> n;
