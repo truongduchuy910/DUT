@@ -82,8 +82,7 @@ int readData(Array& A, const char* path) {
 	file.open(path);
 	if (file.fail())
 	{
-		cout << "Khong the doc file!" << endl;
-		return 0;
+		return 0; //doc file that bai tra ve 0
 	}
 	double value;
 	int index = 0;
@@ -97,21 +96,20 @@ int readData(Array& A, const char* path) {
 		index++;
 	};
 	file.close();
-	return 1;
+	return 1; //doc file thanh cong tra ve 1
 }
 
 int writeData(Array& A, const char* path) {
 	ofstream file(path);
 	if (file.fail())
 	{
-		cout << "Khong the ghi file!" << endl;
-		return 0;
+		return 0; //ghi file that bai tra ve 0
 	}
 	for (int i = 0; i < A.length; i++) {
 		file << setw(8) << A[i];
 	}
 	file.close();
-	return 1;
+	return 1; //ghi file thanh cong tra ve 1
 }
 
 int controller() {
@@ -141,6 +139,7 @@ int continueprogram() {
 int main()
 {
 	cout << endl << " -- CHUONG TRINH TINH TICH 2 DA THUC -- " << endl << endl;
+	cout << "Ma nhom: 18N15 - N6" << endl;
 	cout << "Thanh vien trong nhom: " << endl;
 	cout << "1. Nguyen Kim Huy - MSSV: 102180207" << endl;
 	cout << "2. Tran Ngoc Huy  - MSSV: 102180208" << endl << endl;
@@ -154,12 +153,14 @@ int main()
 				R = P * Q;
 				if (writeData(R, "DATA3.txt")) {
 					cout << "Ghi du lieu ra file DATA3.txt thanh cong" << endl;
+					cout << "Ket qua:" << endl;
+					cout << "He so da thuc P(x) (file DATA1.txt): " << P << endl;
+					cout << "He so da thuc Q(x) (file DATA2.txt): " << Q << endl;
+					cout << "He so da thuc tich R(x) = P(x) * Q(x) (file DATA3.txt): " << endl << R << endl;
 				}
-				cout << "Ket qua:" << endl;
-				cout << "He so da thuc P(x) (file DATA1.txt): " << P << endl;
-				cout << "He so da thuc Q(x) (file DATA2.txt): " << Q << endl;
-				cout << "He so da thuc tich R(x) = P(x) * Q(x) (file DATA3.txt): " << endl << R << endl;
+				else cout << "Ghi du lieu ra file DATA3.txt that bai!" << endl;
 			}
+			else cout << "Doc du lieu tu file that bai!" << endl;
 			break;
 		}
 		case 2:
@@ -181,6 +182,7 @@ int main()
 			Array R(P.length + Q.length - 1);
 			R = P * Q;
 			cout << endl;
+			cout << "Ket qua: " << endl;
 			cout << "He so da thuc P(x): " << P << endl;
 			cout << "He so da thuc Q(x): " << Q << endl;
 			cout << "He so da thuc tich R(x) = P(x) * Q(x): " << endl << R << endl;
