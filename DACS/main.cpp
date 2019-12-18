@@ -116,7 +116,8 @@ int controller() {
 	int option;
 	do {
 		cout << endl;
-		cout << "Chon phuong thuc nhap: " << endl;
+		cout << "------ MENU DIEU KHIEN ----- " << endl;
+		cout << "0. Thoat chuong trinh" << endl;
 		cout << "1. Doc du lieu tu file" << endl;
 		cout << "2. Nhap du lieu tu ban phim" << endl;
 		cin >> option;
@@ -128,9 +129,9 @@ int continueprogram() {
 	int option;
 	do {
 		cout << endl;
-		cout << "Tiep tuc? " << endl;
-		cout << "1. Co" << endl;
-		cout << "0. Thoat" << endl;
+		cout << "Thoat chuong trinh? " << endl;
+		cout << "1. Tiep tuc chuong trinh" << endl;
+		cout << "0. Thoat chuong trinh" << endl;
 		cin >> option;
 	} while (option < 0 || option > 1);
 	return option;
@@ -138,7 +139,7 @@ int continueprogram() {
 
 int main()
 {
-	cout << endl << " -- CHUONG TRINH TINH TICH 2 DA THUC -- " << endl << endl;
+	cout << endl << "-- CHUONG TRINH TINH TICH 2 DA THUC --" << endl << endl;
 	cout << "Ma nhom: 18N15 - N6" << endl;
 	cout << "Thanh vien trong nhom: " << endl;
 	cout << "1. Nguyen Kim Huy - MSSV: 102180207" << endl;
