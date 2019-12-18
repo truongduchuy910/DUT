@@ -120,6 +120,7 @@ int controller() {
 		cout << "0. Thoat chuong trinh" << endl;
 		cout << "1. Doc du lieu tu file" << endl;
 		cout << "2. Nhap du lieu tu ban phim" << endl;
+		cout << "Nhap lua chon: ";
 		cin >> option;
 	} while (option < 0 || option > 2);
 	return option;
@@ -132,6 +133,7 @@ int exit() {
 		cout << "Thoat chuong trinh? " << endl;
 		cout << "1. Tiep tuc chuong trinh" << endl;
 		cout << "0. Thoat chuong trinh" << endl;
+		cout << "Nhap lua chon: ";
 		cin >> option;
 	} while (option < 0 || option > 1);
 	return option;
@@ -148,6 +150,7 @@ int main()
 		switch (controller()) {
 		case 1:
 		{
+			cout << "He so cua da thuc duoc nhap tu bac 0 den bac cao nhat cua da thuc do" << endl;
 			Array P, Q, R;
 			if (readData(P, "DATA1.txt") && readData(Q, "DATA2.txt")) {
 				cout << "Doc du lieu tu file DATA1.txt va DATA2.txt thanh cong" << endl;
@@ -167,7 +170,7 @@ int main()
 		case 2:
 		{
 			cout << "Nhap bac cao nhat cua ham P(x) va Q(x)" << endl;
-			cout << "Nhap he so cua moi ham tu bac 0 den bac cao nhat cua ham do" << endl;
+			cout << "Nhap he so cua moi da thuc tu bac 0 den bac cao nhat cua da thuc do" << endl;
 			cout << "Vi du: P(x) = 2 + 3*x - 5.5*x^3 thi nhap bac la bac 3, he so lan luot la: 2 3 0 -5.5" << endl;
 			int bacP, bacQ, bacR;
 			cout << endl << "Nhap bac da thuc P(x): ";
