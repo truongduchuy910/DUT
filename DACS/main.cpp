@@ -3,6 +3,177 @@
 #include <iomanip>
 using namespace std;
 
+template <typename Data>
+class List;
+template <typename Data>
+class Node;
+
+
+
+template <typename Data>
+class Node
+{
+	friend class List<Data>;
+
+public:
+	double(Data);
+	Data getData();
+
+private:
+	Data data;
+	double* next;
+};
+
+template <typename Data>
+class List
+{
+public:
+	int length;
+	List();
+	~List();
+	int insert(const Data&);
+	int findAndRemove(const Data&);
+	int print();
+	int empty();
+	Data operator[](int);
+
+private:
+	double<Data>* start;
+	bool isEmpty();
+};
+template <typename Data>
+double<Data>::double(Data dataIn)
+{
+	data = dataIn;
+	next = NULL;
+}
+
+template <typename Data>
+Data double<Data>::getData()
+{
+	return data;
+}
+
+template <typename Data>
+List<Data>::List()
+{
+	start = NULL;
+}
+
+template <typename Data>
+List<Data>::~List()
+{
+	if (!isEmpty())
+	{
+		double<Data>* currentdouble = start;
+		double<Data>* temp;
+
+		while (currentdouble != NULL)
+		{
+			temp = currentdouble;
+			currentdouble = currentdouble->next;
+		}
+	}
+}
+
+template <typename Data>
+bool List<Data>::isEmpty()
+{
+	if (start == NULL)
+		return 1;
+	else
+		return 0;
+}
+
+template <typename Data>
+int List<Data>::insert(const Data& dataIn)
+{
+	cout << "LIST [INSERT] ";
+	if (isEmpty())
+	{
+		double<Data>* newdouble = new double<Data>(dataIn);
+		start = newdouble;
+		this->length++;
+		cout << "Success" << endl;
+		return true;
+	}
+	else
+	{
+		double<Data>* newdouble = new double<Data>(dataIn);
+		newdouble->next = start;
+		start = newdouble;
+		this->length++;
+		cout << "Success" << endl;
+		return true;
+	}
+	cout << "Fail" << endl;
+	return false;
+}
+
+template <typename Data>
+int List<Data>::findAndRemove(const Data& dataIn)
+{
+	cout << "LIST [DELETE] ";
+	double<Data>* temp = this->start;
+	if (start != NULL && (start->data == dataIn)) {
+		start = start->next;
+		this->length--;
+		cout << "Success" << endl;
+		return true;
+
+	}
+	else {
+		while ((temp->next != NULL) && !(temp->next->data == dataIn)) {
+			temp = temp->next;
+		}
+		if (temp->next != NULL) {
+			this->length--;
+			temp->next = temp->next->next;
+			cout << "Success" << endl;
+			return true;
+		}
+
+	}
+	cout << "Fail" << endl;
+	return true;
+}
+
+template <typename Data>
+int List<Data>::print()
+{
+	if (isEmpty())
+	{
+		cout << "The list is empty" << endl;
+	}
+	else
+	{
+		double<Data>* currentdouble = start;
+		while (currentdouble != NULL) //prints until the end of the list is reached
+		{
+			if (currentdouble != NULL) {
+				cout << currentNode->data << endl;
+
+			}
+			currentNode = currentNode->next; //moves to next node in list
+		}
+	}
+	return true;
+}
+template <typename Data>
+int List<Data>::empty() {
+	this->start = NULL;
+	return true;
+}
+template <typename Data>
+Data List<Data>::operator[](int i) {
+	Node<Data>* temp = this->start;
+	while (i && temp != NULL) {
+		temp = temp->next;
+		i--;
+	}
+	return temp->data;
+};
+
 class Array {
 private:
 	Array* next;
