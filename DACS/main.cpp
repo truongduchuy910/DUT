@@ -166,23 +166,23 @@ Array operator*(const Array &A, const Array &B)
 	}
 	return result;
 }
-ostream &operator<<(ostream &ostream, Array &A)
+ostream &operator<<(ostream &os, Array &A)
 {
 	for (int i = 0; i < A.length; i++)
 	{
-		ostream << setw(8) << A[i];
+		os << setw(8) << A[i];
 	}
-	return ostream;
+	return os;
 }
 
-istream &operator>>(istream &istream, Array &A)
+istream &operator>>(istream &is, Array &A)
 {
 	for (int i = 0; i < A.length; i++)
 	{
 		cout << "He so cua x^" << i << ": ";
-		istream >> A[i];
+		is >> A[i];
 	}
-	return istream;
+	return is;
 }
 
 ofstream &operator<<(ofstream &ofs, Array &A)
@@ -191,6 +191,7 @@ ofstream &operator<<(ofstream &ofs, Array &A)
 	{
 		ofs << setw(8) << A[i];
 	}
+	return ofs;
 };
 ifstream &operator>>(ifstream &ifs, Array &A)
 {
@@ -208,6 +209,7 @@ ifstream &operator>>(ifstream &ifs, Array &A)
 		}
 		index++;
 	};
+	return ifs;
 };
 
 int readData(Array &A, const char *path)
@@ -270,10 +272,11 @@ int exit()
 	} while (option < 0 || option > 1);
 	return option;
 }
+
 class
 {
 public:
-	void wellcome()
+	void welcome()
 	{
 		cout << "+-------------------------------------+" << endl
 			 << "| Chuong Trinh Tinh Tich Da Thuc      |" << endl
@@ -365,7 +368,7 @@ public:
 int main()
 {
 
-	controllers.wellcome();
+	controllers.welcome();
 	controllers.home();
 	return 0;
 }
