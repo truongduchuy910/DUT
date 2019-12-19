@@ -61,6 +61,7 @@ ostream& operator<<(ostream& ostream, Array& A) {
 
 istream& operator>>(istream& istream, Array& A) {
 	for (int i = 0; i < A.length; i++) {
+		cout << "He so cua x^" << i << ": ";
 		istream >> A[i];
 	}
 	return istream;
