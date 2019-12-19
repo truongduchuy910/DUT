@@ -44,6 +44,8 @@ public:
 	friend Array operator*(const Array &, const Array &);
 	friend ostream &operator<<(ostream &, Array &);
 	friend istream &operator>>(istream &, Array &);
+	friend ofstream &operator<<(ofstream &, Array &);
+	friend ifstream &operator>>(ifstream &, Array &);
 	friend int readData(Array &, const char *);
 	friend int writeData(Array &, const char *);
 
@@ -183,19 +185,18 @@ istream &operator>>(istream &istream, Array &A)
 	return istream;
 }
 
-int readData(Array &A, const char *path)
+ofstream &operator<<(ofstream &ofs, Array &A)
 {
-	ifstream file;
-	file.open(path);
-	if (file.fail())
+	for (int i = 0; i < A.length; i++)
 	{
-		cout << "Doc file " << path
-			 << " that bai!" << endl;
-		return 0; //fail
+		ofs << setw(8) << A[i];
 	}
+};
+ifstream &operator>>(ifstream &ifs, Array &A)
+{
 	double value;
 	int index = 0;
-	while (file >> value)
+	while (ifs >> value)
 	{
 		if (index < A.length - 1)
 		{
@@ -207,6 +208,19 @@ int readData(Array &A, const char *path)
 		}
 		index++;
 	};
+};
+
+int readData(Array &A, const char *path)
+{
+	ifstream file;
+	file.open(path);
+	if (file.fail())
+	{
+		cout << "Doc file " << path
+			 << " that bai!" << endl;
+		return 0; //fail
+	}
+	file >> A;
 	file.close();
 	cout << "Doc file " << path << " thanh cong!" << endl;
 	return 1; //success
@@ -220,10 +234,7 @@ int writeData(Array &A, const char *path)
 		cout << "ghi file " << path << " that bai!";
 		return 0; //fail
 	}
-	for (int i = 0; i < A.length; i++)
-	{
-		file << setw(8) << A[i];
-	}
+	file << A;
 	file.close();
 	cout << "Ghi file " << path << " thanh cong!" << endl;
 	return 1; //success
