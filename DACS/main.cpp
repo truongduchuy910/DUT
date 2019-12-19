@@ -38,10 +38,14 @@ public:
 	Array(int);
 	~Array();
 	int insertLast(const double &);
+	Array &operator=(const Array &);
 	double &operator[](int);
-	friend Array operator*(Array &, Array &);
+	double operator[](int) const;
+	friend Array operator*(const Array &, const Array &);
 	friend ostream &operator<<(ostream &, Array &);
 	friend istream &operator>>(istream &, Array &);
+	friend int readData(Array &, const char *);
+	friend int writeData(Array &, const char *);
 
 private:
 	Node *start;
@@ -76,6 +80,7 @@ Array::~Array()
 		{
 			temp = currentNode;
 			currentNode = currentNode->next;
+			delete temp;
 		}
 	}
 }
@@ -108,6 +113,21 @@ int Array::insertLast(const double &dataIn)
 	}
 	return false;
 }
+Array &Array::operator=(const Array &array)
+{
+	for (int i = 0; i < array.length; i++)
+	{
+		if (i < this->length)
+		{
+			this->operator[](i) = array[i];
+		}
+		else
+		{
+			this->insertLast(array[i]);
+		}
+	}
+	return *this;
+}
 
 double &Array::operator[](int i)
 {
@@ -120,7 +140,18 @@ double &Array::operator[](int i)
 	return temp->getData();
 };
 
-Array operator*(Array &A, Array &B)
+double Array::operator[](int i) const
+{
+	Node *temp = this->start;
+	while (i && temp != NULL)
+	{
+		temp = temp->next;
+		i--;
+	};
+	return temp->getData();
+};
+
+Array operator*(const Array &A, const Array &B)
 {
 	Array result(A.length + B.length - 1);
 	for (int i = 0; i < A.length; i++)
