@@ -5,6 +5,7 @@ bool move(int disk, int i, int j) {
         move(disk - 1, i, 6 - i - j);
         cout << i << " to " << j << endl;
         move(disk - 1, 6 - i - j, j);
+	r
 }
 bool moveOrther(int disk, int a, int b, int c) {
 	if (disk == 1) {
