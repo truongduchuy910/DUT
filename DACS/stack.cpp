@@ -60,7 +60,7 @@ Data List::removeFirst()
 {
 }
 
-Data &List::operator[](int i)
+Data &List::operator[](int i) const
 {
     List *List = this;
     int index = 0;

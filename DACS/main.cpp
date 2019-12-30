@@ -9,8 +9,6 @@ class Term
 {
 public:
 	Term(const int, const double);
-	friend istream &operator>>(istream &, const Term &);
-	friend ostream &operator<<(ostream &, const Term &);
 	friend class Polynomial;
 
 private:
@@ -19,29 +17,28 @@ private:
 	Term *next;
 };
 
-Term::Term(const int degree = 0, const double coefficicent = 0) : degree(degree), coefficicent(coefficicent)
+Term::Term(const int degree, const double coefficicent) : degree(degree), coefficicent(coefficicent)
 {
 	this->next = NULL;
 }
-istream &operator>>(istream &is, const Term &term){};
-ostream &operator<<(ostream &os, const Term &term)
-{
-	os << "x[" << term.degree << "]= " << term.coefficicent;
-	return os;
-};
-
 class Polynomial
 {
 public:
-	int length;
 	Polynomial();
+	Polynomial(Polynomial &);
 	~Polynomial();
 	int set(const int, const double);
-	Term *isExist(const int);
+	double operator[](int) const;
+	friend ostream &operator<<(ostream &, const Polynomial &);
 	Polynomial &operator=(const Polynomial &);
-	Term operator[](int) const;
+	friend Polynomial operator+(const Polynomial &, const Polynomial &);
+	friend Polynomial operator-(const Polynomial &, const Polynomial &);
+	friend Polynomial operator*(const Polynomial &, const Polynomial &);
+	friend Polynomial operator/(const Polynomial &, const Polynomial &);
 
 private:
+	Term *isExist(const int);
+	int size;
 	Term *start;
 	Term *end;
 	bool isEmpty();
@@ -50,14 +47,22 @@ Polynomial::Polynomial()
 {
 	start = NULL;
 	end = NULL;
-	length = 0;
+	size = 0;
 }
+Polynomial::Polynomial(Polynomial &a)
+{
+	this->size = 0;
+	for (int i = 0; i < a.size; i++)
+	{
+		this->set(i, a[i]);
+	}
+};
 
 Polynomial::~Polynomial()
 {
-	if (!isEmpty())
+	if (!this->isEmpty())
 	{
-		Term *currentTerm = start;
+		Term *currentTerm = this->start;
 		Term *temp;
 		while (currentTerm != NULL)
 		{
@@ -70,94 +75,175 @@ Polynomial::~Polynomial()
 
 bool Polynomial::isEmpty()
 {
-	if (start == NULL)
-		return 1;
-	else
-		return 0;
+	if (this->start == NULL)
+		return true;
+	return false;
 }
 
-int Polynomial::set(const int degree, const double x)
+int Polynomial::set(const int degree, const double coefficicent)
 {
-	if (x == 0)
-	{
+	if (coefficicent == 0)
 		return false;
-	}
+	if (this->size <= degree + 1)
+		this->size = degree + 1;
 	Term *newTerm = this->isExist(degree);
 	if (newTerm)
 	{
-		newTerm->coefficicent = x;
+		newTerm->coefficicent = coefficicent;
 	}
 	else
 	{
-		newTerm = new Term(degree, x);
+		newTerm = new Term(degree, coefficicent);
 		if (isEmpty())
 		{
 			start = newTerm;
 			end = newTerm;
-			this->length++;
-			return true;
 		}
 		else
 		{
 			end->next = newTerm;
 			end = newTerm;
-			this->length++;
-			return true;
 		}
 	}
 
-	return false;
+	return true;
 }
-Term *Polynomial::isExist(const int degree)
+double Polynomial::operator[](int i) const
 {
+
 	Term *temp = this->start;
-	while (temp != NULL && degree != temp->degree)
+	while (temp != NULL && temp->degree != i)
 	{
 		temp = temp->next;
 	}
 	if (temp)
-	{
-		return temp;
-	}
-	else
-	{
-		return NULL;
-	}
-}
+		return temp->coefficicent;
+	return 0;
+};
 
-Polynomial &Polynomial::operator=(const Polynomial &A)
-{
-	for (int i = 0; i < A.length; i++)
-	{
-		this->set(A[i].degree, A[i].coefficicent);
-	}
-	return *this;
-}
-
-Term Polynomial::operator[](int i) const
+Term *Polynomial::isExist(const int degree)
 {
 	Term *temp = this->start;
-	while (temp->degree != i && temp->next != NULL)
-	{
+	while (temp != NULL && degree != temp->degree)
 		temp = temp->next;
-	};
-	return *temp;
-};
+
+	if (temp)
+		return temp;
+
+	return NULL;
+}
+
+// Polynomial &Polynomial::operator=(const Polynomial A)
+// {
+// 	return *this;
+// }
+
+// double Polynomial::operator[](int i) const
+// {
+
+// 	Term *temp = this->start;
+// 	while (temp->degree != i && temp != NULL)
+// 	{
+// 		temp = temp->next;
+// 	};
+// 	if (temp == NULL)
+// 		return 0;
+
+// 	return temp->coefficicent;
+// };
+Polynomial operator+(const Polynomial &m, const Polynomial &n)
+{
+	Polynomial temp;
+	int _length = (m.size > n.size) ? m.size : n.size;
+	cout << "size cua da thuc tao thanh " << _length << endl;
+	for (int i = 0; i < _length; i++)
+	{
+		temp.set(i, m[i] + n[i]);
+	}
+	return temp;
+}
+Polynomial operator-(const Polynomial &m, const Polynomial &n)
+{
+	Polynomial temp;
+	int _length = (m.size > n.size) ? m.size : n.size;
+	cout << "size cua da thuc tao thanh " << _length << endl;
+	for (int i = 0; i < _length; i++)
+	{
+		temp.set(i, m[i] - n[i]);
+	}
+	return temp;
+}
 
 Polynomial operator*(const Polynomial &A, const Polynomial &B)
 {
 	Polynomial result;
-	// for (int i = 0; i < A.length; i++)
-	// {
-	// 	for (int j = 0; j < B.length; j++)
-	// 	{
-	// 		int k = i + j;
-	// 		result[k] += A[i] * B[j];
-	// 	}
-	// }
+	for (int i = 0; i < A.size; i++)
+	{
+		for (int j = 0; j < B.size; j++)
+		{
+			int k = i + j;
+
+			result.set(k, result[k] + A[i] * B[j]);
+		}
+	}
 	return result;
 }
+Polynomial operator/(const Polynomial &m, const Polynomial &n)
+{
+	int k = n.size;
+	Polynomial r;
+	Polynomial result;
+	Polynomial tmp;
+	Polynomial t;
+	t = m;
 
+	for (int i = m.size - 1; i >= n.size - 1; i--)
+	{
+		result.set(i - k, t[i] / n[k]);
+		r.set(i - k, result[i - k]);
+		tmp = n * r;
+		t = (m - tmp);
+		t.size = t.size - 1;
+	}
+	//In ra da thuc du
+	cout << "Du: " << endl;
+	for (int i = 0; i < n.size - 1; i++)
+	{
+		cout << setw(5) << t[i];
+	}
+	cout << endl;
+	return result;
+}
+istream &operator>>(istream &in, Polynomial &m)
+{
+	cout << "Nhap size: ";
+	int n;
+	in >> n;
+	cout << "Nhap da thuc voi dang x1, x2, x3,.. xn: ";
+	for (int i = 0; i < n; i++)
+	{
+		double coefficicent;
+		in >> coefficicent;
+		m.set(i, coefficicent);
+	}
+	return in;
+}
+ostream &operator<<(ostream &os, const Polynomial &m)
+{
+
+	cout << "xuat bac: " << m.size << endl;
+	for (int i = 0; i < m.size; i++)
+	{
+		os << setw(5) << m[i];
+	}
+	return os;
+}
+Polynomial &Polynomial::operator=(const Polynomial &a)
+{
+	for (int i = 0; i < a.size; i++)
+
+		this->set(i, a[i]);
+};
 // int readData(Polynomial &A, const char *path)
 // {
 // 	ifstream file;
@@ -252,21 +338,21 @@ Polynomial operator*(const Polynomial &A, const Polynomial &B)
 // 	}
 // 	void consoleInput()
 // 	{
-// 		cout << "Nhap bac P(x) va Q(x)" << endl
+// 		cout << "Nhap size P(x) va Q(x)" << endl
 // 			 << "Nhap he so theo so mu tu 0 den n " << endl
-// 			 << "Vi du: P(x) = 2 + 3*x - 5.5*x^3 | bac: 3, he so: 2 3 0 -5.5" << endl;
-// 		int bac;
-// 		cout << "Nhap bac P(x): " << endl;
-// 		cin >> bac;
-// 		Polynomial P(bac + 1);
+// 			 << "Vi du: P(x) = 2 + 3*x - 5.5*x^3 | size: 3, he so: 2 3 0 -5.5" << endl;
+// 		int size;
+// 		cout << "Nhap size P(x): " << endl;
+// 		cin >> size;
+// 		Polynomial P(size + 1);
 // 		cout << "Nhap cac he so: " << endl;
 // 		cin >> P;
-// 		cout << "Nhap bac Q(x): " << endl;
-// 		cin >> bac;
-// 		Polynomial Q(bac + 1);
+// 		cout << "Nhap size Q(x): " << endl;
+// 		cin >> size;
+// 		Polynomial Q(size + 1);
 // 		cout << "Nhap cac he so: " << endl;
 // 		cin >> Q;
-// 		Polynomial R(P.length + Q.length - 1);
+// 		Polynomial R(P.size + Q.size - 1);
 // 		R = P * Q;
 // 		cout << endl
 // 			 << "Ket qua: " << endl
@@ -282,13 +368,18 @@ Polynomial operator*(const Polynomial &A, const Polynomial &B)
 int main()
 {
 	Polynomial A;
-	A.set(1, 1);
-	A.set(1, 2);
-	for (int i = 0; i < A.length; i++)
-	{
-		cout << A[i];
-	}
-	// controllers.welcome();
-	// controllers.home();
+	Polynomial B;
+	Polynomial C;
+	cin >> A >> B;
+	cout << A << endl;
+	cout << B << endl;
+	C = A + B;
+	cout << C << endl;
+	C = A - B;
+	cout << C << endl;
+	C = A * B;
+	cout << C << endl;
+	C = A / B;
+	cout << C << endl;
 	return 0;
 }
