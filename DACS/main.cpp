@@ -155,7 +155,6 @@ Polynomial operator+(const Polynomial &m, const Polynomial &n)
 {
 	Polynomial temp;
 	int _length = (m.size > n.size) ? m.size : n.size;
-	cout << "size cua da thuc tao thanh " << _length << endl;
 	for (int i = 0; i < _length; i++)
 	{
 		temp.set(i, m[i] + n[i]);
@@ -166,7 +165,6 @@ Polynomial operator-(const Polynomial &m, const Polynomial &n)
 {
 	Polynomial temp;
 	int _length = (m.size > n.size) ? m.size : n.size;
-	cout << "size cua da thuc tao thanh " << _length << endl;
 	for (int i = 0; i < _length; i++)
 	{
 		temp.set(i, m[i] - n[i]);
@@ -190,7 +188,7 @@ Polynomial operator*(const Polynomial &A, const Polynomial &B)
 }
 Polynomial operator/(const Polynomial &m, const Polynomial &n)
 {
-	int k = n.size;
+	int k = n.size - 1;
 	Polynomial r;
 	Polynomial result;
 	Polynomial tmp;
@@ -230,8 +228,14 @@ istream &operator>>(istream &in, Polynomial &m)
 }
 ostream &operator<<(ostream &os, const Polynomial &m)
 {
+	cout << setw(7) << "so mu: ";
+	for (int i = 0; i < m.size; i++)
+	{
+		os << setw(5) << i;
+	}
+	cout << endl
+		 << setw(7) << "he so: ";
 
-	cout << "xuat bac: " << m.size << endl;
 	for (int i = 0; i < m.size; i++)
 	{
 		os << setw(5) << m[i];
@@ -240,9 +244,15 @@ ostream &operator<<(ostream &os, const Polynomial &m)
 }
 Polynomial &Polynomial::operator=(const Polynomial &a)
 {
+	if (a.size == 0)
+	{
+		this->size = 0;
+		this->start = NULL;
+		return *this;
+	}
 	for (int i = 0; i < a.size; i++)
-
 		this->set(i, a[i]);
+	return *this;
 };
 // int readData(Polynomial &A, const char *path)
 // {
@@ -371,14 +381,20 @@ int main()
 	Polynomial B;
 	Polynomial C;
 	cin >> A >> B;
+	cout << "A" << endl;
 	cout << A << endl;
+	cout << "B" << endl;
 	cout << B << endl;
+	cout << "A + B" << endl;
 	C = A + B;
 	cout << C << endl;
+	cout << "A - B" << endl;
 	C = A - B;
 	cout << C << endl;
+	cout << "A * B" << endl;
 	C = A * B;
 	cout << C << endl;
+	cout << "A / B" << endl;
 	C = A / B;
 	cout << C << endl;
 	return 0;
