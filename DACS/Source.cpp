@@ -5,6 +5,7 @@ using namespace std;
 
 class Polynomial;
 class Term;
+
 class Term
 {
 public:
@@ -30,12 +31,14 @@ public:
 	int set(const int, const double);
 	double operator[](int) const;
 	friend ostream &operator<<(ostream &, const Polynomial &);
+	friend istream &operator>>(istream &, const Polynomial &);
 	Polynomial &operator=(const Polynomial &);
 	friend Polynomial operator+(const Polynomial &, const Polynomial &);
 	friend Polynomial operator-(const Polynomial &, const Polynomial &);
 	friend Polynomial operator*(const Polynomial &, const Polynomial &);
 	//friend Polynomial operator*(const Polynomial&, double x);
 	friend Polynomial operator/(const Polynomial &, const Polynomial &);
+	bool empty();
 
 private:
 	Term *isExist(const int);
@@ -43,7 +46,12 @@ private:
 	Term *start;
 	Term *end;
 	bool isEmpty();
+	int remove(const int);
 };
+Polynomial A;
+Polynomial B;
+Polynomial C;
+Polynomial R;
 Polynomial::Polynomial()
 {
 	start = NULL;
@@ -72,6 +80,9 @@ Polynomial::~Polynomial()
 			delete temp;
 		}
 	}
+	this->size = 0;
+	this->start = NULL;
+	this->end = NULL;
 }
 
 bool Polynomial::isEmpty()
@@ -80,11 +91,41 @@ bool Polynomial::isEmpty()
 		return true;
 	return false;
 }
+bool Polynomial::empty()
+{
+	this->~Polynomial();
 
+	return true;
+}
+int Polynomial::remove(const int degree)
+{
+	if (this->isEmpty())
+		return false;
+	Term *current = this->start;
+	Term *previous = NULL;
+	while (current != NULL && current->degree != degree)
+	{
+		previous = current;
+		current = current->next;
+	}
+	if (current == NULL)
+		return false;
+	if (previous)
+		previous->next = current->next;
+	else
+		this->start = current->next;
+	if (current->next == NULL)
+		this->end = previous;
+	delete current;
+	return true;
+};
 int Polynomial::set(const int degree, const double coefficicent)
 {
 	if (coefficicent == 0)
+	{
+		this->remove(degree);
 		return false;
+	}
 	if (this->size < degree + 1)
 		this->size = degree + 1;
 	Term *newTerm = this->isExist(degree);
@@ -109,11 +150,11 @@ int Polynomial::set(const int degree, const double coefficicent)
 
 	return true;
 }
-double Polynomial::operator[](int i) const
+double Polynomial::operator[](int degree) const
 {
 
 	Term *temp = this->start;
-	while (temp != NULL && temp->degree != i)
+	while (temp != NULL && temp->degree != degree)
 	{
 		temp = temp->next;
 	}
@@ -172,30 +213,33 @@ Polynomial operator*(const Polynomial &A, const Polynomial &B)
 Polynomial operator/(const Polynomial &A, const Polynomial &B)
 {
 	int k = B.size - 1;
-	Polynomial r;
 	Polynomial result;
-	Polynomial tmp;
 	Polynomial t;
 	t = A;
 	for (int i = (A.size - 1); i >= B.size - 1; i--)
 	{
+		Polynomial tmp;
+		Polynomial r;
+
 		result.set(i - k, t[i] / B[k]);
 		r.set(i - k, t[i] / B[k]);
 		tmp = B * r;
 		t = (t - tmp);
 		t.size = t.size - 1;
-		r.size = r.size - 1;
 	}
+	R = t;
 	return result;
 }
+
 istream &operator>>(istream &in, Polynomial &m)
 {
-	cout << "Nhap bac: ";
+	m.empty();
+	cout << "    Input degree: ";
 	int n;
 	in >> n;
-	cout << "Nhap da thuc voi dang x0, x1, x2,.. xn: ";
 	for (int i = 0; i <= n; i++)
 	{
+		cout << "    x^" << i << " = ";
 		double coefficicent;
 		in >> coefficicent;
 		m.set(i, coefficicent);
@@ -204,13 +248,13 @@ istream &operator>>(istream &in, Polynomial &m)
 }
 ostream &operator<<(ostream &os, const Polynomial &m)
 {
-	cout << setw(7) << "so mu: ";
+	cout << "    degree:       ";
 	for (int i = 0; i < m.size; i++)
 	{
 		os << setw(5) << i;
 	}
 	cout << endl
-		 << setw(7) << "he so: ";
+		 << setw(10) << "    coefficicent: ";
 
 	for (int i = 0; i < m.size; i++)
 	{
@@ -221,6 +265,7 @@ ostream &operator<<(ostream &os, const Polynomial &m)
 }
 Polynomial &Polynomial::operator=(const Polynomial &a)
 {
+	this->empty();
 	if (a.size == 0)
 	{
 		this->size = 0;
@@ -231,190 +276,182 @@ Polynomial &Polynomial::operator=(const Polynomial &a)
 		this->set(i, a[i]);
 	return *this;
 };
-// int readData(Polynomial &A, const char *path)
-// {
-// 	ifstream file;
-// 	file.open(path);
-// 	if (file.fail())
-// 	{
-// 		cout << "Doc file " << path
-// 			 << " that bai!" << endl;
-// 		return 0; //fail
-// 	}
-// 	file >> A;
-// 	file.close();
-// 	cout << "Doc file " << path << " thanh cong!" << endl;
-// 	return 1; //success
-// }
-
-// int writeData(Polynomial &A, const char *path)
-// {
-// 	ofstream file(path);
-// 	if (file.fail())
-// 	{
-// 		cout << "ghi file " << path << " that bai!";
-// 		return 0; //fail
-// 	}
-// 	file << A;
-// 	file.close();
-// 	cout << "Ghi file " << path << " thanh cong!" << endl;
-// 	return 1; //success
-// }
-
-Polynomial A;
-Polynomial B;
-Polynomial C;
 class
 {
 public:
-	void views()
+	void read()
 	{
-		cout << "Nhap da thuc A" << endl;
+		cout << "    ------------- Input from keyboard" << endl;
+		cout
+			<< "    Input A" << endl;
 		cin >> A;
-		cout << "Nhap da thuc B" << endl;
+		cout << "    Input B" << endl;
 		cin >> B;
 	}
 } consoleInput;
 class
 {
 public:
+	void read()
+	{
+		cout << "    ------------- Input from files" << endl;
+		bool noError = true;
+		noError *= readData(A, "DATA1.txt");
+		noError *= readData(B, "DATA2.txt");
+	}
+	int readData(Polynomial &A, const char *path)
+	{
+		ifstream file;
+		file.open(path);
+		if (file.fail())
+		{
+			cout << "    Read the " << path
+				 << " file failed!" << endl;
+			return false;
+		}
+		double c;
+		int i = 0;
+		while (file >> c)
+		{
+			A.set(i, c);
+			i++;
+		}
+		file.close();
+		cout << "    Read the " << path << " file successfully!" << endl;
+		return true;
+	}
+
+	int writeData(Polynomial &A, const char *path)
+	{
+		ofstream file(path);
+		if (file.fail())
+		{
+			cout << "    Write the " << path << " file failed!";
+			return false;
+		}
+		file << A;
+		file.close();
+		cout << "    Write the " << path << " file successfully!" << endl;
+		return true;
+	}
+} fileInput;
+class
+{
+public:
 	void options()
 	{
-		cout << "Chon toan tu" << endl
-			 << "0. tro ve" << endl
-			 << "1. +" << endl
-			 << "2. -" << endl
-			 << "3. *" << endl
-			 << "4. /" << endl
-			 << "5. data" << endl
-			 << "Chon so ban muon [1-4]: ";
 		int choose;
-		cin >> choose;
-		cout << "ket qua: " << endl;
-		switch (choose)
+		do
 		{
-		case 0:
-			break;
-		case 1:
-			cout << A + B;
-			options();
-			break;
-		case 2:
-			cout << A - B;
-			options();
-			break;
-		case 3:
-			cout << A * B;
-			options();
-			break;
-		case 4:
-			cout << A / B;
-			options();
-			break;
-		case 5:
-			cout << A << endl
-				 << B << endl;
-			options();
+			cout << "    ------------- Operators" << endl
+				 << "    0. Back" << endl
+				 << "    1. +" << endl
+				 << "    2. -" << endl
+				 << "    3. *" << endl
+				 << "    4. /" << endl
+				 << "    5. Data" << endl
+				 << "    Choose your option [0-5]: ";
+			cin >> choose;
+			switch (choose)
+			{
+			case 0:
+				break;
+			case 1:
+				cout << "    ------------- A + B" << endl;
+				cout << A + B;
+				options();
+				break;
+			case 2:
+				cout << "    ------------- A - B" << endl;
+				cout << A - B;
+				options();
+				break;
+			case 3:
+				cout << "    ------------- A * B" << endl;
+				cout << A * B;
+				options();
+				break;
+			case 4:
+				cout << "    ------------- A / B" << endl;
+				cout << A / B;
+				cout << "    DU: " << endl
+					 << R;
+				options();
+				break;
+			case 5:
+				cout << "    ------------- Data" << endl;
+				cout << "    Polynomial A" << endl
+					 << A << endl
+					 << "    Polynomial B" << endl
+					 << B << endl;
+				options();
 
-		default:
-			break;
-		}
+			default:
+				cout << "    Invalid option!" << endl;
+				break;
+			}
+		} while (0 < choose && choose > 5);
 	}
 } solve;
 class
 {
 public:
-	void views()
+	void welcome()
 	{
-		cout << "+-------------------------------------+" << endl
-			 << "| Chuong Trinh Tinh Tich Da Thuc      |" << endl
-			 << "+-------------------------------------+" << endl
-			 << "| Ma nhom: 18N15 - N6                 |" << endl
-			 << "| Thanh vien trong nhom:              |" << endl
-			 << "| 1. Nguyen Kim Huy - MSSV: 102180207 |" << endl
-			 << "| 2. Tran Ngoc Huy  - MSSV: 102180208 |" << endl
-			 << "+-------------------------------------+" << endl;
+		cout << "    +-------------------------------------+" << endl
+			 << "    | Chuong Trinh Tinh Tich Da Thuc      |" << endl
+			 << "    +-------------------------------------+" << endl
+			 << "    | Ma nhom: 18N15 - N6                 |" << endl
+			 << "    | Thanh vien trong nhom:              |" << endl
+			 << "    | 1. Nguyen Kim Huy - MSSV: 102180207 |" << endl
+			 << "    | 2. Tran Ngoc Huy  - MSSV: 102180208 |" << endl
+			 << "    +-------------------------------------+" << endl;
 	}
 	void options()
 	{
 		int choose;
 		do
 		{
-			cout << "0. Thoat chuong trinh" << endl
-				 << "1. Doc du lieu tu file" << endl
-				 << "2. Nhap du lieu tu ban phim" << endl
-				 << "3. Thuc hien toan tu" << endl
-				 << "Nhap lua chon: ";
-
+			cout << "    ------------- Home" << endl
+				 << "    0. Exit" << endl
+				 << "    1. Input from files" << endl
+				 << "    2. Input from keyboard" << endl
+				 << "    3. Operators" << endl
+				 << "    Choose your option [0-3]: ";
 			cin >> choose;
+			switch (choose)
+			{
+			case 0:
+				cout << "    Goodbye!" << endl;
+				break;
+			case 1:
+				fileInput.read();
+				solve.options();
+				this->options();
+				break;
+
+			case 2:
+				consoleInput.read();
+				solve.options();
+				this->options();
+
+				break;
+			case 3:
+				solve.options();
+				this->options();
+				break;
+			default:
+				cout << "    Invalid option!" << endl;
+				break;
+			}
 		} while (choose < 0 || choose > 3);
-		cout << "---------------------------------------" << endl;
-
-		switch (choose)
-		{
-		case 1:
-			break;
-
-		case 2:
-			consoleInput.views();
-			solve.options();
-			this->options();
-			break;
-		case 3:
-			solve.options();
-			break;
-		}
 	}
-	// void fileInput()
-	// {
-	// 	cout << "He so cua duoc nhap theo so mu tu 0 den n" << endl;
-	// 	Polynomial P, Q, R;
-	// 	bool noError = true;
-	// 	noError *= readData(P, "DATA1.txt");
-	// 	noError *= readData(Q, "DATA2.txt");
-	// 	R = P * Q;
-	// 	noError *= writeData(R, "DATA3.txt");
-	// 	if (noError)
-	// 		cout << "He so P(x): " << endl
-	// 			 << P << endl
-	// 			 << "He so Q(x): " << endl
-	// 			 << Q << endl
-	// 			 << "He so tich R(x) = P(x) * Q(x): " << endl
-	// 			 << R << endl
-	// 			 << "---------------------------------------" << endl;
-	// }
-	// void consoleInput()
-	// {
-	// 	cout << "Nhap size P(x) va Q(x)" << endl
-	// 		 << "Nhap he so theo so mu tu 0 den n " << endl
-	// 		 << "Vi du: P(x) = 2 + 3*x - 5.5*x^3 | size: 3, he so: 2 3 0 -5.5" << endl;
-	// 	int size;
-	// 	cout << "Nhap size P(x): " << endl;
-	// 	cin >> size;
-	// 	Polynomial P(size + 1);
-	// 	cout << "Nhap cac he so: " << endl;
-	// 	cin >> P;
-	// 	cout << "Nhap size Q(x): " << endl;
-	// 	cin >> size;
-	// 	Polynomial Q(size + 1);
-	// 	cout << "Nhap cac he so: " << endl;
-	// 	cin >> Q;
-	// 	Polynomial R(P.size + Q.size - 1);
-	// 	R = P * Q;
-	// 	cout << endl
-	// 		 << "Ket qua: " << endl
-	// 		 << "He so P(x): " << endl
-	// 		 << P << endl
-	// 		 << "He so Q(x): " << endl
-	// 		 << Q << endl
-	// 		 << "He so tich R(x) = P(x) * Q(x):" << endl
-	// 		 << R << endl
-	// 		 << "---------------------------------------" << endl;
-	// }
 } home;
+
 int main()
 {
-	home.views();
+	home.welcome();
 	home.options();
+
 	return 0;
 }
