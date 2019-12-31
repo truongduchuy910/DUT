@@ -14,7 +14,7 @@ public:
 private:
 	int degree;
 	double coefficicent;
-	Term* next;
+	Term *next;
 };
 
 Term::Term(const int degree, const double coefficicent) : degree(degree), coefficicent(coefficicent)
@@ -25,23 +25,23 @@ class Polynomial
 {
 public:
 	Polynomial();
-	Polynomial(Polynomial&);
+	Polynomial(Polynomial &);
 	~Polynomial();
 	int set(const int, const double);
 	double operator[](int) const;
-	friend ostream& operator<<(ostream&, const Polynomial&);
-	Polynomial& operator=(const Polynomial&);
-	friend Polynomial operator+(const Polynomial&, const Polynomial&);
-	friend Polynomial operator-(const Polynomial&, const Polynomial&);
-	friend Polynomial operator*(const Polynomial&, const Polynomial&);
+	friend ostream &operator<<(ostream &, const Polynomial &);
+	Polynomial &operator=(const Polynomial &);
+	friend Polynomial operator+(const Polynomial &, const Polynomial &);
+	friend Polynomial operator-(const Polynomial &, const Polynomial &);
+	friend Polynomial operator*(const Polynomial &, const Polynomial &);
 	//friend Polynomial operator*(const Polynomial&, double x);
-	friend Polynomial operator/(const Polynomial&, const Polynomial&);
+	friend Polynomial operator/(const Polynomial &, const Polynomial &);
 
 private:
-	Term* isExist(const int);
+	Term *isExist(const int);
 	int size;
-	Term* start;
-	Term* end;
+	Term *start;
+	Term *end;
 	bool isEmpty();
 };
 Polynomial::Polynomial()
@@ -50,7 +50,7 @@ Polynomial::Polynomial()
 	end = NULL;
 	size = 0;
 }
-Polynomial::Polynomial(Polynomial& a)
+Polynomial::Polynomial(Polynomial &a)
 {
 	this->size = 0;
 	for (int i = 0; i < a.size; i++)
@@ -63,8 +63,8 @@ Polynomial::~Polynomial()
 {
 	if (!this->isEmpty())
 	{
-		Term* currentTerm = this->start;
-		Term* temp;
+		Term *currentTerm = this->start;
+		Term *temp;
 		while (currentTerm != NULL)
 		{
 			temp = currentTerm;
@@ -85,9 +85,9 @@ int Polynomial::set(const int degree, const double coefficicent)
 {
 	if (coefficicent == 0)
 		return false;
-	if (this->size <= degree)
-		this->size = degree;
-	Term* newTerm = this->isExist(degree);
+	if (this->size < degree + 1)
+		this->size = degree + 1;
+	Term *newTerm = this->isExist(degree);
 	if (newTerm)
 	{
 		newTerm->coefficicent = coefficicent;
@@ -112,7 +112,7 @@ int Polynomial::set(const int degree, const double coefficicent)
 double Polynomial::operator[](int i) const
 {
 
-	Term* temp = this->start;
+	Term *temp = this->start;
 	while (temp != NULL && temp->degree != i)
 	{
 		temp = temp->next;
@@ -122,9 +122,9 @@ double Polynomial::operator[](int i) const
 	return 0;
 };
 
-Term* Polynomial::isExist(const int degree)
+Term *Polynomial::isExist(const int degree)
 {
-	Term* temp = this->start;
+	Term *temp = this->start;
 	while (temp != NULL && degree != temp->degree)
 		temp = temp->next;
 
@@ -134,33 +134,33 @@ Term* Polynomial::isExist(const int degree)
 	return NULL;
 }
 
-Polynomial operator+(const Polynomial& m, const Polynomial& n)
+Polynomial operator+(const Polynomial &m, const Polynomial &n)
 {
 	Polynomial temp;
 	int _length = (m.size >= n.size) ? m.size : n.size;
-	for (int i = 0; i <= _length; i++)
+	for (int i = 0; i < _length; i++)
 	{
 		temp.set(i, m[i] + n[i]);
 	}
 	return temp;
 }
-Polynomial operator-(const Polynomial& m, const Polynomial& n)
+Polynomial operator-(const Polynomial &m, const Polynomial &n)
 {
 	Polynomial temp;
 	int _length = (m.size >= n.size) ? m.size : n.size;
-	for (int i = 0; i <= _length; i++)
+	for (int i = 0; i < _length; i++)
 	{
 		temp.set(i, m[i] - n[i]);
 	}
 	return temp;
 }
 
-Polynomial operator*(const Polynomial& A, const Polynomial& B)
+Polynomial operator*(const Polynomial &A, const Polynomial &B)
 {
 	Polynomial result;
-	for (int i = 0; i <= A.size; i++)
+	for (int i = 0; i < A.size; i++)
 	{
-		for (int j = 0; j <= B.size; j++)
+		for (int j = 0; j < B.size; j++)
 		{
 			int k = i + j;
 			result.set(k, result[k] + A[i] * B[j]);
@@ -169,16 +169,7 @@ Polynomial operator*(const Polynomial& A, const Polynomial& B)
 	return result;
 }
 
-/*Polynomial operator*(const Polynomial& A, double x)
-{
-	Polynomial result;
-	for (int i = 0; i <= A.size; i++)
-	{
-		result.set(i, A[i] * x);
-	}
-	return result;
-}*/
-Polynomial operator/(const Polynomial& A, const Polynomial& B)
+Polynomial operator/(const Polynomial &A, const Polynomial &B)
 {
 	int k = B.size;
 	Polynomial r;
@@ -221,7 +212,7 @@ Polynomial operator/(const Polynomial& A, const Polynomial& B)
 	cout << endl;*/
 	return result;
 }
-istream& operator>>(istream& in, Polynomial& m)
+istream &operator>>(istream &in, Polynomial &m)
 {
 	cout << "Nhap bac: ";
 	int n;
@@ -235,24 +226,24 @@ istream& operator>>(istream& in, Polynomial& m)
 	}
 	return in;
 }
-ostream& operator<<(ostream& os, const Polynomial& m)
+ostream &operator<<(ostream &os, const Polynomial &m)
 {
 	cout << setw(7) << "so mu: ";
-	for (int i = 0; i <= m.size; i++)
+	for (int i = 0; i < m.size; i++)
 	{
 		os << setw(5) << i;
 	}
 	cout << endl
-		<< setw(7) << "he so: ";
+		 << setw(7) << "he so: ";
 
-	for (int i = 0; i <= m.size; i++)
+	for (int i = 0; i < m.size; i++)
 	{
 		os << setw(5) << m[i];
 	}
 	cout << endl;
 	return os;
 }
-Polynomial& Polynomial::operator=(const Polynomial& a)
+Polynomial &Polynomial::operator=(const Polynomial &a)
 {
 	if (a.size == 0)
 	{
@@ -310,12 +301,12 @@ public:
 	void options()
 	{
 		cout << "Chon toan tu" << endl
-			<< "0. tro ve" << endl
-			<< "1. +" << endl
-			<< "2. -" << endl
-			<< "3. *" << endl
-			<< "4. /" << endl
-			<< "Chon so ban muon [1-4]: ";
+			 << "0. tro ve" << endl
+			 << "1. +" << endl
+			 << "2. -" << endl
+			 << "3. *" << endl
+			 << "4. /" << endl
+			 << "Chon so ban muon [1-4]: ";
 		int choose;
 		cin >> choose;
 		cout << "ket qua: " << endl;
@@ -351,13 +342,13 @@ public:
 	void views()
 	{
 		cout << "+-------------------------------------+" << endl
-			<< "| Chuong Trinh Tinh Tich Da Thuc      |" << endl
-			<< "+-------------------------------------+" << endl
-			<< "| Ma nhom: 18N15 - N6                 |" << endl
-			<< "| Thanh vien trong nhom:              |" << endl
-			<< "| 1. Nguyen Kim Huy - MSSV: 102180207 |" << endl
-			<< "| 2. Tran Ngoc Huy  - MSSV: 102180208 |" << endl
-			<< "+-------------------------------------+" << endl;
+			 << "| Chuong Trinh Tinh Tich Da Thuc      |" << endl
+			 << "+-------------------------------------+" << endl
+			 << "| Ma nhom: 18N15 - N6                 |" << endl
+			 << "| Thanh vien trong nhom:              |" << endl
+			 << "| 1. Nguyen Kim Huy - MSSV: 102180207 |" << endl
+			 << "| 2. Tran Ngoc Huy  - MSSV: 102180208 |" << endl
+			 << "+-------------------------------------+" << endl;
 	}
 	void options()
 	{
@@ -365,9 +356,9 @@ public:
 		do
 		{
 			cout << "0. Thoat chuong trinh" << endl
-				<< "1. Doc du lieu tu file" << endl
-				<< "2. Nhap du lieu tu ban phim" << endl
-				<< "Nhap lua chon: ";
+				 << "1. Doc du lieu tu file" << endl
+				 << "2. Nhap du lieu tu ban phim" << endl
+				 << "Nhap lua chon: ";
 
 			cin >> choose;
 		} while (choose < 0 || choose > 2);
