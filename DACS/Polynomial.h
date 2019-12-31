@@ -246,14 +246,27 @@ Polynomial operator%(const Polynomial &a, const Polynomial &b)
 istream &operator>>(istream &in, Polynomial &m)
 {
     m.empty();
-    cout << "    Input degree: ";
     int n;
-    in >> n;
+    do
+    {
+        in.clear();
+        in.ignore();
+        cout << "    Input degree: ";
+        in >> n;
+
+    } while (in.fail());
+
     for (int i = 0; i <= n; i++)
     {
-        cout << "    x^" << i << " = ";
+
         double coefficicent;
-        in >> coefficicent;
+        do
+        {
+            in.clear();
+            in.ignore();
+            cout << "    x^" << i << " = ";
+            in >> coefficicent;
+        } while (in.fail());
         m.set(i, coefficicent);
     }
     return in;
