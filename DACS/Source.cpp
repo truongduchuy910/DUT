@@ -171,45 +171,21 @@ Polynomial operator*(const Polynomial &A, const Polynomial &B)
 
 Polynomial operator/(const Polynomial &A, const Polynomial &B)
 {
-	int k = B.size;
+	int k = B.size - 1;
 	Polynomial r;
 	Polynomial result;
 	Polynomial tmp;
 	Polynomial t;
 	t = A;
-	cout << "gan poly t = poly A" << endl;
-	cout << "Poly A = " << endl;
-	cout << A;
-	cout << "Poly t = " << endl;
-	cout << t;
-	cout << endl;
-	/*r = t;
-	cout << r;
-	cout << endl;*/
-	for (int i = A.size; i >= B.size; i--)
+	for (int i = (A.size - 1); i >= B.size - 1; i--)
 	{
-		cout << "i = " << i << endl;
-		cout << "k = " << k << endl;
-		cout << i - k << endl;
-		cout << "result.set(i - k, t[i] / B[k]) = " << t[i] / B[k] << endl;
 		result.set(i - k, t[i] / B[k]);
 		r.set(i - k, t[i] / B[k]);
-		cout << result << endl;
 		tmp = B * r;
-		cout << tmp << endl;
 		t = (t - tmp);
-		cout << t << endl;
 		t.size = t.size - 1;
 		r.size = r.size - 1;
-		cout << "-----------" << endl;
 	}
-	//In ra da thuc du
-	/*cout << "Du: " << endl;
-	for (int i = 0; i < n.size - 1; i++)
-	{
-		cout << setw(5) << t[i];
-	}
-	cout << endl;*/
 	return result;
 }
 istream &operator>>(istream &in, Polynomial &m)
@@ -298,6 +274,10 @@ public:
 		cout << "Nhap da thuc B" << endl;
 		cin >> B;
 	}
+} consoleInput;
+class
+{
+public:
 	void options()
 	{
 		cout << "Chon toan tu" << endl
@@ -306,6 +286,7 @@ public:
 			 << "2. -" << endl
 			 << "3. *" << endl
 			 << "4. /" << endl
+			 << "5. data" << endl
 			 << "Chon so ban muon [1-4]: ";
 		int choose;
 		cin >> choose;
@@ -330,12 +311,16 @@ public:
 			cout << A / B;
 			options();
 			break;
+		case 5:
+			cout << A << endl
+				 << B << endl;
+			options();
 
 		default:
 			break;
 		}
 	}
-} consoleInput;
+} solve;
 class
 {
 public:
@@ -358,27 +343,26 @@ public:
 			cout << "0. Thoat chuong trinh" << endl
 				 << "1. Doc du lieu tu file" << endl
 				 << "2. Nhap du lieu tu ban phim" << endl
+				 << "3. Thuc hien toan tu" << endl
 				 << "Nhap lua chon: ";
 
 			cin >> choose;
-		} while (choose < 0 || choose > 2);
+		} while (choose < 0 || choose > 3);
 		cout << "---------------------------------------" << endl;
 
 		switch (choose)
 		{
 		case 1:
-		{
-			//	fileInput();
-			options();
 			break;
-		}
+
 		case 2:
-		{
 			consoleInput.views();
-			consoleInput.options();
+			solve.options();
 			this->options();
 			break;
-		}
+		case 3:
+			solve.options();
+			break;
 		}
 	}
 	// void fileInput()
