@@ -154,7 +154,7 @@ public:
 				cout << "    Invalid option!" << endl;
 				break;
 			}
-		} while ('0' > choose || choose > '5');
+		} while ('0' > choose || choose > '6');
 	}
 } solve;
 class
