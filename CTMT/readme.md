@@ -9,10 +9,12 @@ Gán giá trị nhập vào từ bàn phím cho al.
 Xuất giá trị từ dl ra màn hình.
 
     mul bl
-    mul cl
-    mul dl
+    mul dx
     
-Gán al = al * cho giá trị truyền vào lấy phần nguyên. Phần dư lưu vào ah.
+Nếu truyền vào thanh ghi 8 bit gọi là X
+Phần nguyên của phép chia al / X lưu vào vào al. Phần dư lưu vào ah.
+Nếu truyền vào thanh ghi 16 bit gọi là Y
+Phân nguyên của phép chia al / Y lưu vào ax. Phần dư lưu vào dx.
 
 #### I. Nhóm thanh ghi đa dụng : (General Register)
 a. Thanh ghi AX : (Auxliary Register)
