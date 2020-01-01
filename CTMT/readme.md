@@ -8,6 +8,12 @@ Gán giá trị nhập vào từ bàn phím cho al.
 
 Xuất giá trị từ dl ra màn hình.
 
+    mul bl
+    mul cl
+    mul dl
+    
+Gán al = al * cho giá trị truyền vào
+
 #### I. Nhóm thanh ghi đa dụng : (General Register)
 a. Thanh ghi AX : (Auxliary Register)
 
