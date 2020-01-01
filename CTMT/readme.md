@@ -3,40 +3,40 @@
 Gán giá trị nhập vào từ bàn phím cho al.
     mov ah, 2
 Xuất giá trị từ dl ra màn hình.
-    
+
 #### I. Nhóm thanh ghi đa dụng : (General Register)
 a. Thanh ghi AX : (Auxliary Register)
 
-    Công dụng riêng dùng trong các phép toán số học, lưu kết quả của các phép toán *, chia, ...
+Công dụng riêng dùng trong các phép toán số học, lưu kết quả của các phép toán *, chia, ...
 
 b. Thanh ghi BX : (Base Regiser)
 
-    Dùng trong phép định địa chỉ cơ sở của bộ nhớ, nó đóng vai trò như 1 thanh ghi địa chỉ offset của bộ nhớ
+Dùng trong phép định địa chỉ cơ sở của bộ nhớ, nó đóng vai trò như 1 thanh ghi địa chỉ offset của bộ nhớ
 
 c. Thanh ghi CX : (Count Regiser)
 
-    Dùng để chứa số vòng lặp trong chương trình, nó đóng vai tròn như một biến đếm cho việc lặp vòng. Ngoài ra, thanh ghi
-    CL còn được dùng trong các phép dịch chuyển với số lần dịch chuyển là nội dung của thanh ghi CL.
+Dùng để chứa số vòng lặp trong chương trình, nó đóng vai tròn như một biến đếm cho việc lặp vòng. Ngoài ra, thanh ghi
+CL còn được dùng trong các phép dịch chuyển với số lần dịch chuyển là nội dung của thanh ghi CL.
 
 d. Thanh ghi DX : (Data Regiser)
-    Dùng để lưu trữ kết quả của phép toán * hoặc /, định địa chỉ cổng trong các lệnh xuất nhập cổng.
+Dùng để lưu trữ kết quả của phép toán * hoặc /, định địa chỉ cổng trong các lệnh xuất nhập cổng.
 
 #### II. Nhóm thanh ghi đoạn : (Segiment regiset)
 a. Thanh ghi CS : (Code Segment)
 
-    Dùng để chứa địa chỉ Segment của đoạn mã của đoạn mã chương trình.
+Dùng để chứa địa chỉ Segment của đoạn mã của đoạn mã chương trình.
 
 b. Thanh ghi DS : (Data Segment)
 
-    Chứa địa chỉ Segment của đoạn dữ liệu
+Chứa địa chỉ Segment của đoạn dữ liệu
 
 c. Thanh ghi ES : (Extra Segment)
 
-    Chứa địa chỉ Segment của đoạn dữ liệu bổ sung. Như vậy nếu ta có hai đoạn dữ liệu thì một sẽ do thanh ghi DS và hai sẽ do thanh ghi ES quản lý.
+Chứa địa chỉ Segment của đoạn dữ liệu bổ sung. Như vậy nếu ta có hai đoạn dữ liệu thì một sẽ do thanh ghi DS và hai sẽ do thanh ghi ES quản lý.
 
 d. Thanh ghi SS (Stack Segment)
 
-    Dùng lưu địa chỉ Segment của đoạn Stack. Bốn thanh ghi này có thể truy xuất trên bốn đoạn khác nhau. Như vậy một chương trình làm việc cùng một lúc tối đa là bốn đoạn
+Dùng lưu địa chỉ Segment của đoạn Stack. Bốn thanh ghi này có thể truy xuất trên bốn đoạn khác nhau. Như vậy một chương trình làm việc cùng một lúc tối đa là bốn đoạn
 
 III. Nhóm thanh ghi con trỏ và chỉ mục :
 
