@@ -8,8 +8,8 @@ Gán giá trị nhập vào từ bàn phím cho al.
 
 Xuất giá trị từ dl ra màn hình.
 
-    mul bl
-    mul dx
+    div bl
+    div dx
     
 Nếu truyền vào thanh ghi 8 bit gọi là X
 Phần nguyên của phép chia al / X lưu vào vào al. Phần dư lưu vào ah.
