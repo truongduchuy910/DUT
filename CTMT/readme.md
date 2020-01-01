@@ -12,7 +12,7 @@ Xuất giá trị từ dl ra màn hình.
     mul cl
     mul dl
     
-Gán al = al * cho giá trị truyền vào
+Gán al = al * cho giá trị truyền vào lấy phần nguyên. Phần dư lưu vào ah.
 
 #### I. Nhóm thanh ghi đa dụng : (General Register)
 a. Thanh ghi AX : (Auxliary Register)
