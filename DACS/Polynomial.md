@@ -4,7 +4,7 @@
 
 Lớp `Polynomial` giúp khai báo các biến để sử dụng như một đa thức. Gồm các thao tác như nhập xuất bằng std::cin, std::cout, các phép toán cơ bản,...
 
-## Chi tiết
+## Chức năng
 
 ### Các hàm sử dụng chung
 
@@ -16,6 +16,10 @@ Lớp `Polynomial` giúp khai báo các biến để sử dụng như một đa 
     Polynomial &operator=(const Polynomial &);
 
 ### `Polynomial();`
+
+    Polynomial tên_biến;
+
+Khai báo đa thức là một danh sách liên kết rỗng. Các nút của danh sách liên kết làm một hạng tử lớp Term.
 
 ### `~Polynomial();`
 
@@ -72,3 +76,8 @@ Dùng để lưu địa chỉ của Nút bắt đầu. Có giá trị `NULL` n�
 #### `int size`;
 
 Dùng để lưu số phần tử của danh sách.
+
+## Chi tiết
+
+### `Polynomial();`
+Gán con trỏ start bằng `NULL`. Biến kích thước size bằng 0;
