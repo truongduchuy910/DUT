@@ -67,7 +67,7 @@ public:
 			cout << "failure!";
 			return false;
 		}
-		for (int i = 0; i < A.size; i++)
+		for (int i = 0; i < A.getSize(); i++)
 		{
 			file << A[i] << " ";
 		}
