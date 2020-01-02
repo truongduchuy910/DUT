@@ -209,17 +209,19 @@ Polynomial operator/(const Polynomial &a, const Polynomial &b)
     int k = b.size - 1;
     Polynomial result;
     Polynomial t;
+    Polynomial r;
     t = a;
     for (int i = (a.size - 1); i >= b.size - 1; i--)
     {
         Polynomial tmp;
-        Polynomial r;
+        //Polynomial r;
 
         result.set(i - k, t[i] / b[k]);
         r.set(i - k, t[i] / b[k]);
         tmp = b * r;
         t = (t - tmp);
-        t.size = t.size - 1;
+        r.size = r.size - 1;
+        //t.size = t.size - 1;
     }
     return result;
 }
