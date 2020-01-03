@@ -27,7 +27,9 @@ public:
 		cout << endl
 			 << "    ------------- Input from files" << endl;
 		cout << "    Input A from DATA1.txt - ";
+		A.~Polynomial();
 		readData(A, "DATA1.txt");
+		B.~Polynomial();
 		cout << "    Input B from DATA2.txt - ";
 		readData(B, "DATA2.txt");
 	}
