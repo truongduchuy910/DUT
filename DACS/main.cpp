@@ -165,7 +165,7 @@ public:
 	void welcome()
 	{
 		cout << endl
-			 << "    Chuong Trinh Tinh Tich Da Thuc     " << endl
+			 << "    Chuong Trinh Tinh Toan Tren Da Thuc" << endl
 			 << "    -----------------------------------" << endl
 			 << "    Ma nhom: 18N15 - N6                " << endl
 			 << "    Thanh vien trong nhom:             " << endl

@@ -197,7 +197,6 @@ Polynomial operator/(const Polynomial &dividend, const Polynomial &divisor)
 Polynomial operator%(const Polynomial &dividend, const Polynomial &divisor)
 {
     int k = divisor.getSize() - 1;
-    Polynomial quotient;
     Polynomial remainder;
     Polynomial q;
     Polynomial tmp;
@@ -206,7 +205,6 @@ Polynomial operator%(const Polynomial &dividend, const Polynomial &divisor)
     {
         q.~Polynomial();
         tmp.~Polynomial();
-        quotient.set(i - k, remainder[i] / divisor[k]);
         q.set(i - k, remainder[i] / divisor[k]);
         tmp = divisor * q;
         remainder = (remainder - tmp);
@@ -216,14 +214,14 @@ Polynomial operator%(const Polynomial &dividend, const Polynomial &divisor)
 istream &operator>>(istream &in, Polynomial &m)
 {
     m.~Polynomial();
-    cout << "    Input degree: ";
+    cout << "    Degree: ";
     int n;
     in >> n;
     double coefficicent;
 
     for (int i = 0; i <= n; i++)
     {
-        cout << "    x^" << i << " = ";
+        cout << "    x^" << i << " <- ";
         in >> coefficicent;
         m.set(i, coefficicent);
     }
